@@ -27,6 +27,7 @@ use DB;
 use Illuminate\Http\Request;
 use Log;
 use Mail;
+use Nitmedia\Wkhtml2pdf\Wkhtml2pdf;
 use Omnipay;
 use PDF;
 use PhpSpec\Exception\Exception;
@@ -814,7 +815,13 @@ class EventCheckoutController extends Controller
         ];
 
         if ($request->get('download') == '1') {
-            return PDF::html('Public.ViewEvent.Partials.PDFTicket', $data, 'Tickets');
+            $pdfName = $order_reference . '-tickets';
+            $pdfPath = join(DIRECTORY_SEPARATOR, [storage_path(), 'app', $pdfName]);
+            PDF::setOutputMode(Wkhtml2pdf::MODE_SAVE);
+            PDF::html('Public.ViewEvent.Partials.PDFTicket', $data, $pdfPath);
+            return response()->download($pdfPath . '.pdf', $pdfName . '.pdf', [
+                'Content-Type' => 'application/pdf'
+            ])->deleteFileAfterSend(true);
         }
         return view('Public.ViewEvent.Partials.PDFTicket', $data);
     }

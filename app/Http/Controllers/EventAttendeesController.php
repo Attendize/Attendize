@@ -23,6 +23,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Log;
 use Mail;
+use Nitmedia\Wkhtml2pdf\Wkhtml2pdf;
 use PDF;
 use Validator;
 use Illuminate\Support\Facades\Lang;
@@ -707,7 +708,13 @@ class EventAttendeesController extends MyBaseController
         ];
 
         if ($request->get('download') == '1') {
-            return PDF::html('Public.ViewEvent.Partials.PDFTicket', $data, 'Tickets');
+            $pdfName = $attendee->order->order_reference . '-' . $attendee_id . '-tickets';
+            $pdfPath = join(DIRECTORY_SEPARATOR, [storage_path(), 'app', $pdfName]);
+            PDF::setOutputMode(Wkhtml2pdf::MODE_SAVE);
+            PDF::html('Public.ViewEvent.Partials.PDFTicket', $data, $pdfPath);
+            return response()->download($pdfPath . '.pdf', $pdfName . '.pdf', [
+                'Content-Type' => 'application/pdf'
+            ])->deleteFileAfterSend(true);
         }
         return view('Public.ViewEvent.Partials.PDFTicket', $data);
     }
