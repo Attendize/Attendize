@@ -198,7 +198,7 @@ class InstallerController extends Controller
             "DB_DATABASE" => $database['name'],
             "DB_USERNAME" => $database['username'],
             "DB_PASSWORD" => $database['password'],
-            "MAIL_DRIVER" => $mail['driver'],
+            "MAIL_MAILER" => $mail['driver'],
             "MAIL_PORT" => $mail['port'],
             "MAIL_ENCRYPTION" => $mail['encryption'],
             "MAIL_HOST" => $mail['host'],
