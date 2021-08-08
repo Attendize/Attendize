@@ -58,6 +58,7 @@ return array(
     'organiser_username_twitter_placeholder'  => 'MiPáginaDeTwitter',
     'sales_volume'                            => 'Volumen de ventas',
     'save_organiser'                          => 'Guardar Organizador',
+    'see_archived_event' 			    => 'Ver eventos archivados',
     'select_an_organiser'                     => 'Selecciona un organizador',
     'select_organiser'                        => 'Selecciona organizador',
     'text_color'                              => 'Color del texto',

@@ -41,6 +41,7 @@ return array(
     'invite_attendees'                        => 'Invitar a los asistentes',
     'issue_full_refund'                       => 'Emitir un reembolso completo',
     'issue_partial_refund'                    => 'Emitir un reembolso parcial',
+    'less_options' 				    => 'Mostrar menos',
     'manage_order_title'                      => 'Pedido: :order_ref',
     'mark_payment_received'                   => 'Marcar como pago recibido',
     'maximum_tickets_per_order'               => 'Número máximo de entradas por pedido',

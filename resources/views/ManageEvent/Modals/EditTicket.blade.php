@@ -130,7 +130,7 @@
                         </div>
                     @endif
                 </div>
-                <a href="javascript:void(0);" class="show-more-options">
+                <a href="javascript:void(0);" data-show-less-text="{!! trans("ManageEvent.less_options") !!}" class="show-more-options">
                     @lang("ManageEvent.more_options")
                 </a>
             </div> <!-- /end modal body-->

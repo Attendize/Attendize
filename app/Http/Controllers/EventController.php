@@ -9,6 +9,7 @@ use Validator;
 use App\Models\Event;
 use App\Models\Organiser;
 use App\Models\EventImage;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Spatie\GoogleCalendar\Event as GCEvent;
 
@@ -359,5 +360,127 @@ class EventController extends MyBaseController
         return redirect()->action(
             'EventDashboardController@showDashboard', ['event_id' => $event_id]
         );
+    }
+
+    /**
+     * Clone an event
+     *
+     * @param Request $request
+     * @param $event_id
+     * @return redirect to page
+     */
+    public function CreateCloneEvent($event_id = '')
+    {
+
+        /* need to prepare new dummy dates for new event */
+        $format = config('attendize.default_datetime_format');
+        //here you can set new event date as you like or repeat cloned event dates later in code as  = $event->start_date;
+        $fechaini = date($format, strtotime(' + 7 days'));
+        $fechafin = date($format, strtotime(' + 9 days'));
+
+        /* Create an empty Event */
+        $cloned_event = Event::createNew();
+
+        /* Clone event from choosen event_id (original) */
+        $event = Event::scope()->findOrFail($event_id);
+        $cloned_event = clone $event;
+
+        /* Set values for the new Event */
+        $cloned_event->is_live = 0;
+        $cloned_event->id = null;
+        $cloned_event->title = $event->title . '(New)';
+        $cloned_event->start_date = $fechaini;
+        $cloned_event->end_date = $fechafin;
+        $cloned_event->exists = false; //very important so IsDirty returns correctly
+        
+
+        try
+        {
+            $cloned_event->save();
+        }
+        catch(\Exception $e)
+        {
+            Log::error($e);
+            return response()->json(['status' => $e, 'messages' => trans("Controllers.event_create_exception") , ]);
+        }
+
+        // now get images and duplicate them (thanks for a better code from @emergingdzns )
+        $images = EventImage::where('event_id', $event->id)->get();
+        if (count($images) > 0)
+        {
+            foreach ($images as $image)
+            {
+                $newImage = new EventImage();
+                $newImage->image_path = $image->image_path;
+                $newImage->created_at = date('Y-m-d H:i:s');
+                $newImage->updated_at = date('Y-m-d H:i:s');
+                $newImage->event_id = $cloned_event->id;
+                $newImage->account_id = $image->account_id;
+                $newImage->user_id = $image->user_id;
+                $newImage->save();
+            }
+        }
+
+        // now get survey question for the event and associate them
+        $eventquestions = $event->questions()->get();
+        if (count($eventquestions) > 0)
+        {
+            foreach ($eventquestions as $question)
+            {
+                $cloned_event->questions()
+                    ->attach($question->id);
+            }
+        }
+
+        // now get tickets for the event and duplicate them
+        $tickets = Ticket::where('event_id', $event->id)->get();
+        if (count($tickets) > 0)
+        {
+
+            foreach ($tickets as $ticket)
+            {
+
+                $ticketa = $ticket->toArray();
+                unset($ticketa['id']);
+                $ticketa['event_id'] = $cloned_event->id;
+                $ticketa['quantity_sold'] = 0;
+                $ticketa['sales_volume'] = 0.00;
+                $ticketa['organiser_fees_volume'] = 0.00;
+
+                $newTicket = new Ticket();
+                $newTicket->fill($ticketa);
+                $newTicket->save();
+
+                if (count($eventquestions) > 0)
+                {
+                    foreach ($eventquestions as $question)
+                    {
+                        if (in_array($ticket->id, $question->tickets->pluck('id')->toArray()))
+                        {
+                            $question->tickets()->sync($newTicket->id);
+                        }
+                    }
+                }
+
+            }
+
+        }
+        /* redirect to wherever you want */
+        return redirect(route('showOrganiserEvents', array('organiser_id' => $cloned_event->organiser_id)));
+
+    }
+    public function archiveEvent($event_id = '')
+    {
+        $event = Event::scope()->findOrFail($event_id);
+        $event->delete();
+        return redirect()->route('showOrganiserEvents', $event->organiser->id);
+    }
+    public function restoreEvent($event_id = '')
+    {
+        $event = Event::withTrashed()->scope()
+            ->findOrFail($event_id);
+        $event->deleted_at = null;
+        $event->save();
+        return redirect()->route('showOrganiserEvents', $event->organiser->id);
     }
 }
