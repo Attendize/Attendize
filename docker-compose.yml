@@ -14,6 +14,8 @@ services:
       - maildev
       - redis
       - worker
+    env_file:
+      - ./.env
   worker:
     image: attendize_worker:latest
     depends_on:
@@ -39,7 +41,7 @@ services:
     volumes:
       - "mysql-data:/var/lib/mysql"
   maildev:
-    image: djfarrelly/maildev
+    image: maildev/maildev
     ports:
       - "1080:80"
   redis:

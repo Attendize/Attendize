@@ -17,6 +17,9 @@
         .user-list .form-group {
             margin-bottom: 0;
         }
+        [hidden] {
+           display: none;
+        }
     </style>
     <div class="modal-dialog account_settings" style="width:750px;">
         <div class="modal-content">
@@ -96,10 +99,11 @@
                                                 <td><strong>{{ trans("ManageAccount.role") }}</strong></td>
                                                 <td><strong>{{ trans("ManageAccount.email") }}</strong></td>
                                                 <td><strong>{{ trans("ManageAccount.manage_events") }}</strong></td>
+                                                <td>&nbsp;</td>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($account->users as $user)
+                                        @foreach($account->users()->withTrashed()->get() as $user)
                                             <tr class="user-list">
                                                 <td>{{$user->first_name}} {{$user->last_name}}</td>
                                                 <td class="text-center">
@@ -148,10 +152,69 @@
                                                         </div>
                                                     </div>
                                                 </td>
+
+                                                <td>
+                                                    @if ($user->id != auth()->user()->id)
+                                                        <div style="position:relative;">
+                                                            <button data-id="dropdown" class="btn btn-sm btn-default">
+                                                                &hellip;
+                                                            </button>
+
+                                                            <div class="dropdown-content" style="position:absolute;z-index:10;bottom:0;right:0;transform:translateY(100%)" hidden>
+                                                                <div style="display:flex;flex-direction:column;padding:0.5rem;background-color:white">
+                                                                    <button
+                                                                        name="user_action"
+                                                                        data-action="send_invitation_message"
+                                                                        data-href="{!! route("sendInvitationMessage", ["id" => $user->id]) !!}"
+                                                                        class="btn btn-sm btn-default"
+                                                                        style="margin-bottom:0.5rem"
+                                                                        {!! $user->trashed() ? 'hidden' : '' !!}
+                                                                    >
+                                                                        {!! trans("ManageAccount.send_invitation_message") !!}
+                                                                    </button>
+
+                                                                    <button
+                                                                        name="user_action"
+                                                                        data-action="restore"
+                                                                        data-href="{!! route("userRestore", ["id" => $user->id]) !!}"
+                                                                        aria-label="{!! trans("basic.restore") !!}"
+                                                                        title="{!! trans("basic.restore") !!}"
+                                                                        class="btn btn-sm btn-warning"
+                                                                        style="margin-bottom:0.5rem"
+                                                                        {!! !$user->trashed() ? 'hidden' : '' !!}
+                                                                    >
+                                                                        {!! trans("basic.restore") !!}
+                                                                    </button>
+
+                                                                    <button
+                                                                        name="user_action"
+                                                                        data-action="force_delete"
+                                                                        data-href="{!! route("userDelete", ["id" => $user->id, "force" => true]) !!}"
+                                                                        class="btn btn-sm btn-danger"
+                                                                        style="margin-bottom:0.5rem"
+                                                                        {!! !$user->trashed() ? 'hidden' : '' !!}
+                                                                    >
+                                                                        {!! trans("basic.force_delete") !!}
+                                                                    </button>
+
+                                                                    <button
+                                                                        name="user_action"
+                                                                        data-action="delete"
+                                                                        data-href="{!! route("userDelete", ["id" => $user->id]) !!}"
+                                                                        class="btn btn-sm btn-danger"
+                                                                        {!! $user->trashed() ? 'hidden' : '' !!}
+                                                                    >
+                                                                        {!! trans("basic.delete") !!}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                         <tr>
-                                            <td colspan="4">
+                                            <td colspan="5">
                                                 {!! Form::open(['url' => route('postInviteUser'), 'class' => 'ajax']) !!}
                                                 <div class="row">
                                                     <div class="col-md-12">

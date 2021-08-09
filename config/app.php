@@ -82,6 +82,17 @@ return [
 
     'locale' => 'en',
 
+     /*
+    |--------------------------------------------------------------------------
+    | Application Locale Direction Configuration
+    |--------------------------------------------------------------------------
+    |
+    | The application locale direction checks if dir is ltr or rtl.
+    |
+    */
+
+    'locale_dir' => 'ltr',
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -171,8 +182,6 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 

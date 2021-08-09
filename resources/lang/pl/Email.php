@@ -6,7 +6,9 @@
 return array (
   //==================================== Translations ====================================//
   'attendize_register' => 'Dziękujemy za rejestrację w Attendize',
+  'contact_organiser' => 'Możesz się skontaktować z :organiser_name bezpośrednio, korzystając z adresu email: <a href="mailto::organiser_email">:organiser_email</a>, lub odpowiadając na tego emaila.',
   'invite_user' => ':name dodał cię do konta :app.',
+  'message_received_from_organiser' => 'Otrzymałeś wiadomość od :organiser_name w związku z wydarzeniem :event_title.',
   'message_regarding_event' => 'Wiadomość w związku z: :event',
   'organiser_copy' => '[Kopia Organizatora]',
   'refund_from_name' => 'Otrzymaleś refundację od :name',

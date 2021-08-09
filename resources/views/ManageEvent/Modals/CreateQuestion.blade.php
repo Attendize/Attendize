@@ -71,7 +71,7 @@
 
                 <div class="form-group">
                     <div class="custom-checkbox">
-                        {!! Form::checkbox('is_required', 'yes', false, ['data-toggle' => 'toggle', 'id' => 'is_required']) !!}
+                        {!! Form::checkbox('is_required', 1, false, ['data-toggle' => 'toggle', 'id' => 'is_required']) !!}
                         {!! Form::label('is_required', trans('Question.make_this_a_required_question')) !!}
                     </div>
                 </div>

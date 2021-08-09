@@ -55,4 +55,5 @@ return array (
   'version_up_to_date' => 'Your Attendize version (<b>:installed</b>) is up to date!',
     'account_payment' => 'Account / Payment',
     'event_attendees' => 'Event attendees',
+    'send_invitation_message' => 'Send invitation message',
 );

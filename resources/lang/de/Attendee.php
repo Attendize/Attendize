@@ -5,19 +5,19 @@
 
 return array (
   //============================== New strings to translate ==============================//
-  'scan_another_ticket' => 'Ein anderes Ticket scannen',
+  'scan_another_ticket' => 'Weiteres Ticket scannen',
   'scanning' => 'Scannen',
   //==================================== Translations ====================================//
   'attendees' => 'Teilnehmer',
   'check_in' => 'Check in: :event',
   'email' => 'Email',
-  'email_address' => 'Email Addresse',
-  'event_attendees' => 'Event Teilnehmer',
+  'email_address' => 'Email Adresse',
+  'event_attendees' => 'Veranstaltungsteilnehmer',
   'first_name' => 'Vorname',
   'last_name' => 'Nachname',
   'name' => 'Name',
   'ticket' => 'Ticket',
   'reference' => 'Referenz',
-  'search_attendees' => 'Teilnehmersuche...',
-  'send_invitation_n_ticket_to_attendee' => 'Einladung und Ticket an Teilnehmer senden.',
+  'search_attendees' => 'Teilnehmer suchen...',
+  'send_invitation_n_ticket_to_attendee' => 'Einladungen und Ticket an Teilnehmer senden.',
 );

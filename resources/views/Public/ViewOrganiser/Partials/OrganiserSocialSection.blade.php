@@ -19,7 +19,7 @@
                 @endif
                 @if($event->social_show_linkedin)
                 <li class="rrssb-linkedin">
-                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{$event->event_url}}?utm_source=linkedin&amp;title={{urlencode($event->title)}}&amp;summary={{{Str::words(strip_tags($event->description), 20)}}}" class="popup">
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{$event->event_url}}?utm_source=linkedin&amp;title={{urlencode($event->title)}}&amp;summary={{{Str::words(md_to_str($event->description), 20)}}}" class="popup">
                         <span class="rrssb-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                                 <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803
@@ -35,7 +35,7 @@
                 @endif
                 @if($event->social_show_twitter)
                 <li class="rrssb-twitter">
-                    <a href="http://twitter.com/intent/tweet?text=Check out: {{$event->event_url}} {{{Str::words(strip_tags($event->description), 20)}}}" class="popup">
+                    <a href="http://twitter.com/intent/tweet?text=Check out: {{$event->event_url}} {{{Str::words(md_to_str($event->description), 20)}}}" class="popup">
                         <span class="rrssb-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
@@ -81,7 +81,7 @@
                 @if($event->social_show_pinterest)
                 @if(false)
                 <li class="rrssb-pinterest">
-                    <a href="http://pinterest.com/pin/create/button/?url={{$event->event_url}}?utm_source=pinterest&amp;media={{$event->bg_image_url}}&amp;description={{{Str::words(strip_tags($event->description), 20)}}}">
+                    <a href="http://pinterest.com/pin/create/button/?url={{$event->event_url}}?utm_source=pinterest&amp;media={{$event->bg_image_url}}&amp;description={{{Str::words(md_to_str($event->description), 20)}}}">
                         <span class="rrssb-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                                 <path d="M14.021,1.57C6.96,1.57,1.236,7.293,1.236,14.355c0,7.062,5.724,12.785,12.785,12.785c7.061,0,12.785-5.725,12.785-12.785

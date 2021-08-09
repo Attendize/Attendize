@@ -118,7 +118,13 @@ class Attendee extends MyBaseModel
     }
 
     /**
-     * Get the attendee reference
+     * Reference index is a number representing the position of
+     * an attendee on an order, for example if a given order has 3
+     * attendees, each attendee would be assigned an auto-incrementing
+     * integer to indicate if they were attendee 1, 2 or 3.
+     *
+     * The reference attribute is a string containing the order reference
+     * and the attendee's reference index.
      *
      * @return string
      */

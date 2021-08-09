@@ -7,16 +7,15 @@ return array (
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
   'sort' =>
-  array (
-    'event_title' => 'Event Titel',
-    'start_date' => 'Start Datum',
-    'created_at' => 'Erstellungsdatum',
-    'quantity_sold' => 'Menge verkauft',
-    'sales_volume' => 'Verkaufsvolumen',
-    'sort_order' => 'Eigene Sortierungs Reihenfolge',
-    'title' => 'Ticket Titel',
-  ),
-  // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
+      array (
+          'event_title' => 'Name der Veranstaltung',
+          'start_date' => 'Startdatum',
+          'created_at' => 'Erstellungsdatum',
+          'quantity_sold' => 'Verkaufte Menge',
+          'sales_volume' => 'Verkaufsvolumen',
+          'sort_order' => 'Benutzerdefinierte Sortierreihenfolge',
+          'title' => 'Names des Ticket',
+      ),
   //==================================== Translations ====================================//
   'account_successfully_updated' => 'Account erfolgreich bearbeitet',
   'addInviteError' => 'Sie müssen ein Ticket erstellen, bevor Sie einen Teilnehmer einladen.',
@@ -34,8 +33,8 @@ return array (
   array (
     'email' =>
     array (
-      'email' => 'Bitte geben Sie eine valide Email Adresse ein.',
-      'required' => 'Email Adresse benötigt.',
+      'email' => 'Bitte geben Sie eine gültige Email Adresse ein.',
+      'required' => 'E-Mail Adresse benötigt.',
       'unique' => 'Diese Email Adresse ist bereits in Benutzung.',
     ),
     'first_name' =>
@@ -60,8 +59,8 @@ return array (
     ),
   ),
   'event_create_exception' => 'Whoops! Es gab einen Fehler bei der Erstellug Ihres Accounts. Bitte erneut versuchen.',
-  'event_page_successfully_updated' => 'Eventseite erfolgreich bearbeitet.',
-  'event_successfully_updated' => 'Event erfolgreich bearbeitet!',
+  'event_page_successfully_updated' => 'Veranstaltungsseite erfolgreich bearbeitet.',
+  'event_successfully_updated' => 'Veranstaltung erfolgreich bearbeitet!',
   'fill_email_and_password' => 'Bitte geben Sie Ihre Email und Passwort ein.',
   'image_upload_error' => 'Beim Hochladen Ihres Bildes gab es einen Fehler.',
   'invalid_ticket_error' => '"Falsches Ticket! Bitte erneut versuchen."',

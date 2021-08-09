@@ -25,12 +25,14 @@
 
                     <h5>@lang("Organiser.continue_to"):</h5>
                     <div class="list-group">
-                        @foreach($organisers as $organiser)
-                            <a href="{{route('showOrganiserDashboard', ['organiser_id'=>$organiser->id] )}}"
-                               class="list-group-item">
-                                {{$organiser->name}}
-                            </a>
-                        @endforeach
+                        @if ($organisers)
+                            @foreach($organisers as $organiser)
+                                <a href="{{route('showOrganiserDashboard', ['organiser_id'=>$organiser->id] )}}"
+                                   class="list-group-item">
+                                    {{$organiser->name}}
+                                </a>
+                            @endforeach
+                        @endif
                     </div>
 
                     <div style="margin-top:-15px; padding: 10px; text-align: center;">

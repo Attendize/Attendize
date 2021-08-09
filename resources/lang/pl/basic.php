@@ -25,6 +25,7 @@ return array (
   'event_page_design' => 'Wygląd Strony Wydarzenia',
   'export' => 'Eksport',
   'general' => 'Główne',
+  'hello' => 'Witaj',
   'hours' => 'godziny',
   'main_menu' => 'Menu Główne',
   'manage' => 'Zarządzaj',
@@ -43,8 +44,9 @@ return array (
   'success' => 'Sukces',
   'ticket_design' => 'Wygląd Biletów',
   'tickets' => 'Bilety',
+  'thank_you' => 'Thank you',
   'total' => 'razem',
-    'TOP' => 'GÓRA',
+  'TOP' => 'GÓRA',
   'whoops' => 'Ups!',
   'yes' => 'Tak',
     /*

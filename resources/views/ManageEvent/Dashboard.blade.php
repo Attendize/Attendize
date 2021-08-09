@@ -203,7 +203,7 @@
                             </a>
                         </li>
                         <li class="rrssb-linkedin">
-                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{$event->event_url}}?utm_source=linkedin&amp;title={{urlencode($event->title)}}&amp;summary={{{Str::words(strip_tags($event->description), 20)}}}"
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{$event->event_url}}?utm_source=linkedin&amp;title={{urlencode($event->title)}}&amp;summary={{{Str::words(md_to_str($event->description), 20)}}}"
                                class="popup">
                             <span class="rrssb-icon">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -221,7 +221,7 @@
                             </a>
                         </li>
                         <li class="rrssb-twitter">
-                            <a href="http://twitter.com/intent/tweet?text=Check out: {{$event->event_url}}?utm_source=twitter {{ Str::words(strip_tags($event->description)), 20 }}"
+                            <a href="http://twitter.com/intent/tweet?text=Check out: {{$event->event_url}}?utm_source=twitter {{ Str::words(md_to_str($event->description), 20) }}"
                                class="popup">
                             <span class="rrssb-icon">
                                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg"

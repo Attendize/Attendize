@@ -49,7 +49,7 @@ class OrganiserCustomizeController extends MyBaseController
         }
 
         $organiser->name = $request->get('name');
-        $organiser->about = $request->get('about');
+        $organiser->about = prepare_markdown($request->get('about'));
         $organiser->google_analytics_code = $request->get('google_analytics_code');
         $organiser->google_tag_manager_code = $request->get('google_tag_manager_code');
         $organiser->email = $request->get('email');
@@ -58,7 +58,7 @@ class OrganiserCustomizeController extends MyBaseController
         $organiser->twitter = $request->get('twitter');
 
         $organiser->tax_name = $request->get('tax_name');
-        $organiser->tax_value = $request->get('tax_value');
+        $organiser->tax_value = round($request->get('tax_value'), 2);
         $organiser->tax_id = $request->get('tax_id');
         $organiser->charge_tax = ($request->get('charge_tax') == 1) ? 1 : 0;
 

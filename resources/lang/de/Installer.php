@@ -18,7 +18,7 @@ return array(
     'database_test_connect_failure_error_type' => 'Fehler Typ',
     'database_test_connect_failure_message' => 'Verbindung nicht möglich. Bitte überprüfen Sie Ihre Einstellungen.',
     'database_test_connect_success' => 'Erfolg! Datenbank einstellungen sind korrekt!',
-    'database_type' => 'Datenban Typ',
+    'database_type' => 'Datenbank Typ',
     'database_username' => 'Datenbank Benutzer',
     'email_settings' => 'Email Einstellugen',
     'files_n_folders_check' => 'Dateien und Ordner Check',

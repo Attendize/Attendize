@@ -23,14 +23,15 @@ return [
     'cachePath' => storage_path('app/purifier'),
     'settings'  => [
         'default' => [
-            'HTML.Doctype'             => 'XHTML 1.0 Strict',
-            'HTML.Allowed'             => 'div,b,strong,i,em,a[href|title],ul,ol,li,p[style],br,span[style],img[width|height|alt|src]',
+            'HTML.Doctype'             => 'HTML 4.01 Transitional',
+            'HTML.Allowed'             => 'a[href|title],b,blockquote,br,code,dd,del,div,dl,dt,em,h1,h2,h3,h4,h5,h6,hr,i,img[width|height|alt|src],ins,kbd,li,ol,p,p[style],pre,q,s,samp,span[style],strike,strong,sub,sup,table[summary],tbody,td[abbr],tfoot,th[abbr],thead,tr,tt,ul,var',
             'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align',
             'AutoFormat.AutoParagraph' => true,
             'AutoFormat.RemoveEmpty'   => true,
+            'AutoFormat.Linkify'       => true,
         ],
-        'test'    => [
-            'Attr.EnableID' => true,
+        'strip_all' => [
+            'HTML.Allowed'             => '',
         ],
         'youtube' => [
             'HTML.SafeIframe'      => 'true',

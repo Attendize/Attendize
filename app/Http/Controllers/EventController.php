@@ -49,7 +49,7 @@ class EventController extends MyBaseController
         }
 
         $event->title = $request->get('title');
-        $event->description = strip_tags($request->get('description'));
+        $event->description = prepare_markdown($request->get('description'));
         $event->start_date = $request->get('start_date');
 
         /*
@@ -114,7 +114,7 @@ class EventController extends MyBaseController
             }
 
             $organiser->name = $request->get('organiser_name');
-            $organiser->about = $request->get('organiser_about');
+            $organiser->about = prepare_markdown($request->get('organiser_about'));
             $organiser->email = $request->get('organiser_email');
             $organiser->facebook = $request->get('organiser_facebook');
             $organiser->twitter = $request->get('organiser_twitter');
@@ -139,7 +139,7 @@ class EventController extends MyBaseController
             $event->organiser_fee_percentage = $defaults->organiser_fee_percentage;
             $event->pre_order_display_message = $defaults->pre_order_display_message;
             $event->post_order_display_message = $defaults->post_order_display_message;
-            $event->offline_payment_instructions = $defaults->offline_payment_instructions;
+            $event->offline_payment_instructions = prepare_markdown($defaults->offline_payment_instructions);
             $event->enable_offline_payments = $defaults->enable_offline_payments;
             $event->social_show_facebook = $defaults->social_show_facebook;
             $event->social_show_linkedin = $defaults->social_show_linkedin;
@@ -223,7 +223,7 @@ class EventController extends MyBaseController
         $event->is_live = $request->get('is_live');
         $event->currency_id = $request->get('currency_id');
         $event->title = $request->get('title');
-        $event->description = strip_tags($request->get('description'));
+        $event->description = prepare_markdown($request->get('description'));
         $event->start_date = $request->get('start_date');
         $event->google_tag_manager_code = $request->get('google_tag_manager_code');
 

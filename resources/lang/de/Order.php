@@ -37,6 +37,7 @@ return array (
   'reference' => 'Reference',
   'refund/cancel' => 'Refund / Cancel',
   'registered' => 'registered',
+  'search_placeholder' => 'Search Orders..',
   'status' => 'Status',
   'sub_total' => 'Sub Total',
   'ticket' => 'Ticket',

@@ -74,7 +74,7 @@ class EventSurveyController extends MyBaseController
         // Create question.
         $question = Question::createNew(false, false, true);
         $question->title = $request->get('title');
-        $question->is_required = ($request->get('is_required') == 'yes');
+        $question->is_required = (bool) $request->get('is_required', false);
         $question->question_type_id = $request->get('question_type_id');
         $question->save();
 
@@ -148,7 +148,7 @@ class EventSurveyController extends MyBaseController
         // Create question.
         $question = Question::scope()->findOrFail($question_id);
         $question->title = $request->get('title');
-        $question->is_required = $request->get('is_required');
+        $question->is_required = (bool) $request->get('is_required', false);
         $question->question_type_id = $request->get('question_type_id');
         $question->save();
 

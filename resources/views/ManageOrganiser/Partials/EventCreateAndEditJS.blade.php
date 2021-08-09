@@ -36,10 +36,12 @@
 </script>
 <style>
     .editor-toolbar {
-        border-radius: 0 !important;
+        border-radius: 0;
     }
-    .CodeMirror, .CodeMirror-scroll {
-        min-height: 100px !important;
+    .CodeMirror {
+        min-height: 100px;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
     .create_organiser, .address-manual {

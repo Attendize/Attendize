@@ -12,7 +12,7 @@ use Auth;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use App\Jobs\SendAttendeeInvite;
+use App\Jobs\SendAttendeeInviteJob;
 use Maatwebsite\Excel\Row;
 use Maatwebsite\Excel\Concerns\OnEachRow;
 
@@ -76,7 +76,7 @@ class AttendeesImport implements OnEachRow, WithHeadingRow
         ]);
 
         if ($this->emailAttendees) {
-            dispatch(new SendAttendeeInvite($attendee));
+            SendAttendeeInviteJob::dispatch($attendee);
         }
 
         return $attendee;

@@ -14,14 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Copy .env
-      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --no-progress --prefer-dist
-    - name: Debug dependency versions
-      run: php -v && composer -V
-    - name: Generate key
-      run: php artisan key:generate
+      uses: php-actions/composer@v4
+      with:
+        command: install
+        args: --no-ansi --prefer-dist
+        php_version: 7.4
+        composer_version: 1
+        interaction: no
+        suggest: no
+        dev: yes
+        progress: no
+        quiet: no
     - name: Create Database
       run: |
         mkdir -p database
@@ -30,4 +34,13 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit -c phpunit.xml
+      uses: php-actions/composer@v4
+      with:
+        command: exec phpunit
+        php_version: 7.4
+        composer_version: 1
+        interaction: no
+        suggest: no
+        dev: yes
+        progress: no
+        quiet: no

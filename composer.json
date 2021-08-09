@@ -1,6 +1,6 @@
 {
     "name": "attendize/attendize",
-    "version": "2.1.0",
+    "version": "2.3.1",
     "description": "A free and open-source event management and ticket selling application.",
     "keywords": [
         "event management",
@@ -79,7 +79,9 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@php artisan clear-compiled"
+            "@php artisan clear-compiled",
+            "@php -r \"copy('.env.example', '.env');\"",
+            "@php artisan key:generate"
         ],
         "post-update-cmd": [
             "@php artisan clear-compiled",

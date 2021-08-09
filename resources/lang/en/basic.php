@@ -29,6 +29,7 @@ return array (
   'event_page_design' => 'Event Page Design',
   'export' => 'Export',
   'general' => 'General',
+  'hello' => 'Hello',
   'hours' => 'hours',
   'main_menu' => 'Main Menu',
   'manage' => 'Manage',
@@ -47,12 +48,16 @@ return array (
   'success' => 'Success',
   'ticket_design' => 'Ticket Design',
   'access_codes' => 'Access Codes',
+  'thank_you' => 'Thank you',
   'tickets' => 'Tickets',
   'TOP' => 'TOP',
   'total' => 'total',
   'whoops' => 'Whoops!',
   'yes' => 'Yes',
   'no' => 'No',
+  'delete' => 'Delete',
+  'force_delete' => 'Force Delete',
+  'restore' => 'Restore',
   /*
    * Lines below will turn obsolete in localization helper, it is declared in app/Helpers/macros.
    * If you run it, it will break file input fields.

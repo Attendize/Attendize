@@ -22,7 +22,7 @@ return array (
   'enable_offline_payments' => 'Enable Offline Payments',
   'free' => 'FREE',
   'no_recent_orders' => 'Looks like there are no recent orders.',
-  'offline_payment_instructions' => 'Enter instructions on how attendees can make payment offline.',
+  'offline_payment_instructions' => 'Enter instructions on how attendees can make payments offline.',
   'offline_payment_settings' => 'Offline Payment Settings',
   'order_attendees' => 'Order Attendees',
   'order_date' => 'Order Date',

@@ -123,4 +123,7 @@ return array (
   'tickets_for_event' => 'Your tickets for the event :event.',
   'whoops' => 'Whoops! Looks like something went wrong. Please try again.',
   'your_password_reset_link' => 'Your Password Reset Link',
+  'success_user_was_deleted' => 'User :name was successfully deleted!',
+  'success_user_was_restored' => 'User :name was successfully restored!',
+  'error_user_was_not_found' => 'User was not found!',
 );

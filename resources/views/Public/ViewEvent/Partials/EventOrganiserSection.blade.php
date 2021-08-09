@@ -14,9 +14,10 @@
                     @endif
                 </h3>
 
-                <p property="description">
-                    {!! nl2br($event->organiser->about)!!}
-                </p>
+                <div property="description">
+                    {!! md_to_html($event->organiser->about) !!}
+                </div>
+
                 <p>
                     @if($event->organiser->facebook)
                         <a property="sameAs" href="https://fb.com/{{$event->organiser->facebook}}" class="btn btn-facebook">
@@ -70,4 +71,3 @@
         </div>
     </div>
 </section>
-

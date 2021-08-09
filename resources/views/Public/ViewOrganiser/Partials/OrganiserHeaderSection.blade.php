@@ -9,7 +9,7 @@
             <h1>{{$organiser->name}}</h1>
             @if($organiser->about)
             <div class="description pa10">
-                {!! $organiser->about !!}
+                {!! md_to_html($organiser->about) !!}
             </div>
             @endif
         </div>

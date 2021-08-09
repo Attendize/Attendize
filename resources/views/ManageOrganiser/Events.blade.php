@@ -2,11 +2,11 @@
 
 @section('title')
     @parent
-    @lang("Organiser.organiser_events")
+    {{ trans('Organiser.organiser_events') }}
 @stop
 
 @section('page_title')
-    @lang("Organiser.organiser_name_events", ["name"=>$organiser->name])
+    {{ trans('Organiser.organiser_name_events', ['name'=>$organiser->name]) }}
 @stop
 
 @section('top_nav')

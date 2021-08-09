@@ -3,7 +3,7 @@
 use App\Cancellation\OrderCancellation;
 use App\Cancellation\OrderRefundException;
 use App\Exports\OrdersExport;
-use App\Jobs\SendOrderTickets;
+use App\Jobs\SendOrderConfirmationJob;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Order;
@@ -16,6 +16,7 @@ use Log;
 use Mail;
 use Session;
 use Validator;
+use Illuminate\Support\Facades\Lang;
 
 class EventOrdersController extends MyBaseController
 {
@@ -143,8 +144,9 @@ class EventOrdersController extends MyBaseController
     public function resendOrder($order_id)
     {
         $order = Order::scope()->find($order_id);
+        $orderService = new OrderService($order->amount, $order->booking_fee, $order->event);
 
-        $this->dispatch(new SendOrderTickets($order));
+        $this->dispatch(new SendOrderConfirmationJob($order, $orderService));
 
         return response()->json([
             'status'      => 'success',
@@ -301,11 +303,10 @@ class EventOrdersController extends MyBaseController
             'order'           => $order,
             'message_content' => $request->get('message'),
             'subject'         => $request->get('subject'),
-            'event'           => $order->event,
-            'email_logo'      => $order->event->organiser->full_logo_path,
+            'event'           => $order->event
         ];
 
-        Mail::send('Emails.messageReceived', $data, function ($message) use ($order, $data) {
+        Mail::send(Lang::locale().'.Emails.messageReceived', $data, function ($message) use ($order, $data) {
             $message->to($order->email, $order->full_name)
                 ->from(config('attendize.outgoing_email_noreply'), $order->event->organiser->name)
                 ->replyTo($order->event->organiser->email, $order->event->organiser->name)
@@ -314,7 +315,7 @@ class EventOrdersController extends MyBaseController
 
         /* Send a copy to the Organiser with a different subject */
         if ($request->get('send_copy') == '1') {
-            Mail::send('Emails.messageReceived', $data, function ($message) use ($order, $data) {
+            Mail::send(Lang::locale().'.Emails.messageReceived', $data, function ($message) use ($order, $data) {
                 $message->to($order->event->organiser->email)
                     ->from(config('attendize.outgoing_email_noreply'), $order->event->organiser->name)
                     ->replyTo($order->event->organiser->email, $order->event->organiser->name)

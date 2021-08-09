@@ -11,6 +11,7 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Mail;
 use Services\Captcha\Factory;
+use Illuminate\Support\Facades\Lang;
 
 class UserSignupController extends Controller
 {
@@ -85,7 +86,7 @@ class UserSignupController extends Controller
 
         if ($is_attendize) {
             // TODO: Do this async?
-            Mail::send('Emails.ConfirmEmail',
+            Mail::send(Lang::locale().'.Emails.ConfirmEmail',
                 ['first_name' => $user->first_name, 'confirmation_code' => $user->confirmation_code],
                 function ($message) use ($request) {
                     $message->to($request->get('email'), $request->get('first_name'))

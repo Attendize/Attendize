@@ -28,7 +28,7 @@
 
         <div class="col-md-{{ $descriptionColSize }}">
             <div class="content event_details" property="description">
-                {!! Markdown::convertToHtml($event->description) !!}
+                {!! md_to_html($event->description) !!}
             </div>
         </div>
 

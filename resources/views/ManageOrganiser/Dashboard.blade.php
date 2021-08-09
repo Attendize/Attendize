@@ -2,14 +2,14 @@
 
 @section('title')
     @parent
-    @lang("Organiser.dashboard")
+    {{ trans('Organiser.dashboard') }}
 @endsection
 
 @section('top_nav')
     @include('ManageOrganiser.Partials.TopNav')
 @stop
 @section('page_title')
-    @lang("Organiser.organiser_name_dashboard", ["name"=>$organiser->name])
+    {{ trans('Organiser.organiser_name_dashboard', ['name'=>$organiser->name])}}
 @stop
 
 @section('menu')

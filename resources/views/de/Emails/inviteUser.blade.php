@@ -9,7 +9,7 @@
 
 <p>
     So kannst Du dich anmelden:<br><br>
-    
+
     Benutzername: <b>{{$user->email}}</b> <br>
     Passwort: <b>{{$temp_password}}</b>
 </p>

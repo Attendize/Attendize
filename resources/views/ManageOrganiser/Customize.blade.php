@@ -2,11 +2,12 @@
 
 @section('title')
     @parent
-    @lang("Organiser.organiser_events")
+    {{ trans('Organiser.organiser_events') }}
+
 @stop
 
 @section('page_title')
-    @lang("Organiser.organiser_name_events", ["name"=>$organiser->name])
+    {{ trans('Organiser.organiser_name_events', ['name'=>$organiser->name]) }}
 @stop
 
 @section('top_nav')
@@ -31,8 +32,8 @@
 
         });
 
-        @include('ManageOrganiser.Partials.OrganiserCreateAndEditJS')
     </script>
+    @include('ManageOrganiser.Partials.OrganiserCreateAndEditJS')
 @stop
 
 @section('menu')
@@ -87,10 +88,10 @@
                                                 ))  !!}
                     </div>
                     <div class="form-group">
-                        {!! Form::label('about', trans("Organiser.organiser_description"), array('class'=>'control-label ')) !!}
+                        {!! Form::label('about', trans("Organiser.organiser_description"), array('class'=>'control-label')) !!}
                         {!!  Form::textarea('about', old('about'),
                                                 array(
-                                                'class'=>'form-control ',
+                                                'class'=>'form-control editable',
                                                 'placeholder'=>trans("Organiser.organiser_description_placeholder"),
                                                 'rows' => 4
                                                 ))  !!}

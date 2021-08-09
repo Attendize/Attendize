@@ -23,7 +23,7 @@
         <meta property="og:type" content="article" />
         <meta property="og:url" content="{{URL::to('')}}" />
         <meta property="og:image" content="{{URL::to($organiser->full_logo_path)}}" />
-        <meta property="og:description" content="{{{Str::words(strip_tags($organiser->description)), 20}}}" />
+        <meta property="og:description" content="{{{md_to_html($organiser->description, 20)}}}" />
         <meta property="og:site_name" content="Attendize.com" />
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

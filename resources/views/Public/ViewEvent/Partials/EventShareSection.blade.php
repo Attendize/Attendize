@@ -25,7 +25,7 @@
                 @endif
                 @if($event->social_show_linkedin)
                 <li class="rrssb-linkedin">
-                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{$event->event_url}}?title={{urlencode($event->title)}}&amp;summary={{{Str::words(strip_tags($event->description), 20)}}}" class="popup">
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{$event->event_url}}?title={{urlencode($event->title)}}&amp;summary={{{Str::words(md_to_str($event->description), 20)}}}" class="popup">
                         <span class="rrssb-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                                 <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803
@@ -41,7 +41,7 @@
                 @endif
                 @if($event->social_show_twitter)
                 <li class="rrssb-twitter">
-                    <a href="http://twitter.com/intent/tweet?text=Check out: {{$event->event_url}} {{{Str::words(strip_tags($event->description), 20)}}}" class="popup">
+                    <a href="http://twitter.com/intent/tweet?text=Check out: {{$event->event_url}} {{{Str::words(md_to_str($event->description), 20)}}}" class="popup">
                         <span class="rrssb-icon">
                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">

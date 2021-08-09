@@ -24,6 +24,7 @@ use Services\PaymentGateway\Stripe;
 use Services\PaymentGateway\StripeSCA;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Utils;
+use Illuminate\Support\Facades\Lang;
 
 class ManageAccountController extends MyBaseController
 {
@@ -191,14 +192,11 @@ class ManageAccountController extends MyBaseController
             ]);
         }
 
-        $temp_password = Str::random(8);
-
         $user = new User();
 
         $user->first_name = $request->input('first_name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
-        $user->password = Hash::make($temp_password);
         $user->account_id = Auth::user()->account_id;
         $user->organiser_id = $request->input('organiser');
 
@@ -214,19 +212,7 @@ class ManageAccountController extends MyBaseController
         $user->assignRole($assignedRole);
         $user->givePermissionTo($user->getAllPermissions());
 
-        $data = [
-            'user'          => $user,
-            'temp_password' => $temp_password,
-            'inviter'       => Auth::user(),
-        ];
-
-        Mail::send('Emails.inviteUser', $data, static function ($message) use ($data) {
-            $message->to($data['user']->email)
-                ->subject(trans('Email.invite_user', [
-                    'name' => $data['inviter']->first_name . ' ' . $data['inviter']->last_name,
-                    'app'  => config('attendize.app_name')
-                ]));
-        });
+        $this->generateNewPwdAndSentInvitationEmail($user);
 
         return response()->json([
             'status'  => 'success',
@@ -315,5 +301,115 @@ class ManageAccountController extends MyBaseController
             'status'  => 'success',
             'message' => $message,
         ]);
+    }
+
+    /**
+     * Delete user
+     *
+     * @param Request $request
+     * @param integer $userId
+     *
+     * @return JsonResponse
+     */
+    public function userDelete(Request $request, $userId)
+    {
+        /** @var \App\Models\User|null $user */
+        $user = User::withTrashed()->find($userId);
+        if (!$user) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => trans('Controllers.error_user_was_not_found'),
+            ], 404);
+        }
+
+        if ($request->get('force', false)) {
+            $user->forceDelete();
+        } else {
+            $user->delete();
+        }
+
+        $message = trans('Controllers.success_user_was_deleted', ['name' => $user->email]);
+        return response()->json([
+            'status'  => 'success',
+            'message' => $message,
+        ]);
+    }
+
+    /**
+     * Restore deleted user
+     *
+     * @param Request $request
+     * @param integer $userId
+     *
+     * @return JsonResponse
+     */
+    public function userRestore(Request $request, $userId)
+    {
+        /** @var \App\Models\User|null $user */
+        $user = User::withTrashed()->find($userId);
+        if (!$user) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => trans('Controllers.error_user_was_not_found'),
+            ], 404);
+        }
+
+        $user->restore();
+
+        $message = trans('Controllers.success_user_was_restored', ['name' => $user->email]);
+        return response()->json([
+            'status'  => 'success',
+            'message' => $message,
+        ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param integer $userId
+     *
+     * @return JsonResponse
+     */
+    public function sendInvitationMessage(Request $request, $userId) {
+        /** @var \App\Models\User|null $user */
+        $user = User::find($userId);
+        if (!$user) {
+            return response()->json([
+                'status'  => 'error',
+                'message' => trans('Controllers.error_user_was_not_found'),
+            ], 404);
+        }
+
+        $this->generateNewPwdAndSentInvitationEmail($user);
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => trans('Controllers.success_name_has_received_instruction', ['name' => $user->email]),
+        ]);
+    }
+
+    /**
+     * Generates a new password and sends an invitation email
+     *
+     * @param User $user
+     */
+    protected function generateNewPwdAndSentInvitationEmail(User $user)
+    {
+        $temp_password = Str::random(8);
+        $user->password = Hash::make($temp_password);
+        $user->save();
+
+        $data = [
+            'user'          => $user,
+            'temp_password' => $temp_password,
+            'inviter'       => Auth::user(),
+        ];
+
+        Mail::send('Emails.inviteUser', $data, static function ($message) use ($data) {
+            $message->to($data['user']->email)
+                ->subject(trans('Email.invite_user', [
+                    'name' => $data['inviter']->first_name . ' ' . $data['inviter']->last_name,
+                    'app'  => config('attendize.app_name')
+                ]));
+        });
     }
 }

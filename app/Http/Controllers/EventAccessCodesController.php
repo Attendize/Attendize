@@ -58,7 +58,7 @@ class EventAccessCodesController extends MyBaseController
         }
 
         // Checks for no duplicates
-        $newAccessCode = strtoupper(strip_tags($request->get('code')));
+        $newAccessCode = strtoupper($request->get('code'));
         if (EventAccessCodes::findFromCode($newAccessCode, $event_id)->count() > 0) {
             return response()->json([
                 'status' => 'error',

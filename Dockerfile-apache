@@ -19,7 +19,8 @@ RUN apt-get update && apt-get install -y \
        php-gd \
        php-zip \
        zip \
-       unzip git nano
+       unzip git nano \
+       wait-for-it
 
 # Set up code
 WORKDIR /var/www

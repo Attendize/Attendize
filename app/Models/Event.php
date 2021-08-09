@@ -363,7 +363,7 @@ class Event extends MyBaseModel
     {
         $siteUrl = URL::to('/');
         $eventUrl = $this->getEventUrlAttribute();
-
+        $description = md_to_str($this->description);
         $start_date = $this->start_date;
         $end_date = $this->end_date;
         $timestamp = new Carbon();
@@ -379,7 +379,7 @@ DTSTART:{$start_date->format('Ymd\THis\Z')}
 DTEND:{$end_date->format('Ymd\THis\Z')}
 SUMMARY:$this->title
 LOCATION:{$this->venue_name}
-DESCRIPTION:{$this->description}
+DESCRIPTION:{$description}
 END:VEVENT
 END:VCALENDAR
 ICSTemplate;
