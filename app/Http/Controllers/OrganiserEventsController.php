@@ -24,10 +24,12 @@ class OrganiserEventsController extends MyBaseController
         $searchQuery = $request->get('q');
         $sort_by = (in_array($request->get('sort_by'), $allowed_sorts) ? $request->get('sort_by') : 'start_date');
 
-        $events = $searchQuery
-            ? Event::scope()->with(['organiser', 'currency'])->where('title', 'like', '%' . $searchQuery . '%')->orderBy($sort_by,
-                'desc')->where('organiser_id', '=', $organiser_id)->paginate(12)
-            : Event::scope()->with(['organiser', 'currency'])->where('organiser_id', '=', $organiser_id)->orderBy($sort_by, 'desc')->paginate(12);
+        $events =  Event::scope()->with(['organiser', 'currency'])
+                    ->when($searchQuery, function ($query) use($searchQuery){
+                        $query->where('title', 'like', '%' . $searchQuery . '%');
+                    })
+                    ->orderBy($sort_by,'desc')
+                    ->where('organiser_id', '=', $organiser_id)->paginate(12);
 
         $data = [
             'events'    => $events,
