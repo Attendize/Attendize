@@ -214,9 +214,13 @@
                     {!! nl2br(e($event->pre_order_display_message)) !!}
                 </div>
                 @endif
-
-               {!! Form::hidden('is_embedded', $is_embedded) !!}
-               {!! Form::submit(trans("Public_ViewEvent.checkout_order"), ['class' => 'btn btn-lg btn-success card-submit', 'style' => 'width:100%;']) !!}
+                {!! Form::hidden('is_embedded', $is_embedded) !!}
+                {!! Form::hidden('is_embedded', $is_embedded) !!}
+                @if ( Session::get('ticket_order_'.$event->id)['order_requires_payment'] )
+                    {!! Form::submit(trans("Public_ViewEvent.checkout_order"), ['class' => 'btn btn-lg btn-success card-submit', 'style' => 'width:100%;']) !!}
+                @else
+                    {!! Form::submit(trans("order now"), ['class' => 'btn btn-lg btn-success card-submit', 'style' => 'width:100%;']) !!}
+                @endif
                {!! Form::close() !!}
 
             </div>
