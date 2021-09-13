@@ -17,7 +17,7 @@
                     </h3>
                 </div>
 
-                <div class="panel-body pt0">
+                <div class="panel-body pt0" id="summary">
                     <table class="table mb0 table-condensed">
                         @foreach($tickets as $ticket)
                         <tr>
@@ -36,7 +36,7 @@
                 @if($order_total > 0)
                 <div class="panel-footer">
                     <h5>
-                        @lang("Public_ViewEvent.total"): <span style="float: right;"><b>{{ $orderService->getOrderTotalWithBookingFee(true) }}</b></span>
+                        @lang("Public_ViewEvent.total"): <span style="float: right;"><b id="totalPrice" data-currencyl="{{$event->currency->symbol_left}}" data-currencyr="{{$event->currency->symbol_right}}">{{ $orderService->getOrderTotalWithBookingFee(true) }}</b></span>
                     </h5>
                     @if($event->organiser->charge_tax)
                     <h5>
@@ -198,7 +198,7 @@
                                                     {!! Form::text("ticket_holder_email[{$i}][{$ticket['ticket']['id']}]", null, ['required' => 'required', 'class' => "ticket_holder_email.$i.{$ticket['ticket']['id']} ticket_holder_email form-control"]) !!}
                                                 </div>
                                             </div>
-                                            @include('Public.ViewEvent.Partials.AttendeeQuestions', ['ticket' => $ticket['ticket'],'attendee_number' => $total_attendee_increment++])
+                                            @include('Public.ViewEvent.Partials.AttendeeQuestions', ['ticket' => $ticket['ticket'], 'currency' => $event->currency, 'attendee_number' => $total_attendee_increment++])
 
                                         </div>
                                     </div>
@@ -224,6 +224,114 @@
     </div>
     <img src="https://cdn.attendize.com/lg.png" />
 </section>
+<script>
+    const totalPriceEl = document.getElementById('totalPrice')
+    const currencyLeft = totalPriceEl.getAttribute('data-currencyl')
+    const currencyRight = totalPriceEl.getAttribute('data-currencyr')
+    let order = [], originalOrder = []
+
+    function getOrderData() {
+        const ticketsEl = document.querySelectorAll('#summary table tbody')[0].children
+        for (let i = 0; i < ticketsEl.length; i++) {
+            const ticket = {
+                'item': ticketsEl[i].children[0].firstChild.textContent.slice(0, -3),
+                'price': ticketsEl[i].children[1].innerText,
+                'qty': parseInt(ticketsEl[i].children[0].children[0].innerText)
+            }
+            originalOrder.push(ticket)
+        }
+    }
+    getOrderData()
+
+    function parseImprovedFloat(input) {
+        var pattern = /[\d\.]+/;
+        result = input.match(pattern)
+        if (result.length > 0) {
+            return parseFloat(result[0])
+        }
+        return 0.0
+    }
+
+    function updateTable() {
+        let ordersEl = document.querySelectorAll('#summary table')[0]
+        tableBody = document.createElement('tbody')
+        let total = 0;
+        for (let i = 0; i < order.length; i++) {
+            row = document.createElement('tr')
+            const item = document.createElement('td')
+            item.className = "pl0"
+            item.innerHTML = order[i].item + ' X <b>'+ order[i].qty + '</b>'
+            const price = document.createElement('td')
+            price.style="text-align: right"
+            price.innerText = order[i].price
+            row.appendChild(item)
+            row.appendChild(price)
+            tableBody.appendChild(row)
+            ordersEl.replaceChild(tableBody, ordersEl.children[0])
+
+            // add price to total
+            const amount = parseImprovedFloat(order[i].price)
+            for (let j = 0; j < order[i].qty; j++) {
+                total += amount
+            }
+        }
+
+        const totalPriceEl = document.getElementById('totalPrice')
+        totalPriceEl.innerText = formatCurrency(total)
+    }
+
+    function formatCurrency(value) {
+        return currencyLeft + value + currencyRight
+    }
+
+    function addNewItem(store, item, price) {
+        if (price && price > 0) {
+            // store the quantity
+            for (let i = 0; i < store.length; i++) {
+                if (store[i].item == item) {
+                    store[i].qty++
+                    return
+                }
+            }
+
+            const newItem = {
+                'item': item,
+                'price': formatCurrency(price),
+                'qty': 1
+            }
+            store.push(newItem)
+        }
+    }
+
+    function getFormData() {
+        order = [...originalOrder] // copy array
+        const answers = document.querySelectorAll('.answer')
+        const totalPriceEl = document.getElementById('totalPrice')
+
+        for (let i = 0; i < answers.length; i++) {
+            if (answers[i].options) {
+                for (let j = 0; j < answers[i].options.length; j++ ) {
+                    const opt = answers[i].options[j]
+                    if ( opt.selected === true ) {
+                        addNewItem(order, opt.getAttribute('data-name'), opt.getAttribute('data-price'))
+                    }
+                }
+            }
+            if ( answers[i].checked === true ) {
+                addNewItem(order, answers[i].getAttribute('data-name'), answers[i].getAttribute('data-price'))
+            }
+        }
+    }
+
+
+    const answers = document.querySelectorAll('.answer')
+    for (var i = 0; i < answers.length; i++) {
+        answers[i].addEventListener('change', (event) => {
+            getFormData()
+            updateTable()
+        });
+    };
+</script>
 @if(session()->get('message'))
     <script>showMessage('{{session()->get('message')}}');</script>
 @endif

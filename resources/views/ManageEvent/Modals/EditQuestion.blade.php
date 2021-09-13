@@ -2,7 +2,8 @@
     {!!  Form::model($question, ['url' => route('postEditEventQuestion', ['event_id' => $event->id, 'question_id' => $question->id]), 'id' => 'edit-question-form', 'class' => 'ajax']) !!}
     <script id="question-option-template" type="text/template">
         <tr>
-            <td><input class="form-control" name="option[]" type="text"></td>
+            <td width="300"><input class="form-control" name="option[]" type="text" placeholder="Option" value=""></td>
+            <td width="100" ><input class="form-control" name="price[]" type="number" placeholder="Price" step="0.01" value=""></td>
             <td width="50">
                 <i class="btn btn-danger ico-remove" onclick="removeQuestionOption(this);"></i>
             </td>
@@ -48,7 +49,9 @@
                                 @if(count($question->options))
                                     @foreach ($question->options as $question_option)
                                         <tr>
-                                            <td><input class="form-control" name="option[]" type="text" value="{{ $question_option->name }}"></td>
+                                            <input name="id[]" type="hidden" value="{{ $question_option->id }}">
+                                            <td width="300"><input class="form-control" name="option[]" type="text" placeholder="Option" value="{{ $question_option->name }}"></td>
+                                            <td width="100" ><input class="form-control" name="price[]" type="number" placeholder="Price" step="0.01" value="{{ $question_option->price }}"></td>
                                             <td width="50">
                                                 <i class="btn btn-danger ico-remove" onclick="removeQuestionOption(this);"></i>
                                             </td>
@@ -56,10 +59,9 @@
                                     @endforeach
                                     @else
                                     <tr>
-                                        <td><input class="form-control" name="option[]" type="text" value=""></td>
-                                        <td width="50">
-
-                                        </td>
+                                        <td width="300"><input class="form-control" name="option[]" type="text" placeholder="Option" value=""></td>
+                                        <td width="100" ><input class="form-control" name="price[]" type="number" placeholder="Price" step="0.01" value=""></td>
+                                        <td width="50"></td>
                                     </tr>
                                     @endif
 

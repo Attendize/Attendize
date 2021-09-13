@@ -24,6 +24,9 @@ class StoreEventQuestionRequest extends Request
         return [
             'title'  => 'required',
             'option' => 'array',
+            'is_required' => 'string',
+            'question_type_id' => 'integer',
+            'tickets' => 'array',
         ];
     }
 }

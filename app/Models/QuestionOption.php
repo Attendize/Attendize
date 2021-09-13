@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+// use Illuminate\Database\Eloquent\SoftDeletes;
+
 class QuestionOption extends MyBaseModel
 {
+    // use SoftDeletes;
+
     /**
      * Indicates if the model should be timestamped.
      *
@@ -17,7 +21,7 @@ class QuestionOption extends MyBaseModel
      * @access protected
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'price'];
 
     /**
      * The question associated with the question option.
@@ -28,5 +32,22 @@ class QuestionOption extends MyBaseModel
     public function question()
     {
         return $this->belongsTo(\App\Models\Question::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function anwsers()
+    {
+        return $this->hasMany(\App\Models\AnwserOption::class);
+    }
+
+    public function showWithNameAndPrice($currency)
+    {
+        if ($this->price > 0) {
+            return $this->name.' - '.money($this->price, $currency);
+        } else {
+            return $this->name;
+        }
     }
 }

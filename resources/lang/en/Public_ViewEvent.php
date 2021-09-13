@@ -42,6 +42,7 @@ return [
     'event_not_live'                    => 'This event page is not available to the public.',
     'expiry_month'                      => 'Expiry month',
     'expiry_year'                       => 'Expiry year',
+    'extras'                            => 'Extras',
     'Facebook'                          => 'Facebook',
     'first_name'                        => 'First name',
     'free'                              => 'FREE',

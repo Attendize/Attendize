@@ -6,6 +6,7 @@ use App\Http\Requests\StoreEventQuestionRequest;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Question;
+use App\Models\QuestionOption;
 use App\Models\QuestionAnswer;
 use App\Models\QuestionType;
 use Excel;
@@ -80,13 +81,15 @@ class EventSurveyController extends MyBaseController
 
         // Get options.
         $options = $request->get('option');
+        $prices = $request->get('price');
 
         // Add options.
         if ($options && is_array($options)) {
-            foreach ($options as $option_name) {
-                if (trim($option_name) !== '') {
+            foreach ($options as $i => $option) {
+                if (trim($option) !== '') {
                     $question->options()->create([
-                        'name' => $option_name,
+                        'name' => $option,
+                        'price' => $prices[$i],
                     ]);
                 }
             }
@@ -155,21 +158,40 @@ class EventSurveyController extends MyBaseController
         $question_type = QuestionType::find($question->question_type_id);
 
         if ($question_type->has_options) {
+            $options = $question->options;
 
             // Get options.
-            $options = $request->get('option');
+            $newIds = $request->get('id');
+            $newNames = $request->get('option');
+            $newPrices = $request->get('price');
 
-            $question->options()->delete();
-
-            // Add options.
-            if ($options && is_array($options)) {
-                foreach ($options as $option_name) {
-                    if (trim($option_name) !== '') {
+            // Update options.
+            if ($newNames && is_array($newNames)) {
+                foreach ($newNames as $i => $newName) {
+                    if (trim($newName) !== '') {
+                        // if the option was modified
+                        if (count($newIds) > $i) {
+                            foreach ($options as $option) {
+                                if ($newIds[$i] == $option->id) {
+                                    $option->name = $newNames[$i];
+                                    $option->price = $newPrices[$i];
+                                    $option->save();
+                                    continue 2; // we are done here
+                                }
+                            }
+                        }
+                        // else create new option
                         $question->options()->create([
-                            'name' => $option_name,
+                            'name' => $newNames[$i],
+                            'price' => $newPrices[$i],
                         ]);
                     }
                 }
+            }
+            // remove deleted options
+            $deletedOptionIds = $options->pluck('id')->diff($newIds)->all();
+            foreach ($deletedOptionIds as $optionId) {
+                QuestionOption::destroy($optionId);
             }
         }
 
