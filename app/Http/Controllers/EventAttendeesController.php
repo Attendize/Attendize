@@ -367,7 +367,8 @@ class EventAttendeesController extends MyBaseController
             'attendee'        => $attendee,
             'message_content' => $request->get('message'),
             'subject'         => $request->get('subject'),
-            'event'           => $attendee->event
+            'event'           => $attendee->event,
+            'email_logo'      => $attendee->event->organiser->full_logo_path,
         ];
 
         //@todo move this to the SendAttendeeMessage Job
