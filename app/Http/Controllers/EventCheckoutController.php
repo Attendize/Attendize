@@ -291,11 +291,11 @@ class EventCheckoutController extends Controller
         }
 
         $request_data = session()->get('ticket_order_' . $event_id . ".request_data");
-        $request_data = (!empty($request_data[0])) ? array_merge($request_data[0], $request->all())
+        $request_data = (!empty($request_data)) ? array_merge($request_data, $request->all())
                                                    : $request->all();
 
         session()->remove('ticket_order_' . $event_id . '.request_data');
-        session()->push('ticket_order_' . $event_id . '.request_data', $request_data);
+        session()->put('ticket_order_' . $event_id . '.request_data', $request_data);
 
         $event = Event::findOrFail($event_id);
         $order = new Order();
@@ -388,10 +388,10 @@ class EventCheckoutController extends Controller
     public function postCreateOrder(Request $request, $event_id)
     {
         $request_data = $ticket_order = session()->get('ticket_order_' . $event_id . ".request_data",[0 => []]);
-        $request_data = array_merge($request_data[0], $request->except(['cardnumber', 'cvc']));
+        $request_data = array_merge($request_data, $request->except(['cardnumber', 'cvc']));
 
         session()->remove('ticket_order_' . $event_id . '.request_data');
-        session()->push('ticket_order_' . $event_id . '.request_data', $request_data);
+        session()->put('ticket_order_' . $event_id . '.request_data', $request_data);
 
         $ticket_order = session()->get('ticket_order_' . $event_id);
 
@@ -423,18 +423,18 @@ class EventCheckoutController extends Controller
 
             //generic data that is needed for most orders
             $order_total = $order_service->getGrandTotal();
-            $order_email = $ticket_order['request_data'][0]['order_email'];
+            $order_email = $ticket_order['request_data']['order_email'];
 
             $response = $gateway->startTransaction($order_total, $order_email, $event);
 
             if ($response->isSuccessful()) {
 
-                session()->push('ticket_order_' . $event_id . '.transaction_id',
+                session()->put('ticket_order_' . $event_id . '.transaction_id',
                     $response->getTransactionReference());
 
                 $additionalData = ($gateway->storeAdditionalData()) ? $gateway->getAdditionalData($response) : array();
 
-                session()->push('ticket_order_' . $event_id . '.transaction_data',
+                session()->put('ticket_order_' . $event_id . '.transaction_data',
                                 $gateway->getTransactionData() + $additionalData);
 
                 $gateway->completeTransaction($additionalData);
@@ -445,7 +445,7 @@ class EventCheckoutController extends Controller
 
                 $additionalData = ($gateway->storeAdditionalData()) ? $gateway->getAdditionalData($response) : array();
 
-                session()->push('ticket_order_' . $event_id . '.transaction_data',
+                session()->put('ticket_order_' . $event_id . '.transaction_data',
                                 $gateway->getTransactionData() + $additionalData);
 
                 Log::info("Redirect url: " . $response->getRedirectUrl());
@@ -503,11 +503,11 @@ class EventCheckoutController extends Controller
         $payment_gateway_factory = new PaymentGatewayFactory();
         $gateway = $payment_gateway_factory->create($ticket_order['payment_gateway']->name, $payment_gateway_config);
         $gateway->extractRequestParameters($request);
-        $response = $gateway->completeTransaction($ticket_order['transaction_data'][0]);
+        $response = $gateway->completeTransaction($ticket_order['transaction_data']);
 
 
         if ($response->isSuccessful()) {
-            session()->push('ticket_order_' . $event_id . '.transaction_id', $response->getTransactionReference());
+            session()->put('ticket_order_' . $event_id . '.transaction_id', $response->getTransactionReference());
             return $this->completeOrder($event_id, false);
         } else {
             session()->flash('message', $response->getMessage());
@@ -535,7 +535,7 @@ class EventCheckoutController extends Controller
             $order = new Order();
             $ticket_order = session()->get('ticket_order_' . $event_id);
 
-            $request_data = $ticket_order['request_data'][0];
+            $request_data = $ticket_order['request_data'];
             $event = Event::findOrFail($ticket_order['event_id']);
             $attendee_increment = 1;
             $ticket_questions = isset($request_data['ticket_holder_questions']) ? $request_data['ticket_holder_questions'] : [];
@@ -544,11 +544,11 @@ class EventCheckoutController extends Controller
              * Create the order
              */
             if (isset($ticket_order['transaction_id'])) {
-                $order->transaction_id = $ticket_order['transaction_id'][0];
+                $order->transaction_id = $ticket_order['transaction_id'];
             }
 
-            if (isset($ticket_order['transaction_data'][0]['payment_intent'])) {
-                $order->payment_intent = $ticket_order['transaction_data'][0]['payment_intent'];
+            if (isset($ticket_order['transaction_data']['payment_intent'])) {
+                $order->payment_intent = $ticket_order['transaction_data']['payment_intent'];
             }
 
             if ($ticket_order['order_requires_payment'] && !isset($request_data['pay_offline'])) {

@@ -35,6 +35,7 @@
         "nitmedia/wkhtml2pdf": "dev-master",
         "omnipay/common": "^3.0",
         "omnipay/dummy": "^3.0",
+        "omnipay/mollie": "^5.3",
         "omnipay/paypal": "^3.0",
         "omnipay/stripe": "^3.1",
         "php-http/curl-client": "^1.7",
@@ -79,7 +80,7 @@
     "scripts": {
         "post-install-cmd": [
             "@php artisan clear-compiled",
-            "@php -r \"copy('.env.example', '.env');\"",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate"
         ],
         "post-update-cmd": [
@@ -96,7 +97,7 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php -r \"copy('.env.example', '.env');\"",
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate"
         ]
     },

@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Services\PaymentGateway\Dummy;
+use Services\PaymentGateway\Mollie;
 use Services\PaymentGateway\Stripe;
 use Services\PaymentGateway\StripeSCA;
 use Utils;
 use Illuminate\Support\Facades\Lang;
+
 
 class ManageAccountController extends MyBaseController
 {
@@ -59,8 +61,8 @@ class ManageAccountController extends MyBaseController
             $latestVersion = Utils::parse_version((string)$response->getBody());
             $installedVersion = file_get_contents(base_path('VERSION'));
         } catch (\Exception $exception) {
-            \Log::warn("Error retrieving the latest Attendize version. ManageAccountController.getVersionInf() try/catch");
-            \Log::warn($exception);
+            \Log::warning("Error retrieving the latest Attendize version. ManageAccountController.getVersionInf() try/catch");
+            \Log::warning($exception);
             return false;
         }
 
@@ -127,6 +129,9 @@ class ManageAccountController extends MyBaseController
                 break;
             case StripeSCA::GATEWAY_NAME :
                 $config = $request->get('stripe_sca');
+                break;
+            case Mollie::GATEWAY_NAME :
+                $config = $request->get('mollie');
                 break;
             case Dummy::GATEWAY_NAME :
                 break;
