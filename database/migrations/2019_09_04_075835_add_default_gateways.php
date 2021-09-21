@@ -108,8 +108,8 @@ class AddDefaultGateways extends Migration
                     'can_refund'              => 1,
                     'name'                    => 'Mollie',
                     'default'                 => 0,
-                    'admin_blade_template'    => 'ManageAccount.Partials.MollieSCA',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentMollieSCA'
+                    'admin_blade_template'    => 'ManageAccount.Partials.Mollie',
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentMollie'
                 ]
             );
         }
