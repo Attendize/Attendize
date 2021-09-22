@@ -39,6 +39,8 @@ return array (
   'save_payment_details_submit' => 'Сохранить настройки оплаты',
   'secret_code' => 'Секретный код',
   'secure_hash_code' => 'Код безопасного хеша',
+  'stripe_connect_application_fee' => 'Stripe Connect Application Fee',
+  'stripe_connect_transfer_data_destination_id' => 'Stripe Connected Account ID',
   'stripe_publishable_key' => 'публичный ключ Stripe ',
   'stripe_secret_key' => 'секретный ключ Stripe',
   'stripe_settings' => 'настройки Stripe',

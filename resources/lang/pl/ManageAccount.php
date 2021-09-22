@@ -39,6 +39,8 @@ return array (
   'save_payment_details_submit' => 'Zapisz płatność',
   'secret_code' => 'Sekretny kod',
   'secure_hash_code' => 'Sekretny kod hash',
+  'stripe_connect_application_fee' => 'Stripe Connect Application Fee',
+  'stripe_connect_transfer_data_destination_id' => 'Stripe Connected Account ID',
   'stripe_publishable_key' => 'Publikowalny klucz Stripe',
   'stripe_secret_key' => 'Sekretny klucz Stripe',
   'stripe_settings' => 'Ustawienia Stripe',

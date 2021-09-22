@@ -36,6 +36,8 @@ return array(
     'save_payment_details_submit'                  => 'Save payment details',
     'secret_code'                                  => 'Secret code',
     'secure_hash_code'                             => 'Secure hash code',
+    'stripe_connect_application_fee'               => 'Stripe Connect Application Fee',
+    'stripe_connect_transfer_data_destination_id'  => 'Stripe Connected Account ID',
     'stripe_publishable_key'                       => 'Stripe publishable key',
     'stripe_secret_key'                            => 'Stripe secret key',
     'stripe_settings'                              => 'Stripe Settings',

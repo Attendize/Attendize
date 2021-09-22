@@ -36,6 +36,8 @@ return [
     'save_payment_details_submit' => 'Salva i dettagli di pagamento',
     'secret_code' => 'Codice segreto',
     'secure_hash_code' => 'Codice hash',
+    'stripe_connect_application_fee' => 'Stripe Connect Application Fee',
+    'stripe_connect_transfer_data_destination_id' => 'Stripe Connected Account ID',
     'stripe_publishable_key' => 'Chiave pubblica Stripe',
     'stripe_secret_key' => 'Chiave segreta Stripe',
     'stripe_settings' => 'Impostazioni Stripe',
