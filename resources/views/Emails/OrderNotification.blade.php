@@ -133,7 +133,7 @@
 
 
     <br><br>
-    @lang("Order_Emails.manage_order") <a href="{{route('showEventOrders', ['event_id' => $order->event->id, 'q'=>$order->order_reference])}}">{{route('showEventOrders', ['event_id' => $order->event->id, 'q'=>$order->order_reference])}}</a>
+    @lang("Order_Emails.manage_order") <a href="{{public_route('showEventOrders', ['event_id' => $order->event->id, 'q'=>$order->order_reference])}}">{{public_route('showEventOrders', ['event_id' => $order->event->id, 'q'=>$order->order_reference])}}</a>
     <br><br>
 </div>
 <br><br>

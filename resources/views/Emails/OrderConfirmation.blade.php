@@ -5,7 +5,7 @@
 
 {!! @trans("Order_Emails.successful_order", ["name"=>$order->event->title]) !!}<br><br>
 
-{{ @trans("Order_Emails.tickets_attached") }} <a href="{{route('showOrderDetails', ['order_reference' => $order->order_reference])}}">{{route('showOrderDetails', ['order_reference' => $order->order_reference])}}</a>.
+{{ @trans("Order_Emails.tickets_attached") }} <a href="{{public_route('showOrderDetails', ['order_reference' => $order->order_reference])}}">{{public_route('showOrderDetails', ['order_reference' => $order->order_reference])}}</a>.
 
 @if(!$order->is_payment_received)
 <br><br>
@@ -20,7 +20,7 @@ Order Reference: <strong>{{$order->order_reference}}</strong><br>
 Order Name: <strong>{{$order->full_name}}</strong><br>
 Order Date: <strong>{{$order->created_at->format(config('attendize.default_datetime_format'))}}</strong><br>
 Order Email: <strong>{{$order->email}}</strong><br>
-<a href="{!! route('downloadCalendarIcs', ['event_id' => $order->event->id]) !!}">Add To Calendar</a>
+<a href="{!! public_route('downloadCalendarIcs', ['event_id' => $order->event->id]) !!}">Add To Calendar</a>
 
 @if ($order->is_business)
 <h3>Business Details</h3>
