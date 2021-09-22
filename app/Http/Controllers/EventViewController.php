@@ -132,6 +132,7 @@ class EventViewController extends Controller
             'sender_email'    => $request->get('email'),
             'message_content' => clean($request->get('message')),
             'event'           => $event,
+            'email_logo'      => $event->organiser->full_logo_path,
         ];
 
         Mail::send(Lang::locale().'.Emails.messageReceived', $data, function ($message) use ($event, $data) {
