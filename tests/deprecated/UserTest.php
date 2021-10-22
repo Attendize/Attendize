@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+use App\Attendize\Utils;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Attendize\Utils;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class UserTest extends TestCase
 {
@@ -13,16 +13,16 @@ class UserTest extends TestCase
 
         factory(App\Models\Organiser::class)->create(['account_id' => 1]);
 
-        $server = array('HTTP_X-Requested-With' => 'XMLHttpRequest');
+        $server = ['HTTP_X-Requested-With' => 'XMLHttpRequest'];
 
         $firstName = $this->faker->firstName;
         $lastName = $this->faker->lastName;
         $email = 'new@email.com.au';
-        $post = array(
+        $post = [
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
-        );
+        ];
 
         $this->call('post', route('postEditUser'), $post, $server);
 
@@ -46,19 +46,19 @@ class UserTest extends TestCase
 
         factory(App\Models\Organiser::class)->create(['account_id' => 1]);
 
-        $server = array('HTTP_X-Requested-With' => 'XMLHttpRequest');
+        $server = ['HTTP_X-Requested-With' => 'XMLHttpRequest'];
 
         $firstName = $this->faker->firstName;
         $lastName = $this->faker->lastName;
         $email = 'new@email.com.au';
-        $post = array(
+        $post = [
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
             'password' => $this->test_user_password,
             'new_password' => 'newpassword',
             'new_password_confirmation' => 'newpassword',
-        );
+        ];
 
         $this->call('post', route('postEditUser'), $post, $server);
 
@@ -81,16 +81,16 @@ class UserTest extends TestCase
 
         factory(App\Models\Organiser::class)->create(['account_id' => 1]);
 
-        $server = array('HTTP_X-Requested-With' => 'XMLHttpRequest');
+        $server = ['HTTP_X-Requested-With' => 'XMLHttpRequest'];
 
         $firstName = $this->faker->firstName;
         $lastName = $this->faker->lastName;
         $email = 'new@email';
-        $post = array(
+        $post = [
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $email,
-        );
+        ];
 
         $this->call('post', route('postEditUser'), $post, $server);
 
@@ -105,15 +105,15 @@ class UserTest extends TestCase
 
         factory(App\Models\Organiser::class)->create(['account_id' => 1]);
 
-        $server = array('HTTP_X-Requested-With' => 'XMLHttpRequest');
+        $server = ['HTTP_X-Requested-With' => 'XMLHttpRequest'];
 
         $lastName = $this->faker->lastName;
         $email = 'new@email';
-        $post = array(
+        $post = [
             'first_name' => '',
             'last_name' => $lastName,
             'email' => $email,
-        );
+        ];
 
         $this->call('post', route('postEditUser'), $post, $server);
 
@@ -128,15 +128,15 @@ class UserTest extends TestCase
 
         factory(App\Models\Organiser::class)->create(['account_id' => 1]);
 
-        $server = array('HTTP_X-Requested-With' => 'XMLHttpRequest');
+        $server = ['HTTP_X-Requested-With' => 'XMLHttpRequest'];
 
         $firstName = $this->faker->firstName;
         $email = 'new@email';
-        $post = array(
+        $post = [
             'first_name' => $firstName,
             'last_name' => '',
             'email' => $email,
-        );
+        ];
 
         $this->call('post', route('postEditUser'), $post, $server);
 

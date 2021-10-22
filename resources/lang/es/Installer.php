@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'app_settings'                                => 'Configuración de la aplicación',
     'application_url'                             => 'URL de la aplicación',
     'connection_failure'                          => '¡No se puede conectar! Por favor, comprueba tu configuración',
@@ -44,4 +44,4 @@ return array(
     'setup_completed_already_message'             => 'Se ha detectado un archivo de instalación, lo que significa que el proceso de instalación de Attendize ya ha finalizado. Si no has configurado un usuario por defecto, puedes <a href="/signup">registrar un usuario por defecto</a><br />Si ya has creado un usuario por defecto, puedes <a href="/login">iniciar sesión aquí</a>',
     'test_database_connection'                    => 'Probar la conexión a la base de datos',
     'title'                                       => 'Instalador Web de Attendize',
-);
+];

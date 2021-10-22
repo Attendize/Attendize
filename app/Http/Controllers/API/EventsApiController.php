@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class EventsApiController extends ApiBaseController
 {
-
     /**
      * @param Request $request
      * @return mixed
@@ -42,6 +41,4 @@ class EventsApiController extends ApiBaseController
     public function destroy(Request $request)
     {
     }
-
-
 }

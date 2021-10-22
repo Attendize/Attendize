@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/17 16:35:44 
+ Generated via "php artisan localization:missing" at 2018/04/17 16:35:44
 *************************************************************************/
 
-return array (
+return [
     'connection_success' => 'Sukces, połączenie nawiązano!',
     'connection_failure' => 'Nie udało się nawiązać połączenia. Sprawdź swoje ustawienia.',
   'app_settings' => 'Ustawienia Aplikacji',
@@ -44,4 +44,4 @@ return array (
   'setup' => 'Instalacja',
   'test_database_connection' => 'Przetestuj połączenie z bazą danych',
   'title' => 'Instalator Attendize',
-);
+];

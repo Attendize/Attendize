@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/19 17:14:11
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   'affiliate_name' => 'Nom du partenaire',
   'affiliate_tracking' => 'Suivi du parrainage',
@@ -13,4 +13,4 @@ return array (
   'sales_volume_generated' => 'Volume des ventes généré',
   'ticket_sales_generated' => 'Ventes de tickets générées',
   'visits_generated' => 'Visites générées',
-);
+];

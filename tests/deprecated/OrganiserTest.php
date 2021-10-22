@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+use App\Models\Organiser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Models\Organiser;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class OrganiserTest extends TestCase
 {
@@ -12,7 +12,6 @@ class OrganiserTest extends TestCase
      */
     public function test_create_organiser_is_successful_when_charge_tax_is_no()
     {
-
         $email = $this->faker->email;
 
         $this->actingAs($this->test_user)
@@ -22,11 +21,11 @@ class OrganiserTest extends TestCase
             ->type('No', 'charge_tax')
             ->press('Create Organiser')
             ->seeJson([
-                'status' => 'success'
+                'status' => 'success',
             ]);
 
         //get the most recently created organiser from database
-        $this->organiser = Organiser::where('email','=', $email)->orderBy('created_at', 'desc')->first();
+        $this->organiser = Organiser::where('email', '=', $email)->orderBy('created_at', 'desc')->first();
         //check the charge tax flag is 0
         $this->assertEquals($this->organiser->charge_tax, 0);
     }
@@ -48,11 +47,11 @@ class OrganiserTest extends TestCase
             ->type('Yes', 'charge_tax')
             ->press('Create Organiser')
             ->seeJson([
-                'status' => 'success'
+                'status' => 'success',
             ]);
 
         //get the most recently created organiser from database
-        $this->organiser = Organiser::where('email','=', $email)->orderBy('created_at', 'desc')->first();
+        $this->organiser = Organiser::where('email', '=', $email)->orderBy('created_at', 'desc')->first();
         //check the charge tax flag is 1
         $this->assertEquals($this->organiser->charge_tax, 1);
     }
@@ -69,7 +68,7 @@ class OrganiserTest extends TestCase
             ->type('No', 'charge_tax')
             ->press('Create Organiser')
             ->seeJson([
-                'status' => 'error'
+                'status' => 'error',
             ]);
     }
 }

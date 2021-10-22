@@ -10,7 +10,7 @@ class EventStats extends \Illuminate\Database\Eloquent\Model
     /**
      * Indicates if the model should be timestamped.
      *
-     * @var bool $timestamps
+     * @var bool
      */
     public $timestamps = false;
 
@@ -55,12 +55,12 @@ class EventStats extends \Illuminate\Database\Eloquent\Model
 
         $cookie_name = 'visitTrack_'.$event_id.'_'.date('dmy');
 
-        if (!Cookie::get($cookie_name)) {
+        if (! Cookie::get($cookie_name)) {
             Cookie::queue($cookie_name, true, 60 * 24 * 14);
-            ++$stats->unique_views;
+            $stats->unique_views++;
         }
 
-        ++$stats->views;
+        $stats->views++;
 
         return $stats->save();
     }
@@ -68,7 +68,6 @@ class EventStats extends \Illuminate\Database\Eloquent\Model
     /**
      * @todo: Missing amount?
      * Updates the sales volume earned by an event.
-     *
      */
     public function updateSalesVolume($event_id)
     {

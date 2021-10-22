@@ -3,7 +3,7 @@
  * Need to be done, not important for end user.
  *************************************************************************/
 
-return array(
+return [
     'connection_success' => 'Databaseconnectie succesvol!',
     'connection_failure' => 'Kan niet verbinden met database! Controleer uw instellingen.',
     'app_settings' => 'App instellingen',
@@ -44,8 +44,8 @@ return array(
     'requirement_not_met' => 'Fout: <b>:requirement</b> extentie is niet geladen',
     'setup' => 'Attendize installatie',
     'setup_completed' => 'Attendize reeds geinstalleerd',
-    'setup_completed_already_message' => "Er is reeds een installatiebestand gevonden wat betekend dat Attendize reeds is geinstalleerd. <br /> Indien u geen standaard gebruiker heeft geinstalleerd kunt u " .
+    'setup_completed_already_message' => 'Er is reeds een installatiebestand gevonden wat betekend dat Attendize reeds is geinstalleerd. <br /> Indien u geen standaard gebruiker heeft geinstalleerd kunt u '.
                                          "<b><a href='/signup'>hier</a></b><br /> een gebruiker aanmaken. Indien u dat wel heeft gedaan, kunt u <b><a href='/login'>hier</a></b> inloggen.",
     'test_database_connection' => 'Test database connectie',
     'title' => 'Attendize Web Installer',
-);
+];

@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
     'already_have_account' => 'Masz już konto? <a class="semibold" href=":url">Zaloguj się!</a>',
     'after_welcome' => 'Zanim będziemy kontynuować, zaktualizuj swoje konto o dane kontaktowe i hasło.',
     'change_password' => 'Zmień Hasło',
@@ -27,4 +27,4 @@ return array (
     'terms_and_conditions' => '&nbsp;&nbsp;Akceptuję <a target="_blank" href=":url"> Warunki Użytkowania </a>',
     'welcome_to_app' => 'Witaj w :app!',
     'your_email' => 'Twój Adres Email',
-);
+];

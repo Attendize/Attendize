@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'about'                                        => 'About',
     'account'                                      => 'アカウント',
     'account_id'                                   => 'アカウントID',
@@ -46,4 +46,4 @@ return array(
     'version_up_to_date'                           => 'Your Attendize version (<b>:installed</b>) is up to date!',
     'account_payment'                              => 'アカウント/支払い',
     'event_attendees'                              => 'イベント出席者',
-);
+];

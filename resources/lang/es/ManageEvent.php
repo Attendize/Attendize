@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'all_attendees'                           => 'Todos los asistentes',
     'all_attendees_cancelled'                 => 'Todos los asistentes de este pedido han sido cancelados.',
     'all_order_refunded'                      => 'Toda la cantidad (:money) de este pedido ha sido reembolsada.',
@@ -92,8 +92,7 @@ return array(
     'ticket_title_placeholder'                => 'P. ej: Admisión General',
     'update_order'                            => 'Actualizar pedido',
     'widgets'                                 => 'Widgets',
-    'LLH:obsolete'                            =>
-        array(
+    'LLH:obsolete'                            => [
             'create_question' => 'Crear pregunta',
-        ),
-);
+        ],
+];

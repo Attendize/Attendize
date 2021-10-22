@@ -66,7 +66,6 @@ class CreateUsersTable extends Migration
             $table->nullableTimestamps();
         });
 
-
         /*
          * Accounts table
          */
@@ -119,7 +118,6 @@ class CreateUsersTable extends Migration
          * Users Table
          */
         Schema::create('users', function ($t) {
-
             $t->increments('id');
             $t->unsignedInteger('account_id')->index();
             $t->nullableTimestamps();
@@ -140,7 +138,6 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('organisers', function ($table) {
-
             $table->increments('id')->index();
 
             $table->nullableTimestamps();
@@ -160,8 +157,6 @@ class CreateUsersTable extends Migration
 
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
         });
-
-
 
         Schema::create('events', function ($t) {
             $t->increments('id');
@@ -272,9 +267,8 @@ class CreateUsersTable extends Migration
          * Tickets table
          */
         Schema::create('tickets', function ($t) {
-
             $t->increments('id');
-                        $t->nullableTimestamps();
+            $t->nullableTimestamps();
             $t->softDeletes();
 
             $t->unsignedInteger('edited_by_user_id')->nullable();
@@ -410,7 +404,6 @@ class CreateUsersTable extends Migration
             $t->foreign('ticket_id')->references('id')->on('users')->onDelete('cascade');
         });
 
-
         /*
          * Tickets / Questions pivot table
          */
@@ -483,7 +476,6 @@ class CreateUsersTable extends Migration
         });
 
         Schema::create('event_images', function ($t) {
-
             $t->increments('id');
             $t->string('image_path');
             $t->nullableTimestamps();
@@ -530,11 +522,10 @@ class CreateUsersTable extends Migration
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-        foreach($tables as $table) {
+        foreach ($tables as $table) {
             Schema::drop($table);
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
     }
 }

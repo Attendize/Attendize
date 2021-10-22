@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:54:46
 *************************************************************************/
 
-return array (
+return [
   'address_details' => 'Dokładny Adres',
   'address_line_1' => 'Adres 1',
   'address_line_1_placeholder' => 'Np.: ul. Kwiatowa 21',
@@ -49,4 +49,4 @@ return array (
   'venue_name_placeholder' => 'Np.: Krabowa Chata',
   'vis_hide' => 'Ukryj wydarzenie publice',
   'vis_public' => 'Pokaż wydarzenie publice',
-);
+];

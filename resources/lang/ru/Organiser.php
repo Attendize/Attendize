@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/26 10:16:27 
+ Generated via "php artisan localization:missing" at 2018/04/26 10:16:27
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Customize.blade.php
   'save_organiser' => 'Сохранить данные организатора',
@@ -72,4 +72,4 @@ return array (
   'select_organiser' => 'Выбрать организатора',
   'text_color' => 'Цвет текста',
   'tickets_sold' => 'Билетов продано',
-);
+];

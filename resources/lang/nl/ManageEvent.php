@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'all_attendees' => 'Alle bezoekers',
   'all_attendees_cancelled' => 'All bezoekers van deze bestelling zijn geannuleerd.',
   'all_order_refunded' => 'All het geld :money van deze bestelling is gerestitueerd.',
@@ -23,7 +23,7 @@ return array (
   'confirm_order_cancel' => 'Bevestig annulering bestelling',
   'create_attendees' => 'Creëer bezoeker',
   'create_ticket' => 'Creëer Ticket',
-	'default_currency' => 'Standaard valuta',
+    'default_currency' => 'Standaard valuta',
   'download_pdf_ticket' => 'Download PDF Ticket',
   'edit_attendee' => 'Bewerk Attendee',
   'edit_attendee_title' => 'Bewerk :attendee',
@@ -93,8 +93,7 @@ return array (
   'ticket_title_placeholder' => 'bv.: All-access ticket',
   'update_order' => 'Bestelling aanpassen',
   'widgets' => 'Widgets',
-  'LLH:obsolete' => 
-  array (
+  'LLH:obsolete' => [
     'create_question' => 'Creëer vraag',
-  ),
-);
+  ],
+];

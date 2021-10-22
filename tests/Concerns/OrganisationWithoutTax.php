@@ -1,11 +1,13 @@
-<?php namespace Tests\Concerns;
+<?php
 
-use App\Models\Event;
+namespace Tests\Concerns;
+
 use App\Models\Account;
 use App\Models\AccountPaymentGateway;
 use App\Models\Attendee;
 use App\Models\Country;
 use App\Models\Currency;
+use App\Models\Event;
 use App\Models\EventStats;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -16,8 +18,8 @@ use App\Models\Ticket;
 use App\Models\TicketStatus;
 use App\Models\Timezone;
 use App\Models\User;
-use Superbalist\Money\Money;
 use Illuminate\Support\Carbon;
+use Superbalist\Money\Money;
 
 trait OrganisationWithoutTax
 {
@@ -36,7 +38,7 @@ trait OrganisationWithoutTax
             ['id' => config('attendize.order.partially_refunded'), 'name' => 'Partially Refunded'],
             ['id' => config('attendize.order.cancelled'), 'name' => 'Cancelled'],
         ]);
-        $orderStatuses->map(function($orderStatus) {
+        $orderStatuses->map(function ($orderStatus) {
             factory(OrderStatus::class)->create($orderStatus);
         });
 
@@ -46,7 +48,7 @@ trait OrganisationWithoutTax
             ['name' => 'Not On Sale Yet'],
             ['name' => 'On Sale'],
         ]);
-        $ticketStatuses->map(function($ticketStatus) {
+        $ticketStatuses->map(function ($ticketStatus) {
             factory(TicketStatus::class)->create($ticketStatus);
         });
 
@@ -69,7 +71,6 @@ trait OrganisationWithoutTax
             'payment_gateway_id' => $this->paymentGateway->id,
         ]);
 
-
         $this->user = factory(User::class)->create([
             'account_id' => $this->account->id,
             'email' => 'local@test.com',
@@ -84,7 +85,7 @@ trait OrganisationWithoutTax
             'name' => 'Test Organiser (No Tax)',
             'charge_tax' => false,
             'tax_name' => '',
-            'tax_value' => 0.00
+            'tax_value' => 0.00,
         ]);
 
         $this->event = factory(Event::class)->create([
@@ -127,7 +128,7 @@ trait OrganisationWithoutTax
             $eventId = $this->eventWithPercentageFees->id;
             $organiserFeePercentage = (new Money($this->eventWithPercentageFees->organiser_fee_percentage))->divide(100);
             $organiserFees = (new Money($price))->multiply($organiserFeePercentage);
-        } else if ($hasFixedFee) {
+        } elseif ($hasFixedFee) {
             $eventId = $this->eventWithFixedFees->id;
             $organiserFees = new Money($this->eventWithFixedFees->organiser_fee_fixed);
         }
@@ -186,7 +187,7 @@ trait OrganisationWithoutTax
             'organiser_fees_volume' => $organiserFees->multiply($count)->toFloat(),
         ]);
 
-        return [ $singleAttendeeOrder, $attendees ];
+        return [$singleAttendeeOrder, $attendees];
     }
 
     public function getAccountUser()

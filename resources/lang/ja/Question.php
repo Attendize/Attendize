@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageEvent\\Partials\\SurveyBlankSlate.blade.php
     'create_question'                     => '質問を作成する',
@@ -18,4 +18,4 @@ return array(
     'question_placeholder'                => '例 完全な住所を入力してください。',
     'question_type'                       => '質問タイプ',
     'require_this_question_for_ticket(s)' => 'チケットにこの質問を要求する',
-);
+];

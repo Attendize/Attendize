@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:54:45
 *************************************************************************/
 
-return array (
+return [
   'address_details' => 'Информация об адресе',
   'address_line_1' => 'Адрес линия 1',
   'address_line_1_placeholder' => 'например ул. Ленина 7',
@@ -52,4 +52,4 @@ return array (
   'venue_name_placeholder' => 'например: У Одноглазого Пирата',
   'vis_hide' => 'Распубликовать мероприятие',
   'vis_public' => 'Опубликовать мероприятие.',
-);
+];

@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/19 18:57:21 
+ Generated via "php artisan localization:missing" at 2018/04/19 18:57:21
 *************************************************************************/
 
-return array (
+return [
     //============================== New strings to translate ==============================//
     'this_event_has_started' => 'Cet événement a commencé',
     //==================================== Translations ====================================//
@@ -23,4 +23,4 @@ return array (
     'ticket_sales_volume' => 'Volume des ventes de billet',
     'tickets_sold' => 'Billets vendus',
     'website_embed_code' => 'Code d\'intégration pour site web',
-);
+];

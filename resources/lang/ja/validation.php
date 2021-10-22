@@ -87,8 +87,8 @@ return [
 
     'custom' => [
         'terms_agreed' => [
-            'required' => '利用規約に同意してください。'
-        ]
+            'required' => '利用規約に同意してください。',
+        ],
     ],
 
     /*

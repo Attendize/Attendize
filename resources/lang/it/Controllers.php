@@ -1,8 +1,7 @@
 <?php
 
 return [
-    'sort' =>
-        [
+    'sort' => [
             'event_title' => 'Titolo Evento',
             'start_date' => 'Data d\'inizio',
             'created_at' => 'Data di creazione',
@@ -23,32 +22,25 @@ return [
     'check_in_all_tickets' => 'I check-in tutti i biglietti associati a questo ordine',
     'confirmation_malformed' => 'Il codice di conferma è mancante o errato. ',
     'confirmation_successful' => 'Congratulazioni! Il tuo indirizzo email è verificato. Ora è possibile effettuare il login. ',
-    'error' =>
-        [
-            'email' =>
-                [
+    'error' => [
+            'email' => [
                     'email' => 'Si prega di inserire un indirizzo email valido.',
                     'required' => 'è richiesto l\'indirizzo e-mail. ',
                     'unique' => 'E-mail già in uso per questo account. ',
                 ],
-            'first_name' =>
-                [
+            'first_name' => [
                     'required' => 'Per favore immettere il proprio nome.',
                 ],
-            'last_name' =>
-                [
+            'last_name' => [
                     'required' => 'Inserisci il tuo cognome.',
                 ],
-            'page_bg_color' =>
-                [
+            'page_bg_color' => [
                     'required' => 'Si prega di inserire un colore di sfondo.',
                 ],
-            'page_header_bg_color' =>
-                [
+            'page_header_bg_color' => [
                     'required' => 'Si prega di inserire un colore di sfondo dell\'intestazione.',
                 ],
-            'password' =>
-                [
+            'password' => [
                     'passcheck' => 'Questa password non è corretta. ',
                 ],
         ],

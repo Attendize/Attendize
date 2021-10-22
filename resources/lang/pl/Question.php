@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/18 16:23:42 
+ Generated via "php artisan localization:missing" at 2018/04/18 16:23:42
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageEvent\\Partials\\SurveyBlankSlate.blade.php
   'create_question' => 'Utwórz Pytanie',
@@ -21,4 +21,4 @@ return array (
   'question_placeholder' => 'np. Podaj swój pełny adres?',
   'question_type' => 'Typ pytania',
   'require_this_question_for_ticket(s)' => 'Wymagaj pytania do bilet(ów)',
-);
+];

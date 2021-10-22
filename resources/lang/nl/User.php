@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'already_have_account' => 'Hieeft u al een account? <a class="semibold" href=":url">Login</a>',
   'after_welcome' => 'Voor u verder gaat wijzig eerst uw naam en wachtwoord.',
   'change_password' => 'Wijzig wachtwoord',
@@ -27,4 +27,4 @@ return array (
   'terms_and_conditions' => '&nbsp;&nbsp;Ik accepteer de <a target="_blank" href=":url"> Algemene voorwaarde </a>',
   'welcome_to_app' => 'Welkom bij :app!',
   'your_email' => 'Uw E-mail',
-);
+];

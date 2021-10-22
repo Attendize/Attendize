@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 11:05:24
 *************************************************************************/
 
-return array (
+return [
   //==================================== Translations ====================================//
   'action' => 'Action',
   'affiliates' => 'Partenaire',
@@ -57,8 +57,7 @@ return array (
     'upload' => 'Charger',
     'browse' => 'Naviguer',
   //================================== Obsolete strings ==================================//
-  'LLH:obsolete' =>
-  array (
+  'LLH:obsolete' => [
     'months_long' => 'Janvier|Février|Mars|Avril|Mai|Juin|Juillet|Août|Septembre|Octobre|Novembre|Décembre',
-  ),
-);
+  ],
+];

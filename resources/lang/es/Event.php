@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'address_details'            => 'Detalles de la dirección',
     'address_line_1'             => 'Dirección Línea 1',
     'address_line_1_placeholder' => 'P.ej.: Calle Gran Vía 1',
@@ -46,4 +46,4 @@ return array(
     'venue_name_placeholder'     => 'P.ej.: Auditorio Municipal',
     'vis_hide'                   => 'Ocultar evento del público.',
     'vis_public'                 => 'Hacer que el evento sea visible para el público.',
-);
+];

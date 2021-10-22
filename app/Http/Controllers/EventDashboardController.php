@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
-use DatePeriod;
-use DateInterval;
-use Carbon\Carbon;
 use App\Models\Event;
 use App\Models\EventStats;
+use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
+use DateTime;
 
 class EventDashboardController extends MyBaseController
 {
@@ -92,10 +92,11 @@ class EventDashboardController extends MyBaseController
 
     /**
      * Redirect to event dashboard
-     * @param  Integer|false $event_id
+     * @param  int|false $event_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function redirectToDashboard($event_id = false) {
+    public function redirectToDashboard($event_id = false)
+    {
         return redirect()->action(
             'EventDashboardController@showDashboard', ['event_id' => $event_id]
         );

@@ -2,19 +2,19 @@
 
 namespace App\Imports;
 
+use App\Jobs\SendAttendeeInviteJob;
+use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\EventStats;
-use App\Models\Attendee;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Ticket;
 use Auth;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\OnEachRow;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use App\Jobs\SendAttendeeInviteJob;
 use Maatwebsite\Excel\Row;
-use Maatwebsite\Excel\Concerns\OnEachRow;
 
 class AttendeesImport implements OnEachRow, WithHeadingRow
 {
@@ -28,10 +28,10 @@ class AttendeesImport implements OnEachRow, WithHeadingRow
     }
 
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function onRow(Row $row)
     {
         $rowArr = $row->toArray();
@@ -39,7 +39,7 @@ class AttendeesImport implements OnEachRow, WithHeadingRow
         $lastName = $rowArr['last_name'];
         $email = $rowArr['email'];
 
-        \Log::info(sprintf("Importing attendee: %s (%s %s)", $email, $firstName, $lastName));
+        \Log::info(sprintf('Importing attendee: %s (%s %s)', $email, $firstName, $lastName));
 
         // Create a new order for the attendee
         $order = Order::create([

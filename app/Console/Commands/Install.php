@@ -45,11 +45,10 @@ class Install extends Command
         }
 
         $this->comment('--------------------');
-        $this->comment('Attempting to install Attendize v' . $version);
+        $this->comment('Attempting to install Attendize v'.$version);
         $this->comment('--------------------');
 
-
-        if (!env('APP_KEY')) {
+        if (! env('APP_KEY')) {
             $this->info('Generating app key');
             Artisan::call('key:generate');
         } else {
@@ -60,7 +59,7 @@ class Install extends Command
         Artisan::call('migrate', ['--force' => true]);
         $this->info('Database successfully migrated.');
 
-        if (!Timezone::count()) {
+        if (! Timezone::count()) {
             $this->info('Seeding DB data');
             Artisan::call('db:seed', ['--force' => true]);
             $this->info('Data successfully seeded');
@@ -102,15 +101,12 @@ class Install extends Command
 
                 DB::commit();
                 $this->info('Admin User Successfully Created');
-
             } catch (Exception $e) {
                 DB::rollBack();
                 $this->error('Error Creating User');
                 $this->error($e);
             }
-
         }
-
 
         file_put_contents(base_path('installed'), $version);
 

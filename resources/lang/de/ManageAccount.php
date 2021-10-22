@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/13 13:27:24
 *************************************************************************/
 
-return array (
+return [
   'about' => 'Über',
   'account' => 'Konto',
   'account_id' => 'Konten ID',
@@ -49,4 +49,4 @@ return array (
   'version_up_to_date' => 'Your Attendize version (<b>:installed</b>) is up to date!',
     'account_payment' => 'Account / Zahlungsdaten',
     'event_attendees' => 'Gäste',
-);
+];

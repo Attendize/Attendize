@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'service_fee_fixed_price'             => 'サービス料固定価格',
     'service_fee_fixed_price_help'        => '例：入力値が <b>100</b> の場合 <b>:cur100</b>',
     'service_fee_fixed_price_placeholder' => '0',
@@ -9,4 +9,4 @@ return array(
     'service_fee_percentage'              => 'サービス料の割合',
     'service_fee_percentage_help'         => '例：入力値が <b>3.5</b> の場合 <b>3.5%</b>',
     'service_fee_percentage_placeholder'  => '0',
-);
+];

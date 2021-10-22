@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'new_message' => 'Новое сообщение',
   'sent_messages' => 'Отправленные',
   'all_event_attendees' => 'Все участники мероприятия',
@@ -18,4 +18,4 @@ return array (
   'subject' => 'Тема сообщения',
   'to' => 'К',
   'unsent' => 'Неотправлено',
-);
+];

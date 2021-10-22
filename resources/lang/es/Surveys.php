@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'add_question'          => 'Agregar pregunta',
     'answers'               => 'Respuestas',
     'event_surveys'         => 'Encuestas del evento',
@@ -12,4 +12,4 @@ return array(
     'required'              => 'Requerido',
     'status'                => 'Estado',
     'tickets_list'          => 'Entradas: :list',
-);
+];

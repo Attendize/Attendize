@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/26 11:05:24 
+ Generated via "php artisan localization:missing" at 2018/04/26 11:05:24
 *************************************************************************/
 
-return array (
+return [
   //==================================== Translations ====================================//
   'attendize_register' => 'Thank you for registering for Attendize',
   'contact_organiser' => 'You can contact :organiser_name directly at <a href="mailto::organiser_email">:organiser_email</a>, or by replying to this email.',
@@ -15,8 +15,7 @@ return array (
   'your_ticket_cancelled' => 'Your ticket has been cancelled',
   'your_ticket_for_event' => 'Your ticket for the event :event',
     //================================== Obsolete strings ==================================//
-  'LLH:obsolete' => 
-  array (
+  'LLH:obsolete' => [
 
-  ),
-);
+  ],
+];

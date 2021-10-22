@@ -23,7 +23,7 @@ $factory->state(PaymentGateway::class, 'Dummy', [
     'name' => 'Dummy',
     'default' => 1,
     'admin_blade_template' => '',
-    'checkout_blade_template' => 'Public.ViewEvent.Partials.Dummy'
+    'checkout_blade_template' => 'Public.ViewEvent.Partials.Dummy',
 ]);
 
 $factory->state(PaymentGateway::class, 'Stripe', [
@@ -34,7 +34,7 @@ $factory->state(PaymentGateway::class, 'Stripe', [
     'can_refund' => 1,
     'default' => 0,
     'admin_blade_template' => 'ManageAccount.Partials.Stripe',
-    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe'
+    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe',
 ]);
 
 $factory->state(PaymentGateway::class, 'Stripe SCA', [
@@ -45,5 +45,5 @@ $factory->state(PaymentGateway::class, 'Stripe SCA', [
     'name' => 'Stripe\PaymentIntents',
     'default' => 0,
     'admin_blade_template' => 'ManageAccount.Partials.StripeSCA',
-    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA'
+    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA',
 ]);

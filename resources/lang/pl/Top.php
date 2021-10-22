@@ -3,7 +3,7 @@
 Generated via "php artisan localization:missing" at 2018/04/25 10:00:32
  *************************************************************************/
 
-return array (
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\Shared\\Layouts\\Master.blade.php
     'account_settings' => 'Ustawienia Konta',
@@ -15,4 +15,4 @@ return array (
     'my_profile' => 'Mój Profil',
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\Shared\\Layouts\\Master.blade.php
     'sign_out' => 'Wyloguj się',
-);
+];

@@ -16,7 +16,6 @@ class AddDefaultGateways extends Migration
      */
     public function up()
     {
-
         $paypal = PaymentGateway::where('name', 'PayPal_Express')->first();
 
         //Log::info('Removing?');
@@ -43,7 +42,7 @@ class AddDefaultGateways extends Migration
         if ($stripe) {
             $stripe->update([
                 'admin_blade_template'    => 'ManageAccount.Partials.Stripe',
-                'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe'
+                'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe',
             ]);
         } else {
             DB::table('payment_gateways')->insert(
@@ -55,7 +54,7 @@ class AddDefaultGateways extends Migration
                     'name'                    => 'Stripe',
                     'default'                 => 0,
                     'admin_blade_template'    => 'ManageAccount.Partials.Stripe',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe'
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe',
                 ]
             );
         }
@@ -73,7 +72,7 @@ class AddDefaultGateways extends Migration
                     'name'                    => 'Dummy',
                     'default'                 => 0,
                     'admin_blade_template'    => '',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.Dummy'
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.Dummy',
                 ]
             );
         }
@@ -91,7 +90,7 @@ class AddDefaultGateways extends Migration
                     'name'                    => 'Stripe\PaymentIntents',
                     'default'                 => 0,
                     'admin_blade_template'    => 'ManageAccount.Partials.StripeSCA',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA'
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA',
                 ]
             );
         }

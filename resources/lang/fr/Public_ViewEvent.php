@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/18 16:27:47 
+ Generated via "php artisan localization:missing" at 2018/04/18 16:27:47
 *************************************************************************/
 
-return array (
+return [
   //==================================== Translations ====================================//
   'Contact' => 'Contact',
   'DETAILS' => 'DÉTAILS',
@@ -87,4 +87,4 @@ return array (
   'your' => 'Vos',
   'stripe_credit_or_debit_card' => 'Carte de crédit ou de débit',
   'complete_payment' => 'Effectuer le paiement',
-);
+];

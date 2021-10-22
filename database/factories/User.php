@@ -14,6 +14,6 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'is_registered' => false,
         'is_confirmed' => false,
         'is_parent' => false,
-        'remember_token' => $faker->randomNumber
+        'remember_token' => $faker->randomNumber,
     ];
 });

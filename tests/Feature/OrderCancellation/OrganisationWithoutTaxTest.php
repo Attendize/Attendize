@@ -1,4 +1,6 @@
-<?php namespace Tests\Features;
+<?php
+
+namespace Tests\Features;
 
 use App\Models\Attendee;
 use Tests\Concerns\OrganisationWithoutTax;

@@ -1,21 +1,20 @@
 <?php
 /*************************************************************************
-   Generated via "php artisan localization:missing" at 2018/04/26 10:21:11 
+   Generated via "php artisan localization:missing" at 2018/04/26 10:21:11
  *************************************************************************/
 
-return array (
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
-    'sort' => 
-	array (
-	    'event_title' => 'Titre de l\'événement',
-	    'start_date' => 'Date de début',
-	    'created_at' => 'Date de création',
-	    'quantity_sold' => 'Quantité vendue',
-	    'sales_volume' => 'Volume de ventes',
-	    'sort_order' => 'Ordre de tri personnalisé',
-	    'title' => 'Titre du ticket',
-	),
+    'sort' => [
+        'event_title' => 'Titre de l\'événement',
+        'start_date' => 'Date de début',
+        'created_at' => 'Date de création',
+        'quantity_sold' => 'Quantité vendue',
+        'sales_volume' => 'Volume de ventes',
+        'sort_order' => 'Ordre de tri personnalisé',
+        'title' => 'Titre du ticket',
+    ],
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
     //==================================== Translations ====================================//
     'account_successfully_updated' => 'Compte mis à jour avec succès',
@@ -31,35 +30,28 @@ return array (
     'check_in_all_tickets' => 'Enregistrer tous les tickets associés à cette commande',
     'confirmation_malformed' => 'Le code de confirmation manque ou il est mal formé.',
     'confirmation_successful' => 'Ça a marché ! Votre courriel est désormais vérifié.  Vous pouvez vous connecter.',
-    'error' => 
-	array (
-	    'email' => 
-		array (
-		    'email' => 'Merci de saisir une adresse de courriel valide.',
-		    'required' => 'L\'adresse de courriel est requise.',
-		    'unique' => 'Cette adresse de courriel est déjà utilisée pour ce compte.',
-		),
-	    'first_name' => 
-		array (
-		    'required' => 'Merci de saisir votre prénom.',
-		),
-	    'last_name' => 
-		array (
-		    'required' => 'Merci de saisir votre nom.',
-		),
-	    'page_bg_color' => 
-		array (
-		    'required' => 'Merci de saisir une couleur de fond.',
-		),
-	    'page_header_bg_color' => 
-		array (
-		    'required' => 'Merci de saisir une couleur de fond pour l\'en-tête.',
-		),
-	    'password' => 
-		array (
-		    'passcheck' => 'Ce mot de passe est incorrect.',
-		),
-	),
+    'error' => [
+        'email' => [
+            'email' => 'Merci de saisir une adresse de courriel valide.',
+            'required' => 'L\'adresse de courriel est requise.',
+            'unique' => 'Cette adresse de courriel est déjà utilisée pour ce compte.',
+        ],
+        'first_name' => [
+            'required' => 'Merci de saisir votre prénom.',
+        ],
+        'last_name' => [
+            'required' => 'Merci de saisir votre nom.',
+        ],
+        'page_bg_color' => [
+            'required' => 'Merci de saisir une couleur de fond.',
+        ],
+        'page_header_bg_color' => [
+            'required' => 'Merci de saisir une couleur de fond pour l\'en-tête.',
+        ],
+        'password' => [
+            'passcheck' => 'Ce mot de passe est incorrect.',
+        ],
+    ],
     'event_create_exception' => 'Aïe ! Il y a eu un problème lors de la création de votre événement, merci de réessayer.',
     'event_page_successfully_updated' => 'Page d\'événement mise à jour avec succès.',
     'event_successfully_updated' => 'Événement mis à jour avec succès !',
@@ -116,4 +108,4 @@ return array (
     'tickets_for_event' => 'Vos billets pour l\'événement :event.',
     'whoops' => 'Zut! On dirait qu\'un truc ne s\'est pas bien passé, merci de réessayer.',
     'your_password_reset_link' => 'Le lien de renvoi de votre mot de passe',
-);
+];

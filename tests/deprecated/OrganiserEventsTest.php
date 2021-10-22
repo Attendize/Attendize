@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
+use App\Models\Organiser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use App\Models\Organiser;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class OrganiserEventsTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/25 15:38:13 
+ Generated via "php artisan localization:missing" at 2018/04/25 15:38:13
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\app\\Http\\Controllers\\EventOrdersController.php
   'amount_refunded' => 'montant remboursé',
@@ -52,4 +52,4 @@ return array (
   'user_registered_n_tickets' => '<a href=":url">:name</a> a enregistré :n billet(s).',
   'view_order' => 'Voir la commande',
   'view_order_num' => 'Voir la commande #:num',
-);
+];

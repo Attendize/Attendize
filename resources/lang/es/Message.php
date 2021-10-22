@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'all_event_attendees'             => 'Todos los asistentes al evento',
     'attendees_with_ticket_type'      => 'Asistentes con tipo de entrada',
     'before_send_message'             => 'El asistente recibirá instrucciones para enviar cualquier respuesta a :organiser',
@@ -18,4 +18,4 @@ return array(
     'subject'                         => 'Asunto del mensaje',
     'to'                              => 'A',
     'unsent'                          => 'No enviado',
-);
+];

@@ -1,10 +1,9 @@
 <?php
 
-return array(
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
-    'sort'                                      =>
-        array(
+    'sort'                                      => [
             'event_title'   => 'イベントタイトル',
             'start_date'    => '開始日',
             'created_at'    => '作成日',
@@ -12,7 +11,7 @@ return array(
             'sales_volume'  => '販売量',
             'sort_order'    => 'カスタムソート順',
             'title'         => 'チケットのタイトル',
-        ),
+        ],
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
     //==================================== Translations ====================================//
     'account_successfully_updated'              => 'アカウントは正常に更新されました',
@@ -27,35 +26,28 @@ return array(
     'check_in_all_tickets'                      => 'この注文に関連するすべてのチケットをチェックイン',
     'confirmation_malformed'                    => '確認コードが見つからないか,形式が正しくありません。',
     'confirmation_successful'                   => '成功しました。あなたのEメールは確認されました。ログインできます。',
-    'error'                                     =>
-        array(
-            'email'                =>
-                array(
+    'error'                                     => [
+            'email'                => [
                     'email'    => '有効なメールアドレスを入力してください。',
                     'required' => 'メールアドレスは必須です。',
                     'unique'   => '既に使用されているメールアドレスです。',
-                ),
-            'first_name'           =>
-                array(
+                ],
+            'first_name'           => [
                     'required' => '名を入力してください。',
-                ),
-            'last_name'            =>
-                array(
+                ],
+            'last_name'            => [
                     'required' => '姓を入力してください。',
-                ),
-            'page_bg_color'        =>
-                array(
+                ],
+            'page_bg_color'        => [
                     'required' => '背景色を入力してください。',
-                ),
-            'page_header_bg_color' =>
-                array(
+                ],
+            'page_header_bg_color' => [
                     'required' => 'ヘッダーの背景色を入力してください。',
-                ),
-            'password'             =>
-                array(
+                ],
+            'password'             => [
                     'passcheck' => 'このパスワードは正しくありません。',
-                ),
-        ),
+                ],
+        ],
     'event_create_exception'                    => 'おっと！ 予定の作成中に問題が発生しました。もう一度お試しください',
     'event_page_successfully_updated'           => 'イベントページは正常に更新されました。',
     'event_successfully_updated'                => 'イベントが更新されました！',
@@ -112,4 +104,4 @@ return array(
     'tickets_for_event'                         => 'イベントのチケット：:event',
     'whoops'                                    => 'おっと！ 問題が発生したようです。やり直してください。',
     'your_password_reset_link'                  => 'あなたのパスワードリセットリンク',
-);
+];

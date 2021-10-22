@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/19 17:07:35
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   'scan_another_ticket' => 'Scan een ander Ticket',
   'scanning' => 'Scannen',
@@ -20,4 +20,4 @@ return array (
   'reference' => 'Referentie',
   'search_attendees' => 'Zoek bezoekers...',
   'send_invitation_n_ticket_to_attendee' => 'Verzend uitnodigingen en tickets naar de bezoekers.',
-);
+];

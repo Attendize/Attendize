@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageEvent\\Surveys.blade.php
   'question_delete' => 'Question Delete',
@@ -15,4 +15,4 @@ return array (
   'required' => 'Required',
   'status' => 'Status',
   'tickets_list' => 'Tickets: :list',
-);
+];

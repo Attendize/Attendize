@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'new_message' => 'Nieuw bericht',
   'sent_messages' => 'Verzend berichten',
   'all_event_attendees' => 'Alle bezoekers van dit evenenemet',
@@ -18,4 +18,4 @@ return array (
   'subject' => 'Onderwerp bericht',
   'to' => 'Naar',
   'unsent' => 'Niet verzenden',
-);
+];

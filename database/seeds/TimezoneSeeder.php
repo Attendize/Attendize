@@ -62,7 +62,6 @@ class TimezoneSeeder extends Seeder
         // \App\Models\DateFormat::create([
         //     'format' => 'D M j, Y', 'picker_format' => 'D MM d, yyyy', 'label' => 'Mon March 10, 2013']);
 
-
         $timezones = [
             'Pacific/Midway' => '(GMT-11:00) Midway Island',
             'US/Samoa' => '(GMT-11:00) Samoa',

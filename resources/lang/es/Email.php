@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'attendize_register'      => 'Gracias por registrarte en Attendize',
     'contact_organiser' => 'Puede ponerse en contacto con :organiser_name directamente en <a href="mailto::organiser_email">:organiser_email</a>, o respondiendo a este correo electrónico.',
     'invite_user'             => ':name te ha añadido a la cuenta :app.',
@@ -10,5 +10,5 @@ return array(
     'refund_from_name'        => 'Has recibido un reembolso de :name',
     'your_ticket_cancelled'   => 'Tu entrada ha sido cancelada',
     'your_ticket_for_event'   => 'Tu entrada para el evento :event',
-    'LLH:obsolete'            => array(),
-);
+    'LLH:obsolete'            => [],
+];

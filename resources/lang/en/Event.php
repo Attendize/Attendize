@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:54:45
 *************************************************************************/
 
-return array (
+return [
   'address_details' => 'Address Details',
   'address_line_1' => 'Address Line 1',
   'address_line_1_placeholder' => 'E.g: 45 Grafton St.',
@@ -52,4 +52,4 @@ return array (
   'venue_name_placeholder' => 'E.g: The Crab Shack',
   'vis_hide' => 'Hide event from the public.',
   'vis_public' => 'Make event visible to the public.',
-);
+];

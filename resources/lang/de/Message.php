@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'new_message' => 'New Message',
   'sent_messages' => 'Sent Messages',
   'all_event_attendees' => 'All event attendees',
@@ -18,4 +18,4 @@ return array (
   'subject' => 'Message Subject',
   'to' => 'To',
   'unsent' => 'Unsent',
-);
+];

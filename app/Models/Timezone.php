@@ -16,14 +16,14 @@ class Timezone extends \Illuminate\Database\Eloquent\Model
     /**
      * Indicates if the model should be timestamped.
      *
-     * @var bool $timestamps
+     * @var bool
      */
     public $timestamps = false;
 
     /**
      * Indicates if the model should use soft deletes.
      *
-     * @var bool $softDelete
+     * @var bool
      */
     protected $softDelete = false;
 }

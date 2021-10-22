@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'all_attendees' => 'Все участники',
   'all_attendees_cancelled' => 'Все участники в этом заказе были отменены.',
   'all_order_refunded' => 'Все :money за этот заказ были возвращены.',
@@ -26,7 +26,7 @@ return array (
   'confirm_order_cancel' => 'Подтвердить отмену заказа',
   'create_attendees' => 'Создать участников',
   'create_ticket' => 'Создать категорию билета',
-	'default_currency' => 'Валюта по умолчанию',
+    'default_currency' => 'Валюта по умолчанию',
   'download_pdf_ticket' => 'Скачать билет в формате PDF',
   'edit_attendee' => 'Редактировать участника',
   'edit_attendee_title' => 'Редактировать :attendee',
@@ -96,8 +96,7 @@ return array (
   'ticket_title_placeholder' => 'например: семейный',
   'update_order' => 'Обновить заказ',
   'widgets' => 'Виджеты',
-  'LLH:obsolete' => 
-  array (
+  'LLH:obsolete' => [
     'create_question' => 'Создать вопрос',
-  ),
-);
+  ],
+];

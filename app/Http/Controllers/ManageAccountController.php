@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Account;
 use App\Models\AccountPaymentGateway;
 use App\Models\Currency;
@@ -11,11 +10,12 @@ use App\Models\Timezone;
 use App\Models\User;
 use Exception;
 use GuzzleHttp\Client;
-use Illuminate\Mail\Message;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -23,7 +23,6 @@ use Services\PaymentGateway\Dummy;
 use Services\PaymentGateway\Stripe;
 use Services\PaymentGateway\StripeSCA;
 use Utils;
-use Illuminate\Support\Facades\Lang;
 
 class ManageAccountController extends MyBaseController
 {
@@ -56,11 +55,12 @@ class ManageAccountController extends MyBaseController
         try {
             $http_client = new Client();
             $response = $http_client->get('https://raw.githubusercontent.com/Attendize/Attendize/master/VERSION');
-            $latestVersion = Utils::parse_version((string)$response->getBody());
+            $latestVersion = Utils::parse_version((string) $response->getBody());
             $installedVersion = file_get_contents(base_path('VERSION'));
         } catch (\Exception $exception) {
-            \Log::warn("Error retrieving the latest Attendize version. ManageAccountController.getVersionInf() try/catch");
+            \Log::warn('Error retrieving the latest Attendize version. ManageAccountController.getVersionInf() try/catch');
             \Log::warn($exception);
+
             return false;
         }
 
@@ -85,7 +85,7 @@ class ManageAccountController extends MyBaseController
     {
         $account = Account::find(Auth::user()->account_id);
 
-        if (!$account->validate($request->all())) {
+        if (! $account->validate($request->all())) {
             return response()->json([
                 'status'   => 'error',
                 'messages' => $account->errors(),
@@ -122,13 +122,13 @@ class ManageAccountController extends MyBaseController
         $config = [];
 
         switch ($payment_gateway->name) {
-            case Stripe::GATEWAY_NAME :
+            case Stripe::GATEWAY_NAME:
                 $config = $request->get('stripe');
                 break;
-            case StripeSCA::GATEWAY_NAME :
+            case StripeSCA::GATEWAY_NAME:
                 $config = $request->get('stripe_sca');
                 break;
-            case Dummy::GATEWAY_NAME :
+            case Dummy::GATEWAY_NAME:
                 break;
 
         }
@@ -167,7 +167,7 @@ class ManageAccountController extends MyBaseController
     public function postInviteUser(Request $request)
     {
         $rules = [
-            'email' => ['required', 'email', 'unique:users,email,NULL,id,account_id,' . Auth::user()->account_id],
+            'email' => ['required', 'email', 'unique:users,email,NULL,id,account_id,'.Auth::user()->account_id],
         ];
 
         $messages = [
@@ -204,8 +204,8 @@ class ManageAccountController extends MyBaseController
         Mail::send(Lang::locale().'.Emails.inviteUser', $data, static function (Message $message) use ($data) {
             $message->to($data['user']->email)
                 ->subject(trans('Email.invite_user', [
-                    'name' => $data['inviter']->first_name . ' ' . $data['inviter']->last_name,
-                    'app'  => config('attendize.app_name')
+                    'name' => $data['inviter']->first_name.' '.$data['inviter']->last_name,
+                    'app'  => config('attendize.app_name'),
                 ]));
         });
 

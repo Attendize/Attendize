@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/16 08:41:39 
+ Generated via "php artisan localization:missing" at 2018/04/16 08:41:39
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\Public\\ViewOrganiser\\Partials\\EventListingPanel.blade.php
   'information' => 'Информация',
@@ -14,4 +14,4 @@ return array (
   'organiser_dashboard' => 'Панель управления мероприятиями',
   'past_events' => 'Прошедшие мероприятия',
   'upcoming_events' => 'Предстоящие мероприятия',
-);
+];

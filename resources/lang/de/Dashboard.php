@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/19 18:57:21
 *************************************************************************/
 
-return array (
+return [
     //============================== New strings to translate ==============================//
     'this_event_has_started' => 'Diese Veranstaltung hat begonnen.',
     //==================================== Translations ====================================//
@@ -23,4 +23,4 @@ return array (
     'ticket_sales_volume' => 'Anzahl Ticketverkäufe',
     'tickets_sold' => 'Tickets verkauft',
     'website_embed_code' => 'Embed Code für Webseite',
-);
+];

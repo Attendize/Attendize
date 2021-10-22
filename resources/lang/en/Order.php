@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'amount_refunded' => 'amount refunded',
   'fully_refunded' => 'fully refunded',
   'partially_refunded' => 'partially refunded',
@@ -49,4 +49,4 @@ return array (
   'transaction_id' => 'Transaction ID',
   'view_order' => 'View Order',
   'view_order_num' => 'View Order #:num',
-);
+];

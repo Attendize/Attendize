@@ -10,11 +10,9 @@ use Omnipay\Omnipay;
  * having a factory should make it easier to implement any Omnipay Gateway
  *
  * Class GatewayFactory
- * @package App\Services\PaymentGateway
  */
 class Factory
 {
-
     /**
      * @param $name
      * @param $paymentGatewayConfig
@@ -23,10 +21,9 @@ class Factory
      */
     public function create($name, $paymentGatewayConfig)
     {
-
         switch ($name) {
 
-            case Dummy::GATEWAY_NAME :
+            case Dummy::GATEWAY_NAME:
                 {
 
                     $gateway = Omnipay::create($name);
@@ -35,7 +32,7 @@ class Factory
                     return new Dummy($gateway, $paymentGatewayConfig);
                 }
 
-            case Stripe::GATEWAY_NAME :
+            case Stripe::GATEWAY_NAME:
                 {
 
                     $gateway = Omnipay::create($name);
@@ -44,7 +41,7 @@ class Factory
                     return new Stripe($gateway, $paymentGatewayConfig);
                 }
 
-            case StripeSCA::GATEWAY_NAME :
+            case StripeSCA::GATEWAY_NAME:
                 {
 
                     $gateway = Omnipay::create($name);
@@ -54,9 +51,9 @@ class Factory
 
                 }
 
-            default :
+            default:
                 {
-                    throw New \Exception('Invalid gateway specified');
+                    throw new \Exception('Invalid gateway specified');
                 }
         }
     }

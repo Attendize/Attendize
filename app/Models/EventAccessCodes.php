@@ -12,7 +12,7 @@ class EventAccessCodes extends MyBaseModel
     use SoftDeletes;
 
     /**
-     * @param integer $event_id
+     * @param int $event_id
      * @param string $accessCode
      * @return void
      */
@@ -61,7 +61,7 @@ class EventAccessCodes extends MyBaseModel
     /**
      * @return BelongsToMany
      */
-    function tickets()
+    public function tickets()
     {
         return $this->belongsToMany(
             Ticket::class,

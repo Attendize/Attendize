@@ -27,10 +27,10 @@ $factory->define(Account::class, function (Generator $faker) {
             return factory(Currency::class)->create()->id;
         },
         'name' => $faker->name,
-        'last_ip' => "127.0.0.1",
+        'last_ip' => '127.0.0.1',
         'last_login_date' => Carbon::now()->subDays(2),
         'address1' => $faker->address,
-        'address2' => "",
+        'address2' => '',
         'city' => $faker->city,
         'state' => $faker->stateAbbr,
         'postal_code' => $faker->postcode,

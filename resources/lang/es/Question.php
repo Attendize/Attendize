@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'add_another_option'                  => 'Añadir otra opción',
     'answer'                              => 'Respuesta',
     'attendee_details'                    => 'Detalles del asistente',
@@ -15,4 +15,4 @@ return array(
     'question_placeholder'                => 'P.ej.: introduce tu dirección completa.',
     'question_type'                       => 'Tipo de pregunta',
     'require_this_question_for_ticket(s)' => 'Requerir esta pregunta para la(s) entrada(s)',
-);
+];

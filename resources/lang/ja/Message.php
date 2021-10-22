@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'new_message'                     => '新着メッセージ',
     'sent_messages'                   => '送信メッセージ',
     'all_event_attendees'             => '全イベント出席者',
@@ -18,4 +18,4 @@ return array(
     'subject'                         => '件名',
     'to'                              => 'to',
     'unsent'                          => '未送信',
-);
+];

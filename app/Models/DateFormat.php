@@ -16,14 +16,14 @@ class DateFormat extends \Illuminate\Database\Eloquent\Model
     /**
      * Indicates whether the model should be timestamped.
      *
-     * @var bool $timestamps
+     * @var bool
      */
     public $timestamps = false;
 
     /**
      * Indicates whether the model should use soft deletes.
      *
-     * @var bool $softDelete
+     * @var bool
      */
     protected $softDelete = false;
 }

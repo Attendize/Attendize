@@ -11,7 +11,6 @@ class PaymentGatewaySeeder extends Seeder
      */
     public function run()
     {
-
         $dummyGateway = DB::table('payment_gateways')->where('name', '=', 'Dummy')->first();
 
         if ($dummyGateway === null) {
@@ -25,7 +24,7 @@ class PaymentGatewaySeeder extends Seeder
                     'name' => 'Dummy',
                     'default' => 0,
                     'admin_blade_template' => '',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.Dummy'
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.Dummy',
                 ]
             );
         }
@@ -41,7 +40,7 @@ class PaymentGatewaySeeder extends Seeder
                     'can_refund' => 1,
                     'default' => 0,
                     'admin_blade_template' => 'ManageAccount.Partials.Stripe',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe'
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripe',
                 ]
             );
         }
@@ -57,10 +56,9 @@ class PaymentGatewaySeeder extends Seeder
                     'name' => 'Stripe\PaymentIntents',
                     'default' => 0,
                     'admin_blade_template' => 'ManageAccount.Partials.StripeSCA',
-                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA'
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentStripeSCA',
                 ]
             );
         }
-
     }
 }
