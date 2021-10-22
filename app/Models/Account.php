@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Attendize\Utils;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Account extends MyBaseModel
 {
@@ -13,7 +13,7 @@ class Account extends MyBaseModel
     /**
      * The validation rules
      *
-     * @var array $rules
+     * @var array
      */
     protected $rules = [
         'first_name' => ['required'],
@@ -24,21 +24,21 @@ class Account extends MyBaseModel
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array $dates
+     * @var array
      */
     public $dates = ['deleted_at'];
 
     /**
      * The validation error messages.
      *
-     * @var array $messages
+     * @var array
      */
     protected $messages = [];
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var array $fillable
+     * @var array
      */
     protected $fillable = [
         'first_name',
@@ -65,7 +65,7 @@ class Account extends MyBaseModel
         'stripe_refresh_token',
         'stripe_secret_key',
         'stripe_publishable_key',
-        'stripe_data_raw'
+        'stripe_data_raw',
     ];
 
     /**
@@ -113,7 +113,8 @@ class Account extends MyBaseModel
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function gateways() {
+    public function gateways()
+    {
         return $this->account_payment_gateways();
     }
 
@@ -149,14 +150,12 @@ class Account extends MyBaseModel
     {
         $gateway = $this->getGateway($gateway_id);
 
-        if($gateway && is_array($gateway->config)) {
+        if ($gateway && is_array($gateway->config)) {
             return isset($gateway->config[$key]) ? $gateway->config[$key] : false;
         }
 
         return false;
     }
-
-
 
     /**
      * Get the stripe api key.

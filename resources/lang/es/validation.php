@@ -127,8 +127,8 @@ return [
 
     'custom' => [
         'terms_agreed' => [
-            'required' => 'Por favor, acepte nuestros Términos de Servicio.'
-        ]
+            'required' => 'Por favor, acepte nuestros Términos de Servicio.',
+        ],
     ],
 
     /*

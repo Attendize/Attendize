@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:54:45
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Modals\\CreateEvent.blade.php
   'address_details' => 'Détails de l\'adresse',
@@ -52,4 +52,4 @@ return array (
   'venue_name_placeholder' => 'Ex. : The Lapin Agile',
   'vis_hide' => 'Cacher l\'événement du public.',
   'vis_public' => 'Rendre l\'événement visible au public.',
-);
+];

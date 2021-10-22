@@ -32,6 +32,6 @@ $factory->define(App\Models\Order::class, function (Faker\Generator $faker) {
         },
         'payment_gateway_id' => 1,
         'is_payment_received' => false,
-        'taxamt' => 0
+        'taxamt' => 0,
     ];
 });

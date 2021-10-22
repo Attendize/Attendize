@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'all_attendees' => 'All Attendees',
   'all_attendees_cancelled' => 'All attendees in this order have been cancelled.',
   'all_order_refunded' => 'All :money of this order has been refunded.',
@@ -26,7 +26,7 @@ return array (
   'confirm_order_cancel' => 'Confirm Order Cancel',
   'create_attendees' => 'Create Attendees',
   'create_ticket' => 'Create Ticket',
-	'default_currency' => 'Default currency',
+    'default_currency' => 'Default currency',
   'download_pdf_ticket' => 'Download PDF Ticket',
   'edit_attendee' => 'Edit Attendee',
   'edit_attendee_title' => 'Edit :attendee',
@@ -96,8 +96,7 @@ return array (
   'ticket_title_placeholder' => 'E.g: General Admission',
   'update_order' => 'Update Order',
   'widgets' => 'Widgets',
-  'LLH:obsolete' => 
-  array (
+  'LLH:obsolete' => [
     'create_question' => 'Create Question',
-  ),
-);
+  ],
+];

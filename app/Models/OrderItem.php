@@ -16,12 +16,12 @@ class OrderItem extends MyBaseModel
     /**
      * Indicates if the model should be timestamped.
      *
-     * @var bool $timestamps
+     * @var bool
      */
     public $timestamps = false;
 
     /**
-     * @var array $fillable
+     * @var array
      */
     protected $fillable = [
         'title',

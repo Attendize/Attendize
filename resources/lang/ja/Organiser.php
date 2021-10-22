@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Customize.blade.php
     'save_organiser'                          => '変更を保存する',
@@ -65,4 +65,4 @@ return array(
     'select_organiser'                        => '主催者の選択',
     'text_color'                              => 'テキストの色',
     'tickets_sold'                            => 'チケット販売',
-);
+];

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\Shared\\Layouts\\Master.blade.php
     'account_settings'    => 'アカウント設定',
@@ -12,4 +12,4 @@ return array(
     'my_profile'          => 'プロフィール',
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\Shared\\Layouts\\Master.blade.php
     'sign_out'            => 'サインアウト',
-);
+];

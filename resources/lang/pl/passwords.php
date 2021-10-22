@@ -14,7 +14,7 @@ return [
     */
 
     'password' => 'Hasła muszą mieć co najmniej 6 znaków i być zgodne.',
-    'user'     => "Nie znaleziono użytkownika z tym adresem e-mail.",
+    'user'     => 'Nie znaleziono użytkownika z tym adresem e-mail.',
     'token'    => 'Ten token resetu hasła jest nieaktualny.',
     'sent'     => 'Wysłano link resetujący hasło na adres e-mail!',
     'reset'    => 'Twoje hasło zostało zresetowane!',

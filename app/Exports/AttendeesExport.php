@@ -3,12 +3,12 @@
 namespace App\Exports;
 
 use App\Models\Attendee;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromQuery;
 use Auth;
 use DB;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\BeforeExport;
 
 class AttendeesExport implements FromQuery, WithHeadings, WithEvents
@@ -21,12 +21,12 @@ class AttendeesExport implements FromQuery, WithHeadings, WithEvents
     }
 
     /**
-    * @return \Illuminate\Support\Query
-    */
+     * @return \Illuminate\Support\Query
+     */
     public function query()
     {
-        $yes = strtoupper(trans("basic.yes"));
-        $no = strtoupper(trans("basic.no"));
+        $yes = strtoupper(trans('basic.yes'));
+        $no = strtoupper(trans('basic.no'));
         $query = Attendee::query()->select([
             'attendees.first_name',
             'attendees.last_name',
@@ -50,25 +50,25 @@ class AttendeesExport implements FromQuery, WithHeadings, WithEvents
     public function headings(): array
     {
         return [
-            trans("Attendee.first_name"),
-            trans("Attendee.last_name"),
-            trans("Attendee.email"),
-            trans("Ticket.id"),
-            trans("Order.order_ref"),
-            trans("Ticket.ticket_type"),
-            trans("Order.order_date"),
-            trans("Attendee.has_arrived"),
-            trans("Attendee.arrival_time"),
+            trans('Attendee.first_name'),
+            trans('Attendee.last_name'),
+            trans('Attendee.email'),
+            trans('Ticket.id'),
+            trans('Order.order_ref'),
+            trans('Ticket.ticket_type'),
+            trans('Order.order_date'),
+            trans('Attendee.has_arrived'),
+            trans('Attendee.arrival_time'),
         ];
     }
 
-     /**
+    /**
      * @return array
      */
     public function registerEvents(): array
     {
         return [
-            BeforeExport::class => function(BeforeExport $event) {
+            BeforeExport::class => function (BeforeExport $event) {
                 $event->writer->getProperties()->setCreator(config('attendize.app_name'));
                 $event->writer->getProperties()->setCompany(config('attendize.app_name'));
             },

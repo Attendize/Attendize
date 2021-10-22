@@ -4,7 +4,6 @@ namespace App\Models;
 
 class QuestionAnswer extends MyBaseModel
 {
-
     protected $fillable = [
         'question_id',
         'event_id',
@@ -38,5 +37,4 @@ class QuestionAnswer extends MyBaseModel
     {
         return $this->belongsTo(\App\Models\Attendee::class);
     }
-
 }

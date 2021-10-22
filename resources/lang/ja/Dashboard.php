@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     //============================== New strings to translate ==============================//
     'this_event_has_started'  => 'このイベントは開始されました。',
     //==================================== Translations ====================================//
@@ -20,4 +20,4 @@ return array(
     'ticket_sales_volume'     => 'チケット売上高',
     'tickets_sold'            => 'チケット販売',
     'website_embed_code'      => 'ウェブサイト埋め込みコード',
-);
+];

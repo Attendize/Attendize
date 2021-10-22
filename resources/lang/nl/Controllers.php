@@ -3,11 +3,10 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:21:11
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
-  'sort' =>
-  array (
+  'sort' => [
     'event_title' => 'Event titel',
     'start_date' => 'Start datum',
     'created_at' => 'Creation datum',
@@ -15,7 +14,7 @@ return array (
     'sales_volume' => 'Totaal aantal verkopen',
     'sort_order' => 'Sorteervolgorde',
     'title' => 'Ticket Titel',
-  ),
+  ],
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
   //==================================== Translations ====================================//
   'account_successfully_updated' => 'Account succesvol geüpdatet',
@@ -30,35 +29,28 @@ return array (
   'check_in_all_tickets' => 'Alle tickets van deze bestelling inchecken',
   'confirmation_malformed' => 'De code is niet aanwezig of kan niet worden gelezen.',
   'confirmation_successful' => 'Succes! Uw e-mailadres is geverifieerd, u kunt nu inloggen.',
-  'error' =>
-  array (
-    'email' =>
-    array (
+  'error' => [
+    'email' => [
       'email' => 'Vol een geldig e-mailadres in.',
       'required' => 'E-mailadres is noodzakelijk.',
       'unique' => 'E-mailadres is al gebruikt voor een account.',
-    ),
-    'first_name' =>
-    array (
+    ],
+    'first_name' => [
       'required' => 'Geef uw voornaam.',
-    ),
-    'last_name' =>
-    array (
+    ],
+    'last_name' => [
       'required' => 'Geef uw achternaam.',
-    ),
-    'page_bg_color' =>
-    array (
+    ],
+    'page_bg_color' => [
       'required' => 'Geef een achtergrondkleur.',
-    ),
-    'page_header_bg_color' =>
-    array (
+    ],
+    'page_header_bg_color' => [
       'required' => 'Geef een achtergrondkleur voor het hoofd van de pagina.',
-    ),
-    'password' =>
-    array (
+    ],
+    'password' => [
       'passcheck' => 'Het paswoord is incorrect.',
-    ),
-  ),
+    ],
+  ],
   'event_create_exception' => 'Whoops! Er deed zich een probleem voor bij het aanmaken van het evenement. Probeer opnieuw.',
   'event_page_successfully_updated' => 'Evenementenpagina succesvol gewijzigd.',
   'event_successfully_updated' => 'Evenement succesvol gewijzigd!',
@@ -115,4 +107,4 @@ return array (
   'tickets_for_event' => 'De tickets voor het evenement: :event.',
   'whoops' => 'Whoops! Het lijkt erop dat er iets is misgegaan. Probeer het opnieuw.',
   'your_password_reset_link' => 'Je wachtwoord herstel link',
-);
+];

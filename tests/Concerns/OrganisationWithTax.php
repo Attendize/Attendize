@@ -1,4 +1,6 @@
-<?php namespace Tests\Concerns;
+<?php
+
+namespace Tests\Concerns;
 
 use App\Models\Account;
 use App\Models\AccountPaymentGateway;
@@ -72,7 +74,6 @@ trait OrganisationWithTax
             'payment_gateway_id' => $this->paymentGateway->id,
         ]);
 
-
         $this->user = factory(User::class)->create([
             'account_id'    => $this->account->id,
             'email'         => 'local@test.com',
@@ -87,7 +88,7 @@ trait OrganisationWithTax
             'name'       => 'Test Organiser (With Tax)',
             'charge_tax' => true,
             'tax_name'   => 'VAT',
-            'tax_value'  => 20.00
+            'tax_value'  => 20.00,
         ]);
 
         $this->event = factory(Event::class)->create([

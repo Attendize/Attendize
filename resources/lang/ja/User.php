@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'already_have_account'     => '既にアカウントをお持ちですか？ <a class="semibold" href=":url">サインイン</a>',
     'after_welcome'            => '続行する前に、あなたの名前と新しいパスワードであなたのアカウントを更新してください。',
     'change_password'          => 'パスワード変更',
@@ -26,5 +26,5 @@ return array(
     'sign_up_first_run'        => 'ユーザーアカウントを作成するだけで準備完了です。',
     'terms_and_conditions'     => '&nbsp;&nbsp; <a target="_blank" href=":url">利用規約</a>に同意します',
     'welcome_to_app'           => ':appへようそこ',
-    'your_email'               => 'メールアドレス'
-);
+    'your_email'               => 'メールアドレス',
+];

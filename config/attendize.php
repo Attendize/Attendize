@@ -5,7 +5,7 @@ return [
     'version' => file_get_contents(base_path('VERSION')),
 
     'ticket_status_sold_out'        => 1,
-    'ticket_status_after_sale_date' => 2,//
+    'ticket_status_after_sale_date' => 2, //
     'enable_test_payments'          => env('ENABLE_TEST_PAYMENTS', false),
     'enable_dummy_payment_gateway'  => false,
     'payment_gateway_dummy'         => 0,
@@ -15,7 +15,7 @@ return [
         'number'      => '4242424242424242',
         'expiryMonth' => '6',
         'expiryYear'  => '2030',
-        'cvv'         => '123'
+        'cvv'         => '123',
     ],
     'outgoing_email_noreply'        => env('MAIL_FROM_ADDRESS'),
     'outgoing_email'                => env('MAIL_FROM_ADDRESS'),
@@ -34,7 +34,7 @@ return [
     'fallback_organiser_logo_url' => '/assets/images/logo-dark.png',
     'cdn_url'                     => '',
 
-    'checkout_timeout_after' => env('CHECKOUT_TIMEOUT_AFTER', 30), #minutes
+    'checkout_timeout_after' => env('CHECKOUT_TIMEOUT_AFTER', 30), //minutes
 
     'ticket_status_before_sale_date' => 3,
     'ticket_status_on_sale'          => 4,
@@ -60,15 +60,14 @@ return [
     'question_checkbox_multi'       => 5,
     'question_radio_single'         => 6,
 
-
-    'default_timezone'              => 30, #Europe/Dublin
-    'default_currency'              => 2, #Euro
+    'default_timezone'              => 30, //Europe/Dublin
+    'default_currency'              => 2, //Euro
     'default_date_picker_format'    => env('DEFAULT_DATEPICKER_FORMAT', 'yyyy-MM-dd HH:mm'),
     'default_date_picker_seperator' => env('DEFAULT_DATEPICKER_SEPERATOR', '-'),
     'default_datetime_format'       => env('DEFAULT_DATETIME_FORMAT', 'Y-m-d H:i'),
-    'default_query_cache'           => 120, #Minutes
+    'default_query_cache'           => 120, //Minutes
     'default_locale'                => 'en',
-    'default_payment_gateway'       => 1, #Stripe=1 Paypal=2
+    'default_payment_gateway'       => 1, //Stripe=1 Paypal=2
 
     'cdn_url_user_assets'   => '',
     'cdn_url_static_assets' => '',
@@ -80,6 +79,6 @@ return [
         'captcha_is_on' => env('CAPTCHA_IS_ON', false),
         'captcha_type' => strtolower(env('CAPTCHA_TYPE')),
         'captcha_key' => env('CAPTCHA_KEY'),
-        'captcha_secret' => env('CAPTCHA_SECRET')
-    ]
+        'captcha_secret' => env('CAPTCHA_SECRET'),
+    ],
 ];

@@ -11,7 +11,7 @@ class Affiliate extends \Illuminate\Database\Eloquent\Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array $fillable
+     * @var array
      */
     protected $fillable = [
         'name',
@@ -19,7 +19,7 @@ class Affiliate extends \Illuminate\Database\Eloquent\Model
         'tickets_sold',
         'event_id',
         'account_id',
-        'sales_volume'
+        'sales_volume',
     ];
 
     /**

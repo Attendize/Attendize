@@ -16,7 +16,7 @@ class Message extends MyBaseModel
     /**
      * The attributes that are mass assignable.
      *
-     * @var array $fillable
+     * @var array
      */
     protected $fillable = [
         'message',
@@ -47,7 +47,7 @@ class Message extends MyBaseModel
 
         $ticket = Ticket::scope()->find($this->recipients);
 
-        return 'Ticket: ' . $ticket->title;
+        return 'Ticket: '.$ticket->title;
     }
 
     /**

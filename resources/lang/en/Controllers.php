@@ -3,11 +3,10 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:21:11
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
-  'sort' =>
-  array (
+  'sort' => [
     'event_title' => 'Event Title',
     'start_date' => 'Start Date',
     'created_at' => 'Creation Date',
@@ -15,7 +14,7 @@ return array (
     'sales_volume' => 'Sales Volume',
     'sort_order' => 'Custom Sort Order',
     'title' => 'Ticket Title',
-  ),
+  ],
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
   //==================================== Translations ====================================//
   'account_successfully_updated' => 'Account Successfully Updated',
@@ -31,35 +30,28 @@ return array (
   'check_in_all_tickets' => 'Check in all tickets associated to this order',
   'confirmation_malformed' => 'The confirmation code is missing or malformed.',
   'confirmation_successful' => 'Success! Your email is now verified. You can now login.',
-  'error' =>
-  array (
-    'email' =>
-    array (
+  'error' => [
+    'email' => [
       'email' => 'Please enter a valid E-mail address.',
       'required' => 'E-mail address is required.',
       'unique' => 'E-mail already in use for this account.',
-    ),
-    'first_name' =>
-    array (
+    ],
+    'first_name' => [
       'required' => 'Please enter your first name.',
-    ),
-    'last_name' =>
-    array (
+    ],
+    'last_name' => [
       'required' => 'Please enter your last name.',
-    ),
-    'page_bg_color' =>
-    array (
+    ],
+    'page_bg_color' => [
       'required' => 'Please enter a background color.',
-    ),
-    'page_header_bg_color' =>
-    array (
+    ],
+    'page_header_bg_color' => [
       'required' => 'Please enter a header background color.',
-    ),
-    'password' =>
-    array (
+    ],
+    'password' => [
       'passcheck' => 'This password is incorrect.',
-    ),
-  ),
+    ],
+  ],
   'event_create_exception' => 'Whoops! There was a problem creating your event. Please try again.',
   'event_page_successfully_updated' => 'Event Page Successfully Updated.',
   'event_successfully_updated' => 'Event Successfully Updated!',
@@ -117,4 +109,4 @@ return array (
   'tickets_for_event' => 'Your tickets for the event :event.',
   'whoops' => 'Whoops! Looks like something went wrong. Please try again.',
   'your_password_reset_link' => 'Your Password Reset Link',
-);
+];

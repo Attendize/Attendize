@@ -4,12 +4,12 @@ namespace App\Jobs;
 
 use App\Mail\SendOrderAttendeeTicketMail;
 use App\Models\Attendee;
+use Config;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Config;
 use Mail;
 
 class SendOrderAttendeeTicketJob implements ShouldQueue

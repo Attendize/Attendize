@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/19 17:14:11 
+ Generated via "php artisan localization:missing" at 2018/04/19 17:14:11
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   'affiliate_name' => 'Affiliate Name',
   'affiliate_tracking' => 'Affiliate Tracking',
@@ -13,4 +13,4 @@ return array (
   'sales_volume_generated' => 'Sales Volume Generated',
   'ticket_sales_generated' => 'Ticket Sales Generated',
   'visits_generated' => 'Visits Generated',
-);
+];

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddTicketDesignOptions extends Migration
 {
@@ -37,7 +37,7 @@ class AddTicketDesignOptions extends Migration
                 'ticket_border_color',
                 'ticket_bg_color',
                 'ticket_text_color',
-                'ticket_sub_text_color'
+                'ticket_sub_text_color',
             ]);
         });
     }

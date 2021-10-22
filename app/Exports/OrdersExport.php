@@ -3,11 +3,11 @@
 namespace App\Exports;
 
 use App\Models\Order;
+use DB;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromQuery;
-use DB;
-use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Events\BeforeExport;
 
 class OrdersExport implements FromQuery, WithHeadings, WithEvents
@@ -20,12 +20,12 @@ class OrdersExport implements FromQuery, WithHeadings, WithEvents
     }
 
     /**
-    * @return \Illuminate\Support\Query
-    */
+     * @return \Illuminate\Support\Query
+     */
     public function query()
     {
-        $yes = strtoupper(trans("basic.yes"));
-        $no = strtoupper(trans("basic.no"));
+        $yes = strtoupper(trans('basic.yes'));
+        $no = strtoupper(trans('basic.no'));
 
         $query = Order::query()->where('event_id', $this->event_id);
         $query->select([
@@ -46,25 +46,25 @@ class OrdersExport implements FromQuery, WithHeadings, WithEvents
     public function headings(): array
     {
         return [
-            trans("Attendee.first_name"),
-            trans("Attendee.last_name"),
-            trans("Attendee.email"),
-            trans("Order.order_ref"),
-            trans("Order.amount"),
-            trans("Order.fully_refunded"),
-            trans("Order.partially_refunded"),
-            trans("Order.amount_refunded"),
-            trans("Order.order_date"),
+            trans('Attendee.first_name'),
+            trans('Attendee.last_name'),
+            trans('Attendee.email'),
+            trans('Order.order_ref'),
+            trans('Order.amount'),
+            trans('Order.fully_refunded'),
+            trans('Order.partially_refunded'),
+            trans('Order.amount_refunded'),
+            trans('Order.order_date'),
         ];
     }
 
-     /**
+    /**
      * @return array
      */
     public function registerEvents(): array
     {
         return [
-            BeforeExport::class => function(BeforeExport $event) {
+            BeforeExport::class => function (BeforeExport $event) {
                 $event->writer->getProperties()->setCreator(config('attendize.app_name'));
                 $event->writer->getProperties()->setCompany(config('attendize.app_name'));
             },

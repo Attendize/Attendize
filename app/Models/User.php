@@ -22,7 +22,7 @@ class User extends Authenticatable
     /**
      * The attributes that should be mutated to dates.
      *
-     * @var array $dates
+     * @var array
      */
     public $dates = ['deleted_at'];
 
@@ -51,7 +51,7 @@ class User extends Authenticatable
         'is_registered',
         'is_confirmed',
         'is_parent',
-        'remember_token'
+        'remember_token',
     ];
 
     /**
@@ -150,7 +150,7 @@ class User extends Authenticatable
      */
     public function getFullNameAttribute()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'account_successfully_updated'              => 'Cuenta correctamente actualizada',
     'addInviteError'                            => 'Es necesario crear una entrada antes de poder invitar a un asistente.',
     'attendee_already_cancelled'                => 'Asistente ya cancelado',
@@ -13,35 +13,28 @@ return array(
     'check_in_all_tickets'                      => 'Comprobar todas las entradas asociadas a este pedido',
     'confirmation_malformed'                    => 'El código de confirmación falta o es incorrecto.',
     'confirmation_successful'                   => '¡Perfecto! Su correo electrónico ya está verificado. Ahora puede iniciar sesión.',
-    'error'                                     =>
-        array(
-            'email'                =>
-                array(
+    'error'                                     => [
+            'email'                => [
                     'email'    => 'Por favor, introduzca una dirección de correo electrónico válida.',
                     'required' => 'Se requiere dirección de correo electrónico.',
                     'unique'   => 'Correo electrónico ya en uso para esta cuenta.',
-                ),
-            'first_name'           =>
-                array(
+                ],
+            'first_name'           => [
                     'required' => 'Por favor, introduzca su nombre.',
-                ),
-            'last_name'            =>
-                array(
+                ],
+            'last_name'            => [
                     'required' => 'Por favor, introduzca sus apellidos.',
-                ),
-            'page_bg_color'        =>
-                array(
+                ],
+            'page_bg_color'        => [
                     'required' => 'Por favor, introduzca el color de fondo.',
-                ),
-            'page_header_bg_color' =>
-                array(
+                ],
+            'page_header_bg_color' => [
                     'required' => 'Por favor, introduzca el color de fondo de encabezado.',
-                ),
-            'password'             =>
-                array(
+                ],
+            'password'             => [
                     'passcheck' => 'La contraseña es incorrecta.',
-                ),
-        ),
+                ],
+        ],
     'event_create_exception'                    => '¡Ups! Hubo un problema al crear tu evento. Por favor, inténtalo de nuevo.',
     'event_page_successfully_updated'           => 'Página de eventos actualizada correctamente.',
     'event_successfully_updated'                => '¡Evento actualizado correctamente!',
@@ -69,8 +62,7 @@ return array(
     'refund_exception'                          => 'Ha habido un problema al procesar su reembolso. Por favor, compruebe su información e inténtelo de nuevo.',
     'refund_only_numbers_error'                 => 'Sólo se permiten números en este campo.',
     'social_settings_successfully_updated'      => '¡Se han actualizado correctamente los ajustes sociales!',
-    'sort'                                      =>
-        array(
+    'sort'                                      => [
             'event_title'   => 'Título del evento',
             'start_date'    => 'Fecha de inicio',
             'created_at'    => 'Fecha de creación',
@@ -78,7 +70,7 @@ return array(
             'sales_volume'  => 'Volumen de ventas',
             'sort_order'    => 'Orden de Clasificación Personalizado',
             'title'         => 'Título de la entrada',
-        ),
+        ],
     'stripe_error'                              => 'Se ha producido un error al conectar su cuenta de Stripe. Por favor, inténtalo de nuevo.',
     'stripe_success'                            => 'Has conectado correctamente su cuenta de Stripe.',
     'success_name_has_received_instruction'     => '¡Correcto! Se han enviado más instrucciones a <b>:name</b>.',
@@ -107,4 +99,4 @@ return array(
     'tickets_for_event'                         => 'Sus entradas para el evento :event.',
     'whoops'                                    => '¡Ups! Parece que algo salió mal. Por favor, inténtalo de nuevo.',
     'your_password_reset_link'                  => 'Enlace de restablecimiento de contraseña',
-);
+];

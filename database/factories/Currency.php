@@ -4,9 +4,9 @@ use App\Models\Currency;
 
 $factory->define(Currency::class, function (Faker\Generator $faker) {
     return [
-        'title' => "Dollar",
-        'symbol_left' => "$",
-        'symbol_right' => "",
+        'title' => 'Dollar',
+        'symbol_left' => '$',
+        'symbol_right' => '',
         'code' => 'USD',
         'decimal_place' => 2,
         'value' => 100.00,

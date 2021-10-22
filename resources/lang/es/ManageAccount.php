@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'about'                                        => 'Acerca de',
     'account'                                      => 'Cuenta',
     'account_id'                                   => 'ID de la cuenta',
@@ -46,4 +46,4 @@ return array(
     'version_info'                                 => 'Información de la versión',
     'version_out_of_date'                          => 'Tu versión de Attendize (<b>:installed</b>) está desactualizada. La última versión (<b>:latest</b>) puede ser <a href=":url" target="_blank">descargada aquí</a>',
     'version_up_to_date'                           => '¡Tu versión de Attendize (<b>:installed</b>) está actualizada!',
-);
+];

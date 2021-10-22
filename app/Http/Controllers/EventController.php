@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Log;
-use Auth;
-use Image;
-use Validator;
 use App\Models\Event;
-use App\Models\Organiser;
 use App\Models\EventImage;
+use App\Models\Organiser;
+use Auth;
 use Illuminate\Http\Request;
+use Image;
+use Log;
 use Spatie\GoogleCalendar\Event as GCEvent;
+use Validator;
 
 class EventController extends MyBaseController
 {
@@ -41,7 +41,7 @@ class EventController extends MyBaseController
     {
         $event = Event::createNew();
 
-        if (!$event->validate($request->all())) {
+        if (! $event->validate($request->all())) {
             return response()->json([
                 'status'   => 'error',
                 'messages' => $event->errors(),
@@ -92,7 +92,6 @@ class EventController extends MyBaseController
         $event->bg_type = 'image';
         $event->bg_image_path = config('attendize.event_default_bg_image');
 
-
         if ($request->get('organiser_name')) {
             $organiser = Organiser::createNew(false, false, true);
 
@@ -101,7 +100,7 @@ class EventController extends MyBaseController
                 'organiser_email' => ['required', 'email'],
             ];
             $messages = [
-                'organiser_name.required' => trans("Controllers.no_organiser_name_error"),
+                'organiser_name.required' => trans('Controllers.no_organiser_name_error'),
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -125,7 +124,7 @@ class EventController extends MyBaseController
         } else { /* Somethings gone horribly wrong */
             return response()->json([
                 'status'   => 'error',
-                'messages' => trans("Controllers.organiser_other_error"),
+                'messages' => trans('Controllers.organiser_other_error'),
             ]);
         }
 
@@ -154,7 +153,6 @@ class EventController extends MyBaseController
             $event->ticket_sub_text_color = $defaults->ticket_sub_text_color;
         }
 
-
         try {
             $event->save();
         } catch (\Exception $e) {
@@ -162,15 +160,15 @@ class EventController extends MyBaseController
 
             return response()->json([
                 'status'   => 'error',
-                'messages' => trans("Controllers.event_create_exception"),
+                'messages' => trans('Controllers.event_create_exception'),
             ]);
         }
 
         if ($request->hasFile('event_image')) {
-            $path = public_path() . '/' . config('attendize.event_images_path');
-            $filename = 'event_image-' . md5(time() . $event->id) . '.' . strtolower($request->file('event_image')->getClientOriginalExtension());
+            $path = public_path().'/'.config('attendize.event_images_path');
+            $filename = 'event_image-'.md5(time().$event->id).'.'.strtolower($request->file('event_image')->getClientOriginalExtension());
 
-            $file_full_path = $path . '/' . $filename;
+            $file_full_path = $path.'/'.$filename;
 
             $request->file('event_image')->move($path, $filename);
 
@@ -184,10 +182,10 @@ class EventController extends MyBaseController
             $img->save($file_full_path);
 
             /* Upload to s3 */
-            \Storage::put(config('attendize.event_images_path') . '/' . $filename, file_get_contents($file_full_path));
+            \Storage::put(config('attendize.event_images_path').'/'.$filename, file_get_contents($file_full_path));
 
             $eventImage = EventImage::createNew();
-            $eventImage->image_path = config('attendize.event_images_path') . '/' . $filename;
+            $eventImage->image_path = config('attendize.event_images_path').'/'.$filename;
             $eventImage->event_id = $event->id;
             $eventImage->save();
         }
@@ -213,7 +211,7 @@ class EventController extends MyBaseController
     {
         $event = Event::scope()->findOrFail($event_id);
 
-        if (!$event->validate($request->all())) {
+        if (! $event->validate($request->all())) {
             return response()->json([
                 'status'   => 'error',
                 'messages' => $event->errors(),
@@ -276,10 +274,10 @@ class EventController extends MyBaseController
         $event->save();
 
         if ($request->hasFile('event_image')) {
-            $path = public_path() . '/' . config('attendize.event_images_path');
-            $filename = 'event_image-' . md5(time() . $event->id) . '.' . strtolower($request->file('event_image')->getClientOriginalExtension());
+            $path = public_path().'/'.config('attendize.event_images_path');
+            $filename = 'event_image-'.md5(time().$event->id).'.'.strtolower($request->file('event_image')->getClientOriginalExtension());
 
-            $file_full_path = $path . '/' . $filename;
+            $file_full_path = $path.'/'.$filename;
 
             $request->file('event_image')->move($path, $filename);
 
@@ -292,12 +290,12 @@ class EventController extends MyBaseController
 
             $img->save($file_full_path);
 
-            \Storage::put(config('attendize.event_images_path') . '/' . $filename, file_get_contents($file_full_path));
+            \Storage::put(config('attendize.event_images_path').'/'.$filename, file_get_contents($file_full_path));
 
             EventImage::where('event_id', '=', $event->id)->delete();
 
             $eventImage = EventImage::createNew();
-            $eventImage->image_path = config('attendize.event_images_path') . '/' . $filename;
+            $eventImage->image_path = config('attendize.event_images_path').'/'.$filename;
             $eventImage->event_id = $event->id;
             $eventImage->save();
         }
@@ -305,7 +303,7 @@ class EventController extends MyBaseController
         return response()->json([
             'status'      => 'success',
             'id'          => $event->id,
-            'message'     => trans("Controllers.event_successfully_updated"),
+            'message'     => trans('Controllers.event_successfully_updated'),
             'redirectUrl' => '',
         ]);
     }
@@ -320,10 +318,10 @@ class EventController extends MyBaseController
     {
         if ($request->hasFile('event_image')) {
             $the_file = \File::get($request->file('event_image')->getRealPath());
-            $file_name = 'event_details_image-' . md5(microtime()) . '.' . strtolower($request->file('event_image')->getClientOriginalExtension());
+            $file_name = 'event_details_image-'.md5(microtime()).'.'.strtolower($request->file('event_image')->getClientOriginalExtension());
 
-            $relative_path_to_file = config('attendize.event_images_path') . '/' . $file_name;
-            $full_path_to_file = public_path() . '/' . $relative_path_to_file;
+            $relative_path_to_file = config('attendize.event_images_path').'/'.$file_name;
+            $full_path_to_file = public_path().'/'.$relative_path_to_file;
 
             $img = Image::make($the_file);
 
@@ -335,22 +333,23 @@ class EventController extends MyBaseController
             $img->save($full_path_to_file);
             if (\Storage::put($file_name, $the_file)) {
                 return response()->json([
-                    'link' => '/' . $relative_path_to_file,
+                    'link' => '/'.$relative_path_to_file,
                 ]);
             }
 
             return response()->json([
-                'error' => trans("Controllers.image_upload_error"),
+                'error' => trans('Controllers.image_upload_error'),
             ]);
         }
     }
 
     /**
      * Puplish event and redirect
-     * @param  Integer|false $event_id
+     * @param  int|false $event_id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postMakeEventLive($event_id = false) {
+    public function postMakeEventLive($event_id = false)
+    {
         $event = Event::scope()->findOrFail($event_id);
         $event->is_live = 1;
         $event->save();

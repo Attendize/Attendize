@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:54:45
 *************************************************************************/
 
-return array (
+return [
   'address_details' => 'Adressdaten',
   'address_line_1' => 'Adresszeile 1',
   'address_line_1_placeholder' => 'z.B.: Hansastr. 39',
@@ -43,4 +43,4 @@ return array (
   'venue_name_placeholder' => 'Z.B.: Feierwerk',
   'vis_hide' => 'Veranstaltung vor der öffentlichkeit verstecken.',
   'vis_public' => 'Veranstaltung veröffentlichen.',
-);
+];

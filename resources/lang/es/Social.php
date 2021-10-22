@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'email'                  => 'Correo electrónico',
     'facebook'               => 'Facebook',
     'linkedin'               => 'LinkedIn',
@@ -11,4 +11,4 @@ return array(
     'social_share_text_help' => 'Este es el texto que será compartido por defecto cuando un usuario comparta tu evento en las redes sociales.',
     'twitter'                => 'Twitter',
     'whatsapp'               => 'WhatsApp',
-);
+];

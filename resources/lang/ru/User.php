@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'already_have_account' => 'У вас уже есть аккаунт? <a class="semibold" href=":url">Войти</a>',
   'after_welcome' => 'Прежде чем продолжить, пожалуйста, обновите свою учетную запись, указав свое имя и новый пароль.',
   'change_password' => 'Изменить пароль',
@@ -27,4 +27,4 @@ return array (
   'terms_and_conditions' => '&nbsp;&nbsp;Я согласен с <a target="_blank" href=":url"> Правилами и условиями </a>',
   'welcome_to_app' => 'Добро пожаловать в :app!',
   'your_email' => 'Ваш емайл',
-);
+];

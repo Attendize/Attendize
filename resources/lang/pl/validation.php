@@ -102,8 +102,8 @@ return [
 
     'custom' => [
         'terms_agreed' => [
-            'required' => 'Proszę, zaakceptuj Warunki Użytkowania.'
-        ]
+            'required' => 'Proszę, zaakceptuj Warunki Użytkowania.',
+        ],
     ],
 
     /*

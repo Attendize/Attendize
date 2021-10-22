@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/26 11:05:24 
+ Generated via "php artisan localization:missing" at 2018/04/26 11:05:24
 *************************************************************************/
 
-return array (
+return [
   //==================================== Translations ====================================//
   'all_attendees' => 'Tous les participants',
   'all_attendees_cancelled' => 'Tous les participants de cette commande ont été annulés.',
@@ -96,8 +96,7 @@ return array (
   'update_order' => 'Mettre à jour la commande',
   'widgets' => 'Widgets',
   //================================== Obsolete strings ==================================//
-  'LLH:obsolete' => 
-  array (
+  'LLH:obsolete' => [
     'create_question' => 'Créer une question',
-  ),
-);
+  ],
+];

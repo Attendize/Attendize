@@ -26,7 +26,7 @@ class UpdateTicketsTableSetDefaultValue extends Migration
     public function down()
     {
         Schema::table('tickets', function (Blueprint $table) {
-            $table->text('description')->default(NULL)->change();
+            $table->text('description')->default(null)->change();
         });
     }
 }

@@ -23,14 +23,14 @@ class CheckInstalled
         /*
          * Check if the 'installed' file has been created
          */
-        if (!Utils::isAttendize() && !Utils::installed()) {
+        if (! Utils::isAttendize() && ! Utils::installed()) {
             return Redirect::to('install');
         }
 
         /*
          * Redirect user to signup page if there are no accounts
          */
-        if (Account::count() === 0 && !$request->is('signup*')) {
+        if (Account::count() === 0 && ! $request->is('signup*')) {
             return redirect()->to('signup');
         }
 

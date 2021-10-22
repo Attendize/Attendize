@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'new_message' => 'Nowa Wiadomość',
   'sent_messages' => 'Wysłane Wiadomości',
   'all_event_attendees' => 'Wszyscy członkowie wydarzenia',
@@ -18,4 +18,4 @@ return array (
   'subject' => 'Temat',
   'to' => 'Do',
   'unsent' => 'Nie wysłano',
-);
+];

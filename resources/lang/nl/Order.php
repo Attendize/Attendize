@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'amount_refunded' => 'bedrag gerestitueerd',
   'fully_refunded' => 'volledig gerestitueerd',
   'partially_refunded' => 'deels gerestitueerd',
@@ -47,4 +47,4 @@ return array (
   'transaction_id' => 'Transaction ID',
   'view_order' => 'View Bestelling',
   'view_order_num' => 'Bekijk Bestelling #:num',
-);
+];

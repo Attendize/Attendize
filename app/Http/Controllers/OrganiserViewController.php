@@ -23,7 +23,7 @@ class OrganiserViewController extends Controller
         /** @var Organiser $organiser */
         $organiser = Organiser::findOrFail($organiser_id);
 
-        if (!$organiser->enable_organiser_page && !Utils::userOwns($organiser)) {
+        if (! $organiser->enable_organiser_page && ! Utils::userOwns($organiser)) {
             abort(404);
         }
 
@@ -41,12 +41,12 @@ class OrganiserViewController extends Controller
 
         $upcoming_events = $organiser->events()->where([
             ['end_date', '>=', now()],
-            ['is_live', 1]
+            ['is_live', 1],
         ])->get();
 
         $past_events = $organiser->events()->where([
             ['end_date', '<', now()],
-            ['is_live', 1]
+            ['is_live', 1],
         ])->limit(10)->get();
 
         $data = [

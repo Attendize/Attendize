@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'address_details'            => '住所の詳細',
     'address_line_1'             => '住所1',
     'address_line_1_placeholder' => '例：東京都',
@@ -41,4 +41,4 @@ return array(
     'venue_name_placeholder'     => '例：東京ドーム',
     'vis_hide'                   => '一般からの予定を非表示にします。',
     'vis_public'                 => 'イベントを一般に公開する',
-);
+];

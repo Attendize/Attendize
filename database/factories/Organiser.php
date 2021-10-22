@@ -21,9 +21,9 @@ $factory->define(App\Models\Organiser::class, function (Faker\Generator $faker) 
         'page_text_color' => '#000000',
         'enable_organiser_page' => $faker->boolean,
         'google_analytics_code' => null,
-        'tax_name' => $faker->text(11) . ' tax',
+        'tax_name' => $faker->text(11).' tax',
         'tax_value' => $faker->randomFloat(2, 0, 30),
         'tax_id' => '',
-        'charge_tax' => $faker->boolean
+        'charge_tax' => $faker->boolean,
     ];
 });

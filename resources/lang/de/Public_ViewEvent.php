@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'Contact' => 'Kontakt',
   'DETAILS' => 'DETAILS',
   'Facebook' => 'Facebook',
@@ -82,5 +82,5 @@ return array (
   'your_information' => 'Ihre Daten',
   'your_message' => 'Ihre Nachricht',
   'your_name' => 'Ihr Name',
-  'your' => 'Ihr'
-);
+  'your' => 'Ihr',
+];

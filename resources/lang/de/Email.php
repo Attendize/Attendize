@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 11:05:24
 *************************************************************************/
 
-return array (
+return [
   //==================================== Translations ====================================//
   'attendize_register' => 'Danke, dass Sie sich bei Attendize regestriert haben',
   'contact_organiser' => 'Du kannst :organiser_name gleich hier <a href="mailto::organiser_email">:organiser_email</a> kontaktieren oder dieser E-Mail antworten.',
@@ -15,8 +15,7 @@ return array (
   'your_ticket_cancelled' => 'Ihr Ticket wurde storniert',
   'your_ticket_for_event' => 'Ihr Ticket für die Veranstaltung :event',
     //================================== Obsolete strings ==================================//
-  'LLH:obsolete' =>
-  array (
+  'LLH:obsolete' => [
 
-  ),
-);
+  ],
+];

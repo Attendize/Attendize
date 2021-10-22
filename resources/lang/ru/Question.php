@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/18 16:23:42 
+ Generated via "php artisan localization:missing" at 2018/04/18 16:23:42
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageEvent\\Partials\\SurveyBlankSlate.blade.php
   'create_question' => 'Создать опрос',
@@ -21,4 +21,4 @@ return array (
   'question_placeholder' => 'например: Ваши предпочтения ?',
   'question_type' => 'Тип вопроса',
   'require_this_question_for_ticket(s)' => 'Требовать этот вопрос для билета(ов)',
-);
+];

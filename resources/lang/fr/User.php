@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/25 09:06:13
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\Public\\LoginAndRegister\\Signup.blade.php
   'already_have_account' => 'Déjà inscrit ? <a class="semibold" href=":url">Connectez-vous</a>',
@@ -33,4 +33,4 @@ return array (
   'terms_and_conditions' => '&nbsp;&nbsp;J\'accepte <a target="_blank" href=":url"> la charte d\'utilisation </a>',
   'welcome_to_app' => 'Bienvenue sur :app !',
   'your_email' => 'Votre email',
-);
+];

@@ -8,6 +8,6 @@ $factory->define(App\Models\OrderItem::class, function (Faker\Generator $faker) 
         'unit_booking_fee' => 2.00,
         'order_id' => function () {
             return factory(App\Models\Order::class)->create()->id;
-        }
+        },
     ];
 });

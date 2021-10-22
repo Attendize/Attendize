@@ -4,9 +4,9 @@ namespace App\Cancellation;
 
 use App\Models\Attendee;
 use App\Models\EventStats;
-use Superbalist\Money\Money;
-use Services\PaymentGateway\Factory;
 use Log;
+use Services\PaymentGateway\Factory;
+use Superbalist\Money\Money;
 
 class OrderRefund extends OrderRefundAbstract
 {
@@ -21,7 +21,7 @@ class OrderRefund extends OrderRefundAbstract
         $paymentGateway = $order->payment_gateway;
         $accountPaymentGateway = $order->account->getGateway($paymentGateway->id);
         $config = array_merge($accountPaymentGateway->config, [
-            'testMode' => config('attendize.enable_test_payments')
+            'testMode' => config('attendize.enable_test_payments'),
         ]);
         $this->gateway = (new Factory())->create($paymentGateway->name, $config);
     }
@@ -37,7 +37,7 @@ class OrderRefund extends OrderRefundAbstract
             $response = $this->sendRefundRequest();
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-            throw new OrderRefundException(trans("Controllers.refund_exception"));
+            throw new OrderRefundException(trans('Controllers.refund_exception'));
         }
         if ($response['successful']) { // Successful is a Boolean
             // New refunded amount needs to be saved on the order
@@ -100,14 +100,15 @@ class OrderRefund extends OrderRefundAbstract
             'amount' => $this->refundAmount->toFloat(),
             'refundApplicationFee' => floatval($this->order->booking_fee) > 0 ? true : false,
         ]);
+
         return $response;
     }
 
     private function checkValidRefundState()
     {
         $errorMessage = false;
-        if (!$this->order->transaction_id) {
-            $errorMessage = trans("Controllers.order_cant_be_refunded");
+        if (! $this->order->transaction_id) {
+            $errorMessage = trans('Controllers.order_cant_be_refunded');
         }
         if ($this->order->is_refunded) {
             $errorMessage = trans('Controllers.order_already_refunded');

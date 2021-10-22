@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageEvent\\Modals\\MessageAttendees.blade.php
   'new_message' => 'Nouveau message',
@@ -22,4 +22,4 @@ return array (
   'subject' => 'Sujet du message',
   'to' => 'À',
   'unsent' => 'Non envoyé',
-);
+];

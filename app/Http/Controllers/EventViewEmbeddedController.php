@@ -6,7 +6,6 @@ use App\Models\Event;
 
 class EventViewEmbeddedController extends Controller
 {
-
     /**
      * Show an embedded version of the event page
      *

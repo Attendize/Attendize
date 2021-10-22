@@ -3,11 +3,10 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:21:11
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
-  'sort' =>
-      array (
+  'sort' => [
           'event_title' => 'Name der Veranstaltung',
           'start_date' => 'Startdatum',
           'created_at' => 'Erstellungsdatum',
@@ -15,7 +14,7 @@ return array (
           'sales_volume' => 'Verkaufsvolumen',
           'sort_order' => 'Benutzerdefinierte Sortierreihenfolge',
           'title' => 'Names des Ticket',
-      ),
+      ],
   //==================================== Translations ====================================//
   'account_successfully_updated' => 'Account erfolgreich bearbeitet',
   'addInviteError' => 'Sie müssen ein Ticket erstellen, bevor Sie einen Teilnehmer einladen.',
@@ -29,35 +28,28 @@ return array (
   'check_in_all_tickets' => 'Alle Tickets dieser bestellung einchecken',
   'confirmation_malformed' => 'Der Code ist Fehlerhaft oder fehlt.',
   'confirmation_successful' => 'Erfolg! Ihre eMail ist verifiziert. Sie können sich nun einloggen.',
-  'error' =>
-  array (
-    'email' =>
-    array (
+  'error' => [
+    'email' => [
       'email' => 'Bitte geben Sie eine gültige Email Adresse ein.',
       'required' => 'E-Mail Adresse benötigt.',
       'unique' => 'Diese Email Adresse ist bereits in Benutzung.',
-    ),
-    'first_name' =>
-    array (
+    ],
+    'first_name' => [
       'required' => 'Bitte Vornamen eingeben.',
-    ),
-    'last_name' =>
-    array (
+    ],
+    'last_name' => [
       'required' => 'Bitte Nachnamen eingeben.',
-    ),
-    'page_bg_color' =>
-    array (
+    ],
+    'page_bg_color' => [
       'required' => 'Bitte geben Sie eine Hintergrundfarbe ein.',
-    ),
-    'page_header_bg_color' =>
-    array (
+    ],
+    'page_header_bg_color' => [
       'required' => 'Bitte geben Sie eine Header Hintergrundfarbe ein.',
-    ),
-    'password' =>
-    array (
+    ],
+    'password' => [
       'passcheck' => 'Das Passwort ist Falsch.',
-    ),
-  ),
+    ],
+  ],
   'event_create_exception' => 'Whoops! Es gab einen Fehler bei der Erstellug Ihres Accounts. Bitte erneut versuchen.',
   'event_page_successfully_updated' => 'Veranstaltungsseite erfolgreich bearbeitet.',
   'event_successfully_updated' => 'Veranstaltung erfolgreich bearbeitet!',
@@ -113,4 +105,4 @@ return array (
   'tickets_for_event' => 'Ihre Tickets für die Veranstaltung :event.',
   'whoops' => 'Whoops! Irgendetwas ist schiefgelaufen. Bitte erneut probieren.',
   'your_password_reset_link' => 'Ihr Passwort zurücksetzen Link',
-);
+];

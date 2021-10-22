@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/13 13:27:24 
+ Generated via "php artisan localization:missing" at 2018/04/13 13:27:24
 *************************************************************************/
 
-return array (
+return [
   'about' => 'O nas',
   'account' => 'Konto',
   'account_id' => 'ID konta',
@@ -49,4 +49,4 @@ return array (
   'version_up_to_date' => 'Twoja wersja aplikacji Attendize (<b>:installed</b>) jest aktualna!',
     'account_payment' => 'Konto / Płatność',
     'event_attendees' => 'Członkowie wydarzenia',
-);
+];

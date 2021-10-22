@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'amount_refunded' => 'возвращенная сумма',
   'fully_refunded' => 'деньги полностью возвращены',
   'partially_refunded' => 'деньги возвращены частично',
@@ -49,4 +49,4 @@ return array (
   'transaction_id' => 'ID транзакции',
   'view_order' => 'Просмотр заказа',
   'view_order_num' => 'Просмотр заказа #:num',
-);
+];

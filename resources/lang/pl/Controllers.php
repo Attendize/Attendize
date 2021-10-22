@@ -3,11 +3,10 @@
 Generated via "php artisan localization:missing" at 2018/04/26 10:21:11
  *************************************************************************/
 
-return array (
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
-    'sort' =>
-    array (
+    'sort' => [
             'event_title' => 'Nazwa Wydarzenia',
             'start_date' => 'Data Rozpoczęcia',
             'created_at' => 'Data Utworzenia',
@@ -15,7 +14,7 @@ return array (
             'sales_volume' => 'Sprzedaż',
             'sort_order' => 'Własna Kolejność',
             'title' => 'Nazwa Biletu',
-        ),
+        ],
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
     //==================================== Translations ====================================//
     'account_successfully_updated' => 'Konto Zaktualizowane Poprawnie',
@@ -30,35 +29,28 @@ return array (
     'check_in_all_tickets' => 'Zaznacz wszystkich uczestników powiązanych z tym zamówieniem.',
     'confirmation_malformed' => 'Kod potwierdzający jest niewłaściwy lub nie istnieje.',
     'confirmation_successful' => 'Sukces! Twój adres email został potwierdzony. Możesz się zalogować!',
-    'error' =>
-        array (
-            'email' =>
-                array (
+    'error' => [
+            'email' => [
                     'email' => 'Proszę wprowadź poprawny adres Email.',
                     'required' => 'Adres Email jest wymagany.',
                     'unique' => 'Adres Email już istnieje w naszej bazie danych.',
-                ),
-            'first_name' =>
-                array (
+                ],
+            'first_name' => [
                     'required' => 'Proszę wprowadź swoje imię.',
-                ),
-            'last_name' =>
-                array (
+                ],
+            'last_name' => [
                     'required' => 'Proszę wprowadź swoje nazwisko.',
-                ),
-            'page_bg_color' =>
-                array (
+                ],
+            'page_bg_color' => [
                     'required' => 'Proszę wprowadź kolor tła.',
-                ),
-            'page_header_bg_color' =>
-                array (
+                ],
+            'page_header_bg_color' => [
                     'required' => 'Proszę wprowadź kolor tła nagłówka.',
-                ),
-            'password' =>
-                array (
+                ],
+            'password' => [
                     'passcheck' => 'Hasło jest niepoprawne.',
-                ),
-        ),
+                ],
+        ],
     'event_create_exception' => 'Ups! Pojawił sie problem przy tworzeniu wydarzenia. Spróbuj ponownie.',
     'event_page_successfully_updated' => 'Strona wydarzenia zaktualizowana poprawnie!',
     'event_successfully_updated' => 'Wydarzenie zaktualizowane poprawnie!',
@@ -114,4 +106,4 @@ return array (
     'tickets_for_event' => 'Twoje bilety na wydarzenie :event.',
     'whoops' => 'Ups! Coś poszło nie tak. Spróbuj ponownie.',
     'your_password_reset_link' => 'Twój link do resetu hasła',
-);
+];

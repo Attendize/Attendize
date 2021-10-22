@@ -3,11 +3,10 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:21:11
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
-  'sort' =>
-  array (
+  'sort' => [
     'event_title' => 'Заголовок мероприятия',
     'start_date' => 'Дата начала',
     'created_at' => 'Дата создания',
@@ -15,7 +14,7 @@ return array (
     'sales_volume' => 'Обьем продаж',
     'sort_order' => 'Настройка порядка сортировки',
     'title' => 'Заголовок билета',
-  ),
+  ],
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageOrganiser\\Events.blade.php
   //==================================== Translations ====================================//
   'account_successfully_updated' => 'Аккаунт успешно обновлен',
@@ -31,35 +30,28 @@ return array (
   'check_in_all_tickets' => 'Зарегистрировать все билеты, связанные с этим заказом',
   'confirmation_malformed' => 'Код подтверждения отсутствует или неверного формата.',
   'confirmation_successful' => 'Успех! Ваша электронная почта теперь проверена. Теперь вы можете войти в систему.',
-  'error' =>
-  array (
-    'email' =>
-    array (
+  'error' => [
+    'email' => [
       'email' => 'Пожалуйста, введите действующий адрес электронной почты.',
       'required' => 'Адрес электронной почты обязателен.',
       'unique' => 'Данный адрес уже используется в системе',
-    ),
-    'first_name' =>
-    array (
+    ],
+    'first_name' => [
       'required' => 'Пожалуйста, введите ваше имя.',
-    ),
-    'last_name' =>
-    array (
+    ],
+    'last_name' => [
       'required' => 'Пожалуйста, введите вашу фамилию.',
-    ),
-    'page_bg_color' =>
-    array (
+    ],
+    'page_bg_color' => [
       'required' => 'Пожалуйста, введите цвет фона.',
-    ),
-    'page_header_bg_color' =>
-    array (
+    ],
+    'page_header_bg_color' => [
       'required' => 'Пожалуйста, введите цвет фона заголовка.',
-    ),
-    'password' =>
-    array (
+    ],
+    'password' => [
       'passcheck' => 'Данный пароль неверен.',
-    ),
-  ),
+    ],
+  ],
   'event_create_exception' => 'Ой! Возникла проблема при создании вашего мероприятия. Пожалуйста, попробуйте еще раз.',
   'event_page_successfully_updated' => 'Страница мероприятия успешно обновлена.',
   'event_successfully_updated' => 'Мероприятие успешно обновлено!',
@@ -117,4 +109,4 @@ return array (
   'tickets_for_event' => 'Ваши билеты на мероприятие :event.',
   'whoops' => 'Ой! Похоже, что-то пошло не так. Пожалуйста, попробуйте еще раз.',
   'your_password_reset_link' => 'Ссылка для сброса пароля',
-);
+];

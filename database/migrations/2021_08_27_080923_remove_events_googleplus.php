@@ -15,7 +15,7 @@ class RemoveEventsGoogleplus extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('social_show_googleplus');
-          });
+        });
     }
 
     /**
@@ -27,6 +27,6 @@ class RemoveEventsGoogleplus extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->boolean('social_show_googleplus')->default(1);
-          });
+        });
     }
 }

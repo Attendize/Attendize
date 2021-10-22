@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/26 10:16:27
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   'save_organiser' => 'Veranstalter speichern',
   //==================================== Translations ====================================//
@@ -69,4 +69,4 @@ return array (
     'select_organiser' => 'Wähle den Veranstalter',
     'text_color' => 'Textfarbe',
     'tickets_sold' => 'Tickets verkauft',
-);
+];

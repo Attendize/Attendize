@@ -7,7 +7,6 @@ class QuestionTypesSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @access public
      * @return void
      */
     public function run()

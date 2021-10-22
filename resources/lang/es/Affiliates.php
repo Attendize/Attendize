@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'affiliate_name'             => 'Nombre del afiliado',
     'affiliate_tracking'         => 'Seguimiento de afiliados',
     'affiliate_tracking_text'    => 'Llevar un registro de quién está generando ventas para su evento es extremadamente fácil. Simplemente cree un enlace de referencia usando la caja de abajo y comparta el enlace con sus afiliados / promotores de eventos.',
@@ -9,4 +9,4 @@ return array(
     'sales_volume_generated'     => 'Volumen de ventas generado',
     'ticket_sales_generated'     => 'Venta de entradas generada',
     'visits_generated'           => 'Visitas generadas',
-);
+];

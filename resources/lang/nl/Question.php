@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/18 16:23:42 
+ Generated via "php artisan localization:missing" at 2018/04/18 16:23:42
 *************************************************************************/
 
-return array (
+return [
   //============================== New strings to translate ==============================//
   // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\ManageEvent\\Partials\\SurveyBlankSlate.blade.php
   'create_question' => 'Vragenlijst aanmaken',
@@ -21,4 +21,4 @@ return array (
   'question_placeholder' => 'bv. Wat is uw volledige adres?',
   'question_type' => 'Soort vraag',
   'require_this_question_for_ticket(s)' => 'Deze vraag is noodzakelijk voor ticket(s)',
-);
+];

@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'all_attendees' => 'Wszyscy Uczestnicy',
   'all_attendees_cancelled' => 'Wszyscy uczestnicy z tego zamówienia zostali anulowani.',
   'all_order_refunded' => 'Cała kwota :money z tego zamówienia została zwrócona.',
@@ -92,4 +92,4 @@ return array (
   'ticket_title_placeholder' => 'Np.: Bilet Normalny',
   'update_order' => 'Aktualizuj Zamówienie',
   'widgets' => 'Widgety',
-);
+];

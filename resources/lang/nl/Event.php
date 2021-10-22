@@ -1,9 +1,9 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/26 10:54:45 
+ Generated via "php artisan localization:missing" at 2018/04/26 10:54:45
 *************************************************************************/
 
-return array (
+return [
   'address_details' => 'Adres',
   'address_line_1' => 'Adres',
   'address_line_1_placeholder' => 'Straatnaam 12b',
@@ -46,4 +46,4 @@ return array (
   'venue_name_placeholder' => 'bv.: De Krokante Krab',
   'vis_hide' => 'Verberg het evenement voor bezoekers.',
   'vis_public' => 'Maak het evenement zichtbaar voor bezoekers.',
-);
+];

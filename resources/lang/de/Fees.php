@@ -3,7 +3,7 @@
  Generated via "php artisan localization:missing" at 2018/04/19 17:24:53
 *************************************************************************/
 
-return array (
+return [
   'service_fee_fixed_price' => 'Feste Servicegebühr',
   'service_fee_fixed_price_help' => 'e.g: enter <b>1.25</b> for <b>:cur1.25</b>',
   'service_fee_fixed_price_placeholder' => '0.00',
@@ -12,4 +12,4 @@ return array (
   'service_fee_percentage' => 'Prozentuale Buchungsgebühren',
   'service_fee_percentage_help' => 'e.g: geben Sie <b>3.5</b> für <b>3.5%</b> ein',
   'service_fee_percentage_placeholder' => '0',
-);
+];

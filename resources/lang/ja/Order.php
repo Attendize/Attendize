@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'amount_refunded'              => '返金額',
     'fully_refunded'               => '全額返金',
     'partially_refunded'           => '一部払い戻し',
@@ -45,4 +45,4 @@ return array(
     'transaction_id'               => 'トランザクションID',
     'view_order'                   => '注文を見る',
     'view_order_num'               => '注文を見る＃:num',
-);
+];

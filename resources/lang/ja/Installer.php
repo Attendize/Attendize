@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     'connection_success'                          => 'Success, Your connection works!',
     'connection_failure'                          => 'Unable to connect! Please check your settings',
     'app_settings'                                => 'App settings',
@@ -41,8 +41,8 @@ return array(
     'requirement_not_met'                         => 'Error: <b>:requirement</b> extension is not loaded',
     'setup'                                       => 'Attendize Setup',
     'setup_completed'                             => 'Attendize Setup Already',
-    'setup_completed_already_message'             => "An install file has been detected which means Attendize setup process has already completed. <br /> If you haven't setup a default user you can " .
+    'setup_completed_already_message'             => "An install file has been detected which means Attendize setup process has already completed. <br /> If you haven't setup a default user you can ".
                                                      "<a href='/signup'>Signup Default User</a><br />If you have already created a default user you can <a href='/login'>Login Here </a>",
     'test_database_connection'                    => 'Test Database Connection',
     'title'                                       => 'Attendize Web Installer',
-);
+];

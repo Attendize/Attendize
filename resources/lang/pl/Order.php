@@ -1,6 +1,6 @@
 <?php
 
-return array (
+return [
   'amount_refunded' => 'kwota zwrócona',
   'fully_refunded' => 'w pełni refundowany',
   'partially_refunded' => 'częściowo zwrócone',
@@ -45,4 +45,4 @@ return array (
   'transaction_id' => 'Identyfikator transakcji',
   'view_order' => 'Podgląd Zamówienia',
   'view_order_num' => 'Podgląd Zamówienia #:num',
-);
+];

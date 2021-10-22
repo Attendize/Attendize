@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
     //============================== New strings to translate ==============================//
     // Defined in file C:\\wamp\\www\\attendize\\resources\\views\\Public\\ViewOrganiser\\Partials\\EventListingPanel.blade.php
     'information'         => '情報',
@@ -11,4 +11,4 @@ return array(
     'organiser_dashboard' => '主催者ダッシュボード',
     'past_events'         => '過去のイベント',
     'upcoming_events'     => '今後のイベント',
-);
+];

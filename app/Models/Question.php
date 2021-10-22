@@ -16,7 +16,6 @@ class Question extends MyBaseModel
     /**
      * The events associated with the question.
      *
-     * @access public
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function events()
@@ -27,7 +26,6 @@ class Question extends MyBaseModel
     /**
      * The type associated with the question.
      *
-     * @access public
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function question_type()
@@ -43,7 +41,6 @@ class Question extends MyBaseModel
     /**
      * The options associated with the question.
      *
-     * @access public
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function options()

@@ -7,7 +7,6 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-
 class SendOrderAttendeeTicketMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -37,12 +36,13 @@ class SendOrderAttendeeTicketMail extends Mailable
     public function build()
     {
         $file_name = $this->attendee->getReferenceAttribute();
-        $file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $file_name . '.pdf';
+        $file_path = public_path(config('attendize.event_pdf_tickets_path')).'/'.$file_name.'.pdf';
 
         $subject = trans(
-            "Controllers.tickets_for_event",
-            ["event" => $this->attendee->event->title]
+            'Controllers.tickets_for_event',
+            ['event' => $this->attendee->event->title]
         );
+
         return $this->subject($subject)
                     ->attach($file_path)
                     ->view('Emails.OrderAttendeeTicket');
