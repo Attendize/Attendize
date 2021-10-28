@@ -62,5 +62,21 @@ class PaymentGatewaySeeder extends Seeder
             );
         }
 
+        $mollieGateway = DB::table('payment_gateways')->where('name', '=', 'Mollie')->first();
+        if ($mollieGateway === null) {
+            DB::table('payment_gateways')->insert(
+                [
+                    'provider_name' => 'Mollie',
+                    'provider_url' => 'https://www.mollie.com',
+                    'is_on_site' => 0,
+                    'can_refund' => 1,
+                    'name' => 'Mollie',
+                    'default' => 0,
+                    'admin_blade_template' => 'ManageAccount.Partials.Mollie',
+                    'checkout_blade_template' => 'Public.ViewEvent.Partials.PaymentMollie'
+                ]
+            );
+        }
+
     }
 }

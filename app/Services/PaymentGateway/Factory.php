@@ -18,7 +18,7 @@ class Factory
     /**
      * @param $name
      * @param $paymentGatewayConfig
-     * @return Dummy|Stripe|StripeSCA
+     * @return Dummy|Mollie|Stripe|StripeSCA
      * @throws \Exception
      */
     public function create($name, $paymentGatewayConfig)
@@ -51,7 +51,15 @@ class Factory
                     $gateway->initialize($paymentGatewayConfig);
 
                     return new StripeSCA($gateway, $paymentGatewayConfig);
+                }
 
+            case Mollie::GATEWAY_NAME :
+                {
+
+                    $gateway = Omnipay::create($name);
+                    $gateway->initialize($paymentGatewayConfig);
+
+                    return new Mollie($gateway, $paymentGatewayConfig);
                 }
 
             default :
