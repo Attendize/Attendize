@@ -2,12 +2,13 @@
 
 namespace Tests;
 
+use JMac\Testing\Traits\AdditionalAssertions;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Tests\Concerns\DatabaseSetup;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseSetup;
+    use CreatesApplication, AdditionalAssertions, DatabaseSetup;
 
     /**
      * Initializes the tests
@@ -44,7 +45,7 @@ abstract class TestCase extends BaseTestCase
     public function assertDatabaseHasMany(array $expected = []): void
     {
         collect($expected)->each(function ($data, $table) {
-            $this->assertDatabaseHas($table, $data);
+            return $this->assertDatabaseHas($table, $data);
         });
     }
 }
