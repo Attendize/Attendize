@@ -58,6 +58,7 @@ class InstallerController extends Controller
         ];
 
         $database_default = Config::get('database.default');
+        $mail_driver = Config::get('mail.default');
         $this->data['default_config'] = [
             'application_url'   => Config::get('app.url'),
             'database_type'     => $database_default,
@@ -67,13 +68,13 @@ class InstallerController extends Controller
             'database_password' => Config::get('database.connections.' . $database_default . '.password'),
             'mail_from_address' => Config::get('mail.from.address'),
             'mail_from_name'    => Config::get('mail.from.name'),
-            'mail_driver'       => Config::get('mail.driver'),
-            'mail_port'         => Config::get('mail.port'),
-            'mail_encryption'   => Config::get('mail.encryption'),
-            'mail_host'         => Config::get('mail.host'),
-            'mail_username'     => Config::get('mail.username'),
-            'mail_password'     => Config::get('mail.password')
+            'mail_driver'       => $mail_driver
         ];
+
+        $mailDriverConfig = Config::get('mail.mailers.' . $mail_driver);
+        foreach ($mailDriverConfig as $key => $value) {
+            $this->data['default_config']['mail_' . $key] = $value;
+        }
     }
 
     /**
@@ -198,7 +199,7 @@ class InstallerController extends Controller
             "DB_DATABASE" => $database['name'],
             "DB_USERNAME" => $database['username'],
             "DB_PASSWORD" => $database['password'],
-            "MAIL_DRIVER" => $mail['driver'],
+            "MAIL_MAILER" => $mail['driver'],
             "MAIL_PORT" => $mail['port'],
             "MAIL_ENCRYPTION" => $mail['encryption'],
             "MAIL_HOST" => $mail['host'],
