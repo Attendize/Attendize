@@ -47,7 +47,6 @@ $factory->define(App\Models\Event::class, function (Faker\Generator $faker) {
         'social_show_linkedin' => true,
         'social_show_twitter' => true,
         'social_show_email' => true,
-        'social_show_googleplus' => true,
         'location_is_manual' => 0,
         'is_live' => false,
         'created_at' => Carbon::now(),
