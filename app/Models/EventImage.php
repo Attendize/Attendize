@@ -2,16 +2,43 @@
 
 namespace App\Models;
 
-    /*
-      Attendize.com   - Event Management & Ticketing
-     */
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Description of EventImage.
  *
- * @author Dave
+ * Attendize.com   - Event Management & Ticketing
  */
 class EventImage extends MyBaseModel
 {
-    //put your code here.
+
+    /**
+     * The account associated with the event image.
+     *
+     * @return BelongsTo
+     */
+    public function account(): BelongsTo
+    {
+        return $this->belongsTo(Account::class);
+    }
+
+    /**
+     * The user associated with the event image.
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * The event associated with the event image.
+     *
+     * @return BelongsTo
+     */
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
+    }
 }

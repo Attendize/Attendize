@@ -259,22 +259,22 @@ class Ticket extends MyBaseModel
     public function getSaleStatusAttribute()
     {
         if ($this->start_sale_date !== null && $this->start_sale_date->isFuture()) {
-            return config('attendize.ticket_status_before_sale_date');
+            return config('attendize.ticket.status.before_sale_date');
         }
 
         if ($this->end_sale_date !== null && $this->end_sale_date->isPast()) {
-            return config('attendize.ticket_status_after_sale_date');
+            return config('attendize.ticket.status.after_sale_date');
         }
 
         if ((int)$this->quantity_available > 0 && (int)$this->quantity_remaining <= 0) {
-            return config('attendize.ticket_status_sold_out');
+            return config('attendize.ticket.status.sold_out');
         }
 
         if ($this->event->start_date->lte(Carbon::now())) {
-            return config('attendize.ticket_status_off_sale');
+            return config('attendize.ticket.status.off_sale');
         }
 
-        return config('attendize.ticket_status_on_sale');
+        return config('attendize.ticket.status.on_sale');
     }
 
     /**

@@ -8,17 +8,57 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Log;
-use PDF;
+use App\Generators\TicketGenerator;
+use App\Models\Order;
+use Barryvdh\DomPDF\Facade as PDF;
 
-class GenerateTicketsJobBase implements ShouldQueue
+/**
+ * Generate Ticket as a Job
+ *
+ * @package App\Jobs
+ */
+class GenerateTicket extends Job implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $attendee;
-    public $event;
-    public $order;
-    public $file_name;
+    
 
+    /**
+     * @var string $reference Full reference id
+     */
+    protected $reference;
+
+    /**
+     * @var string $order_reference Reference ID
+     */
+    protected $order_reference;
+
+    /**
+     * @var int|null $attendee_reference_index Attendee Index
+     */
+    protected $attendee_reference_index;
+
+    /**
+     * Create a new job instance.
+     *
+     * @param string $reference
+     * @return void
+     */
+    public function __construct($reference)
+    {
+        Log::info("Generating ticket: #" . $reference);
+
+        $this->reference = $reference;
+
+        // Assign order reference
+        $this->order_reference = explode("-", $reference)[0];
+
+        // If reference index isset assign it
+        if (strpos($reference, "-")) {
+            $this->attendee_reference_index = explode("-", $reference)[1];
+        }
+    }
+    
     /**
      * Execute the job.
      *
@@ -26,39 +66,51 @@ class GenerateTicketsJobBase implements ShouldQueue
      */
     public function handle()
     {
-        $file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $this->file_name;
-        $file_with_ext = $file_path . '.pdf';
+        // Generate file name
+        $pdf_file = TicketGenerator::generateFileName($this->reference);
 
-        if (file_exists($file_with_ext)) {
-            Log::info("Use ticket from cache: " . $file_with_ext);
+        // Check if file exist before create it again
+        if (file_exists($pdf_file['fullpath'])) {
+            Log::info('Use ticket from cache: ' . $pdf_file['fullpath']);
             return;
         }
 
-        $organiser = $this->event->organiser;
-        $image_path = $organiser->full_logo_path;
-        $images = [];
-        $imgs = $this->event->images;
-        foreach ($imgs as $img) {
-            $images[] = base64_encode(file_get_contents(public_path($img->image_path)));
-        }
+        // Find the order
+        /** @var Order $order */
+        $order = Order::where('order_reference', $this->order_reference)->first();
 
+        Log::info($order);
+
+        // If only need a single attendee find it
+        $query = $order->attendees();
+        if ($this->isAttendeeTicket()) {
+            $query = $query->where('reference_index', '=', $this->attendee_reference_index);
+        }
+        $order->attendees = $query->get();
+
+        // Generate the tickets
+        $ticket_generator = new TicketGenerator($order);
+        $tickets = $ticket_generator->createTickets();
+
+        // Data for view
         $data = [
-            'order'     => $this->order,
-            'event'     => $this->event,
-            'attendees' => $this->attendees,
-            'css'       => file_get_contents(public_path('assets/stylesheet/ticket.css')),
-            'image'     => base64_encode(file_get_contents(public_path($image_path))),
-            'images'    => $images,
+            'tickets' => $tickets,
+            'event'   => $order->event,
         ];
         try {
-            PDF::setOutputMode('F'); // force to file
-            PDF::html('Public.ViewEvent.Partials.PDFTicket', $data, $file_path);
+            PDF::loadView('Public.ViewEvent.Partials.PDFTicket', $data)->save($pdf_file['fullpath']);
             Log::info("Ticket generated!");
-        } catch(\Exception $e) {
-            Log::error("Error generating ticket. This can be due to permissions on vendor/nitmedia/wkhtml2pdf/src/Nitmedia/Wkhtml2pdf/lib. This folder requires write and execute permissions for the web user");
+        } catch (\Exception $e) {
+            Log::error("Error generating ticket.");
             Log::error("Error message. " . $e->getMessage());
             Log::error("Error stack trace" . $e->getTraceAsString());
             $this->fail($e);
         }
+
+    }
+
+    private function isAttendeeTicket()
+    {
+        return ($this->attendee_reference_index != null);
     }
 }

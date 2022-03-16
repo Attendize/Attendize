@@ -56,9 +56,13 @@ class Stripe
         }
     }
 
-    public function completeTransaction($data) {}
+    public function completeTransaction($transactionId)
+    {
+    }
 
-    public function getAdditionalData(){}
+    public function getAdditionalData()
+    {
+    }
 
     public function storeAdditionalData()
     {

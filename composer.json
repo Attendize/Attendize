@@ -14,8 +14,9 @@
     "require": {
         "php": "^7.3",
         "ext-json": "*",
+        "barryvdh/laravel-dompdf": "^0.8.5",
         "doctrine/dbal": "^2.9",
-        "dompdf/dompdf": "^0.8",
+        "dompdf/dompdf": "^0.8.4",
         "fideloper/proxy": "^4.2",
         "graham-campbell/markdown": "11.1.0",
         "guzzlehttp/guzzle": "^6.4",
@@ -32,7 +33,6 @@
         "mcamara/laravel-localization": "^1.4",
         "mews/purifier": "^3.1",
         "milon/barcode": "^6.0",
-        "nitmedia/wkhtml2pdf": "dev-master",
         "omnipay/common": "^3.0",
         "omnipay/dummy": "^3.0",
         "omnipay/paypal": "^3.0",

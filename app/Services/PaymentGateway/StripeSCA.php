@@ -62,28 +62,17 @@ class StripeSCA
         }
     }
 
-    public function completeTransaction($data)
+    public function completeTransaction($transactionId = '')
     {
-        if (array_key_exists('payment_intent', $data)) {
-            $intentData = [
-                'paymentIntentReference' => $data['payment_intent'],
-            ];
-        } else {
-            $intentData = [
-                'paymentIntentReference' => $this->options['payment_intent'],
-            ];
-        }
+
+        $intentData = [
+            'paymentIntentReference' => $this->options['payment_intent'],
+        ];
 
         $paymentIntent = $this->gateway->fetchPaymentIntent($intentData);
         $response = $paymentIntent->send();
-
         if ($response->requiresConfirmation()) {
-            $confirmResponse = $this->gateway->confirm($intentData)->send();
-            if ($confirmResponse->isSuccessful()) {
-                $response = $this->gateway->capture($intentData)->send();
-            }
-        } else {
-            $response = $this->gateway->capture($intentData)->send();
+            $response = $this->gateway->confirm($intentData)->send();
         }
 
         return $response;

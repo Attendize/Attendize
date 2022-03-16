@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use PDF;
 use Illuminate\Support\Str;
 use Superbalist\Money\Money;
 
@@ -160,44 +159,6 @@ class Order extends MyBaseModel
     }
 
     /**
-     * Generate and save the PDF tickets.
-     *
-     * @todo Move this from the order model
-     *
-     * @return bool
-     */
-    public function generatePdfTickets()
-    {
-        $data = [
-            'order'     => $this,
-            'event'     => $this->event,
-            'tickets'   => $this->event->tickets,
-            'attendees' => $this->attendees,
-            'css'       => file_get_contents(public_path('assets/stylesheet/ticket.css')),
-            'image'     => base64_encode(file_get_contents(public_path($this->event->organiser->full_logo_path))),
-        ];
-
-        $pdf_file_path = public_path(config('attendize.event_pdf_tickets_path')) . '/' . $this->order_reference;
-        $pdf_file = $pdf_file_path . '.pdf';
-
-        if (file_exists($pdf_file)) {
-            return true;
-        }
-
-        if (!is_dir($pdf_file_path)) {
-            File::makeDirectory(dirname($pdf_file_path), 0777, true, true);
-        }
-
-        PDF::setOutputMode('F'); // force to file
-        PDF::html('Public.ViewEvent.Partials.PDFTicket', $data, $pdf_file_path);
-
-        $this->ticket_pdf_path = config('attendize.event_pdf_tickets_path') . '/' . $this->order_reference . '.pdf';
-        $this->save();
-
-        return file_exists($pdf_file);
-    }
-
-    /**
      * Boot all of the bootable traits on the model.
      */
     public static function boot()
@@ -207,12 +168,21 @@ class Order extends MyBaseModel
         static::creating(function ($order) {
             do {
                     //generate a random string using Laravel's Str::Random helper
-                    $token = Str::Random(5) . date('jn');
+                    $token = self::generateToken();
             } //check if the token already exists and if it does, try again
 
 			while (Order::where('order_reference', $token)->first());
             $order->order_reference = $token;
 		});
+    }
+
+    /**
+     * Generates a random string
+     *
+     * @return string
+     */
+    public static function generateToken(){
+        return Str::Random(5) . date('jn');
     }
 
     /**

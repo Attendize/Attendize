@@ -191,6 +191,8 @@ return [
         App\Providers\BladeServiceProvider::class,
         App\Providers\HtmlMacroServiceProvider::class,
         App\Providers\HelpersServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         Nitmedia\Wkhtml2pdf\L5Wkhtml2pdfServiceProvider::class,
 
     ],
@@ -246,7 +248,7 @@ return [
 
         // Attendize Class Alias
         'Markdown'     => GrahamCampbell\Markdown\Facades\Markdown::class,
-        'PDF'          => Nitmedia\Wkhtml2pdf\Facades\Wkhtml2pdf::class,
+        'PDF'          => Barryvdh\DomPDF\Facade::class,
         'Utils'        => App\Attendize\Utils::class,
         'Excel'        => Maatwebsite\Excel\Facades\Excel::class,
     ],

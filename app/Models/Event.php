@@ -159,7 +159,7 @@ class Event extends MyBaseModel
      */
     public function getFixedFeeAttribute()
     {
-        return config('attendize.ticket_booking_fee_fixed') + $this->organiser_fee_fixed;
+        return config('attendize.ticket.booking.fee_fixed') + $this->organiser_fee_fixed;
     }
 
     /**
@@ -169,7 +169,7 @@ class Event extends MyBaseModel
      */
     public function getPercentageFeeAttribute()
     {
-        return config('attendize.ticket_booking_fee_percentage') + $this->organiser_fee_percentage;
+        return config('attendize.ticket.booking.fee_percentage') + $this->organiser_fee_percentage;
     }
 
     /**

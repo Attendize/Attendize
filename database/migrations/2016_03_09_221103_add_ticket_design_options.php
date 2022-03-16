@@ -20,7 +20,7 @@ class AddTicketDesignOptions extends Migration
             $table->string('ticket_border_color', 20)->default('#000000');
             $table->string('ticket_bg_color', 20)->default('#FFFFFF');
             $table->string('ticket_text_color', 20)->default('#000000');
-            $table->string('ticket_sub_text_color', 20)->default('#999999');
+            $table->string('ticket_sub_text_color', 20)->default('#7B7B7B');
         });
     }
 

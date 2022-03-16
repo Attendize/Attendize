@@ -1,0 +1,39 @@
+FROM leen15/apache-php-mysql
+
+RUN apt-get update && apt-get install -y \
+       libpq-dev \
+       libmcrypt-dev \
+       libpng-dev \
+       libjpeg62-dev \
+       libfreetype6-dev \
+       libxrender1 \
+       libfontconfig \
+       libxext-dev \
+       libglib2.0-0 \
+       php7.1-mysql \
+       php7.1-mysqli \
+       mcrypt php7.1-mcrypt \
+       php7.1-gd \
+       php7.1-intl \
+       php7.1-xsl \
+       zip php7.1-zip \
+       unzip git nano
+
+# must copy project before composer for artisan
+COPY . $PROJECT_PATH
+WORKDIR $PROJECT_PATH
+
+# Composer
+RUN composer install --no-interaction
+
+# Folder permissions
+RUN chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP .
+RUN chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP storage/
+RUN chown -R $APACHE_RUN_USER:$APACHE_RUN_GROUP bootstrap/cache/
+
+# Port to expose
+EXPOSE 80
+
+# Starting scripts
+RUN chmod +x start.sh
+CMD ./start.sh

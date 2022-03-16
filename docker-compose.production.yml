@@ -1,0 +1,44 @@
+version: '3.2'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile-production
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - ./.env
+    ports:
+    - "8080:80"
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile-production
+    depends_on:
+      - db
+      - redis
+    environment:
+    - WORKER=true
+    env_file:
+      - ./.env
+  db:
+    image: mysql:5.7.22
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: "yes"
+      MYSQL_HOST: ${DB_HOST}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - "mysql-data:/var/lib/mysql"
+  redis:
+    image: redis
+volumes:
+    mysql-data:

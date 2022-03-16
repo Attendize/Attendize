@@ -162,7 +162,7 @@
                             <ul class="nav nav-section nav-justified">
                                 <li>
                                     <a href="javascript:void(0);">
-                                        @if($ticket->sale_status === config('attendize.ticket_status_on_sale'))
+                                        @if($ticket->sale_status === config('attendize.ticket.status.on_sale'))
                                             @if($ticket->is_paused)
                                                 @lang("Ticket.ticket_sales_paused") &nbsp;
                                                 <span class="pauseTicketSales label label-info"
