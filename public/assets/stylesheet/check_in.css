@@ -1,3 +1,8 @@
+/*
+Font for field value
+*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 [v-cloak] { display: none }
 
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -179,7 +184,7 @@ footer {
     width: 250px;
     height: 250px;
     margin: 0 auto;
-    margin-top: 80px;
+    margin-top: 70px;
     border-radius: 140px;
     position: relative;
 }
@@ -206,18 +211,27 @@ footer {
 
 .ScanResultMessage {
     transition: background 0.4s ease-in-out;
+    font-family: 'Open Sans', sans-serif;
     width: 250px;
-    font-size: 16px;
     text-align: center;
+    font-size: large;
+    font-weight: bold;
     color: #fff;
     padding: 15px;
-    text-transform: uppercase;
     margin: 0 auto;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.63);
+    text-shadow: 1px 1px 1px rgba(5, 4, 4, 0.63);
 }
 
-.uppercase {
+.fieldName {
     text-transform: uppercase;
+    font-size: medium;
+    color: #cacaca;
+}
+
+.fieldValue {
+    padding-top: 5px;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 
@@ -265,23 +279,29 @@ footer {
     }
 }
 
-#QrCanvas{
+#qrCanvas{
     display:none;
 }
 
-video#scannerVideo {
+.scannerVideo {
     position: fixed;
-    top: 50%;
-    left: 50%;
     min-width: 100%;
     min-height: 100%;
     width: auto;
     height: auto;
     z-index: -100;
-    transform: translateX(-50%) translateY(-50%);
     background-size: cover;
     transition: 1s opacity;
     background-color: #00AEFB;
+}
+
+video#videoContainer {
+    margin-top: 75px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-height: 100%;
 }
 
 #help-text{

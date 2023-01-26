@@ -123,35 +123,38 @@
         <a @click="closeScanner"  class="closeScanner" href="javascript:void(0);">
         <i class="ico-close"></i>
         </a>
-        <video id="scannerVideo" playsinline autoplay></video>
+
+        <div class="scannerVideo">
+            <div class="ScanResultMessage">
+                    <span class="message" v-if="scanResultObject.status == 'error'">
+                        @{{ scanResultObject.message }}
+                    </span>
+                    <span class="message" v-if="scanResultObject.status == 'success'">
+                        <span class="fieldName">@lang("Attendee.name")</span><br>
+                        <span class="fieldValue">@{{ scanResultObject.name }}</span><br>
+
+                        <span class="fieldName">@lang("Attendee.reference")</span><br> 
+                        <span class="fieldValue">@{{scanResultObject.reference }}</span><br>
+
+                        <span class="fieldName">@lang("Attendee.ticket")</span><br>
+                        <span class="fieldValue">@{{scanResultObject.ticket }}</span><br>
+                    </span>
+                    <span v-if="isScanning">
+                        <div id="scanning-ellipsis">@lang("Attendee.scanning")<span>.</span><span>.</span><span>.</span></div>
+                    </span>
+            </div>
+            <div v-if="scanResult" id="scannerResult" class="scannerResult @{{ scanResultObject.status }}">
+                <i v-if="scanResultObject.status == 'success'" class="ico-checkmark"></i>
+                <i v-if="scanResultObject.status == 'error'" class="ico-close"></i>
+            </div>
+            <video id="videoContainer" playsinline autoplay></video>
+        </div>
 
         <div class="scannerButtons">
                     <a @click="initScanner" v-show="!isScanning" href="javascript:void(0);">
                     @lang("Attendee.scan_another_ticket")
                     </a>
         </div>
-        <div v-if="isScanning" class="scannerAimer">
-        </div>
-
-        <div v-if="scanResult" class="scannerResult @{{ scanResultObject.status }}">
-            <i v-if="scanResultObject.status == 'success'" class="ico-checkmark"></i>
-            <i v-if="scanResultObject.status == 'error'" class="ico-close"></i>
-        </div>
-
-        <div class="ScanResultMessage">
-                    <span class="message" v-if="scanResultObject.status == 'error'">
-                        @{{ scanResultObject.message }}
-                    </span>
-                    <span class="message" v-if="scanResultObject.status == 'success'">
-                        <span class="uppercase">@lang("Attendee.name")</span>: @{{ scanResultObject.name }}<br>
-                        <span class="uppercase">@lang("Attendee.reference")</span>: @{{scanResultObject.reference }}<br>
-                        <span class="uppercase">@lang("Attendee.ticket")</span>: @{{scanResultObject.ticket }}
-                    </span>
-                    <span v-if="isScanning">
-                        <div id="scanning-ellipsis">@lang("Attendee.scanning")<span>.</span><span>.</span><span>.</span></div>
-                    </span>
-        </div>
-        <canvas id="QrCanvas" width="800" height="600"></canvas>
     </div>
 </div>
 {{-- /END QR Modal--}}
@@ -161,7 +164,6 @@ Vue.http.headers.common['X-CSRF-TOKEN'] = '{{ csrf_token() }}';
 </script>
 
 @include("Shared.Partials.LangScript")
-{!! Html::script('vendor/qrcode-scan/llqrcode.js') !!}
-{!! Html::script('assets/javascript/check_in.js') !!}
+<script type="module" src="/assets/javascript/check_in.js"></script>
 </body>
 </html>
