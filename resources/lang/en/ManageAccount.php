@@ -1,6 +1,6 @@
 <?php
 /*************************************************************************
- Generated via "php artisan localization:missing" at 2018/04/13 13:27:24 
+ Generated via "php artisan localization:missing" at 2018/04/13 13:27:24
 *************************************************************************/
 
 return array (
@@ -8,6 +8,7 @@ return array (
   'account' => 'Account',
   'account_id' => 'Account ID',
   'accout_owner' => 'Account owner',
+  'additional_permission' => 'This additional permission can only be changed for User roles',
   'add_user_help_block' => 'Added users will receive further instruction via email.',
   'add_user_submit' => 'Add user',
   'api_key' => 'API key',
@@ -22,19 +23,24 @@ return array (
   'email_address_placeholder' => 'Email address',
   'first_name' => 'First name',
   'general' => 'General',
+  'invite_new_user' => 'Invite new user',
   'last_name' => 'Last name',
   'licence_info' => 'Licence info',
   'licence_info_description' => 'Attendize is licenced under the <b><a target="_blank" href="https://tldrlegal.com/license/attribution-assurance-license-(aal)#summary">Attribution Assurance Licence (AAL)</a></b>. This licence requires the <b>\'Powered By Attendize\'</b> notice to be kept in place on any Attendize installation. If you wish to remove references to Attendize you must purchase one of the white-label licences <b><a target="_blank" href="https://attendize.com/license.html">listed here</a></b>.',
+  'manage_events' => 'Can Manage Events',
   'mastercard_internet_gateway_service_settings' => 'Mastercard Internet Gateway Service Settings',
   'merchant_access_code' => 'Merchant access code',
   'merchant_id' => 'Merchant ID',
+  'name' => 'Name',
   'open_source_soft' => 'Open-source software',
   'open_source_soft_description' => 'Attendize is built using many fantastic open-source libraries. You can see an overview of these on <b><a href="https://libraries.io/github/Attendize/Attendize?ref=Attendize_About_Page" target="_blank">libraries.io</a></b>.',
+  'organiser' => 'Organiser',
   'payment' => 'Payment',
   'paypal_password' => 'PayPal password',
   'paypal_settings' => 'PayPal Settings',
   'paypal_signature' => 'PayPal signature',
   'paypal_username' => 'PayPal username',
+  'role' => 'Role',
   'save_account_details_submit' => 'Save account details',
   'save_payment_details_submit' => 'Save payment details',
   'secret_code' => 'Secret code',
@@ -49,4 +55,5 @@ return array (
   'version_up_to_date' => 'Your Attendize version (<b>:installed</b>) is up to date!',
     'account_payment' => 'Account / Payment',
     'event_attendees' => 'Event attendees',
+    'send_invitation_message' => 'Send invitation message',
 );

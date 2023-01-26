@@ -20,6 +20,7 @@ return array (
   'event_description' => 'Event Description',
   'event_end_date' => 'Event End Date',
   'event_flyer' => 'Event Flyer',
+  'event_menu' => 'Event Menu',
   'event_image' => 'Event Image (Flyer or Graphic etc.)',
   'event_image_position' => 'Event Image Position',
   'event_image_position_hide' => 'Hidden',

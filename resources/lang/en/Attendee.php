@@ -12,6 +12,7 @@ return array (
   //==================================== Translations ====================================//
   'attendees' => 'Attendees',
   'check_in' => 'Check in: :event',
+  'check_in_menu' => 'Check in Menu',
   'email' => 'Email',
   'email_address' => 'Email Address',
   'event_attendees' => 'Event Attendees',

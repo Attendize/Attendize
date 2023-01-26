@@ -40,6 +40,7 @@
         "php-http/curl-client": "^1.7",
         "php-http/message": "^1.6",
         "predis/predis": "~1.1",
+        "spatie/laravel-permission": "^3.11",
         "stripe/stripe-php": "^7.1",
         "superbalist/php-money": "^2.0",
         "vinelab/http": "~1.5"

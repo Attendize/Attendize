@@ -72,22 +72,22 @@ trait OrganisationWithTax
             'payment_gateway_id' => $this->paymentGateway->id,
         ]);
 
-
-        $this->user = factory(User::class)->create([
-            'account_id'    => $this->account->id,
-            'email'         => 'local@test.com',
-            'password'      => \Hash::make('pass'),
-            'is_parent'     => true, // Top level user
-            'is_registered' => true,
-            'is_confirmed'  => true,
-        ]);
-
         $this->organiserWithTax = factory(Organiser::class)->create([
             'account_id' => $this->account->id,
             'name'       => 'Test Organiser (With Tax)',
             'charge_tax' => true,
             'tax_name'   => 'VAT',
             'tax_value'  => 20.00
+        ]);
+
+        $this->user = factory(User::class)->create([
+            'account_id'    => $this->account->id,
+            'organiser_id'  => $this->organiserWithTax->id,
+            'email'         => 'local@test.com',
+            'password'      => \Hash::make('pass'),
+            'is_parent'     => true, // Top level user
+            'is_registered' => true,
+            'is_confirmed'  => true,
         ]);
 
         $this->event = factory(Event::class)->create([

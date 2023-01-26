@@ -79,6 +79,16 @@ class Account extends MyBaseModel
     }
 
     /**
+     * The organisers associated with the account.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function organisers()
+    {
+        return $this->hasMany(\App\Models\Organiser::class);
+    }
+
+    /**
      * The orders associated with the account.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

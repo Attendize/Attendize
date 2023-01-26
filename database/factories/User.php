@@ -5,6 +5,9 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
         'account_id' => function () {
             return factory(App\Models\Account::class)->create()->id;
         },
+        'organiser_id' => function () {
+            return factory(App\Models\Organiser::class)->create()->id;
+        },
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'phone' => $faker->phoneNumber,

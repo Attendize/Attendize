@@ -171,6 +171,248 @@ $(function () {
 
                 $('html').removeClass('working');
 
+                $('select[name=assigned_role]').on('change', function (e) {
+                    var select = $(e.currentTarget);
+                    var data = {
+                        "assigned_role": select.val(),
+                        "user_id": select.data('user')
+                    };
+
+                    $.post(select.data('update-url'), data)
+                        .done(function (data) {
+                            if (typeof data.message !== 'undefined') {
+                                showMessage(data.message);
+                            }
+                        }).fail(function (data) {
+                        showMessage(Attendize.GenericErrorMessages);
+                    });
+                });
+
+                $('input[name=can_manage_events]').on('click', function (e) {
+                    var canManageEvents = $(e.currentTarget);
+                    var isChecked = canManageEvents.is(':checked');
+
+                    var data = {
+                        "checked": isChecked,
+                        "user_id": canManageEvents.data('user')
+                    };
+
+                    $.post(canManageEvents.data('update-url'), data)
+                        .done(function (data) {
+                            if (typeof data.message !== 'undefined') {
+                                showMessage(data.message);
+                            }
+                        }).fail(function (data) {
+                        showMessage(Attendize.GenericErrorMessages);
+                    });
+                });
+
+                function findDropdownBtns(parent) {
+                    if (!parent) parent = document;
+                    return Array.from(
+                        parent.querySelectorAll("[data-id=dropdown]")
+                    );
+                }
+
+                function dropdownBtnsRemoveEventListeners(el) {
+                    el.removeEventListener(
+                        "click",
+                        (event) =>
+                            handleUserActionBtnClick(
+                                event,
+                                dropdownBtnsRemoveEventListeners.bind(
+                                    undefined,
+                                    el
+                                )
+                            ),
+                        false
+                    );
+                }
+
+                findDropdownBtns(document).forEach((el) => {
+                    el.addEventListener("click", toggleDropdown, false);
+                    findUserActionBtns(el.parentElement).forEach(function (el) {
+                        el.addEventListener(
+                            "click",
+                            (event) =>
+                                handleUserActionBtnClick(
+                                    event,
+                                    dropdownBtnsRemoveEventListeners.bind(
+                                        undefined,
+                                        el
+                                    )
+                                ),
+                            false
+                        );
+                    });
+                });
+
+                function toggleDropdown(event) {
+                    var target = event.target;
+                    var dropdownContent =
+                        target.parentElement.querySelector(".dropdown-content");
+                    var isVisible =
+                        dropdownContent.hasAttribute("hidden") || false;
+                    if (isVisible) {
+                        dropdownContent.removeAttribute("hidden");
+                    } else {
+                        dropdownContent.setAttribute("hidden", true);
+                    }
+                }
+
+                function findUserActionBtns(parent) {
+                    if (!parent) parent = document;
+                    return Array.from(
+                        parent.querySelectorAll("button[name=user_action]")
+                    );
+                }
+
+                function findUserActionBtnByAction(parent, action) {
+                    return parent.querySelector(
+                        "button[data-action=" + action + "]"
+                    );
+                }
+
+                function handleUserActionBtnClick(
+                    event,
+                    onRemoveCb = function () {}
+                ) {
+                    var target = event.target;
+                    console.log("click", event, target.nodeName);
+
+                    if (target.nodeName !== "BUTTON") return;
+
+                    var action = target.dataset.action;
+                    var href = target.dataset.href;
+
+                    var onSuccess = function () {};
+
+                    var request;
+                    switch (action) {
+                        case "send_invitation_message":
+                            request = new Request(href, {
+                                method: "GET",
+                            });
+                            break;
+
+                        case "delete":
+                            request = new Request(href, {
+                                method: "DELETE",
+                            });
+                            onSuccess = function () {
+                                target.setAttribute("hidden", true);
+                                var parent = target.parentElement;
+                                findUserActionBtnByAction(
+                                    parent,
+                                    "send_invitation_message"
+                                ).setAttribute("hidden", true);
+                                findUserActionBtnByAction(
+                                    parent,
+                                    "restore"
+                                ).removeAttribute("hidden");
+                                findUserActionBtnByAction(
+                                    parent,
+                                    "force_delete"
+                                ).removeAttribute("hidden");
+                            };
+                            break;
+
+                        case "force_delete":
+                            request = new Request(href, {
+                                method: "DELETE",
+                            });
+                            onSuccess = function () {
+                                var buttonWrapper = target.parentElement;
+                                userActionBtnsRemoveEventListeners(
+                                    buttonWrapper
+                                );
+                                onRemoveCb();
+                                var dropdownContent =
+                                    buttonWrapper.parentElement;
+                                var dropdownWrapper =
+                                    dropdownContent.parentElement;
+                                var td = dropdownWrapper.parentElement;
+                                var tr = td.parentElement;
+                                tr.parentElement.removeChild(tr);
+                            };
+                            break;
+
+                        case "restore":
+                            request = new Request(href);
+                            onSuccess = function () {
+                                target.setAttribute("hidden", true);
+                                var parent = target.parentElement;
+                                findUserActionBtnByAction(
+                                    parent,
+                                    "send_invitation_message"
+                                ).removeAttribute("hidden", true);
+                                findUserActionBtnByAction(
+                                    parent,
+                                    "force_delete"
+                                ).setAttribute("hidden", true);
+                                findUserActionBtnByAction(
+                                    parent,
+                                    "delete"
+                                ).removeAttribute("hidden");
+                            };
+                            break;
+                    }
+
+                    request.headers.set(
+                        "X-CSRF-TOKEN",
+                        document
+                            .querySelector('meta[name="_token"]')
+                            .getAttribute("content")
+                    );
+
+                    fetch(request)
+                        .then(function (response) {
+                            if (response.ok) return response;
+                            else {
+                                throw {
+                                    message: "response is not ok",
+                                    response,
+                                };
+                            }
+                        })
+                        .then(function (res) {
+                            return res.json();
+                        })
+                        .then(function (data) {
+                            if (typeof data.message !== "undefined") {
+                                showMessage(data.message);
+                            }
+
+                            onSuccess();
+                        })
+                        .catch(function (err) {
+                            console.error(err);
+
+                            err.response
+                                .json()
+                                .then(function (data) {
+                                    if (data.message) {
+                                        showMessage(data.message);
+                                    } else {
+                                        throw "missing message";
+                                    }
+                                })
+                                .catch(function () {
+                                    showMessage(Attendize.GenericErrorMessages);
+                                });
+                        });
+                }
+
+                function userActionBtnsRemoveEventListeners(parent) {
+                    findUserActionBtns(parent).forEach(function (el) {
+                        el.removeEventListener(
+                            "click",
+                            handleUserActionBtnClick,
+                            false
+                        );
+                    });
+                }
+
             }
         }).done().fail(function (data) {
             $('html').removeClass('working');
@@ -293,7 +535,6 @@ $(function () {
             this.checked = $(this).checked;
         });
     });
-
 
     /*
      * ------------------------------------------------------------

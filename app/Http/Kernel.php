@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         /**** ATTENDIZE MIDDLEWARE ****/
         'first.run'  => \App\Http\Middleware\FirstRunMiddleware::class,
         'installed'  => \App\Http\Middleware\CheckInstalled::class,
+        'manage.organisers'  => \App\Http\Middleware\CanManageOrganisers::class,
 
         /**** OTHER MIDDLEWARE ****/
         'localize' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,

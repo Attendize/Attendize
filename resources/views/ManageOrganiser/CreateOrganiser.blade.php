@@ -27,7 +27,8 @@
                     <h2>@lang("Organiser.create_organiser")</h2>
 
                     {!! Form::open(array('url' => route('postCreateOrganiser'), 'class' => 'ajax')) !!}
-                    @if(@$_GET['first_run'] == '1')
+                    @if(Request::input('first_run') === 'yup')
+                        <input type="hidden" name="first_run" id="first_run" value="yup" />
                         <div class="alert alert-info">
                             @lang("Organiser.create_organiser_text")
                         </div>
