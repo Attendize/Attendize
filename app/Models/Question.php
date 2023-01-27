@@ -56,6 +56,15 @@ class Question extends MyBaseModel
         return $this->belongsToMany(\App\Models\Ticket::class);
     }
 
+    public function showOptionNameWithPrice($currency)
+    {
+        return $this->options()->get()->map(
+            function ($item, $row) use ($currency) {
+                return $item->showWithNameAndPrice($currency);
+            }
+        );
+    }
+
     /**
      * Scope a query to only include active questions.
      *

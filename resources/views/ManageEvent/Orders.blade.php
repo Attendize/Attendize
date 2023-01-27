@@ -115,6 +115,8 @@
                             </td>
                             <td>
                                 <span>{{ $order->getOrderAmount()->display() }}</span>
+                                <a href="#" class="hint--top" data-hint="{{money($order->amount, $event->currency)}} + {{money($order->organiser_booking_fee, $event->currency)}} @lang("Order.organiser_booking_fees")">
+                                    {{money($order->amount + $order->extras + $order->organiser_booking_fee + $order->taxamt, $event->currency)}}
                                 @if ($order->is_partially_refunded)
                                     <em>({{ $order->getPartiallyRefundedAmount()->negate()->display() }})</em>
                                 @endif

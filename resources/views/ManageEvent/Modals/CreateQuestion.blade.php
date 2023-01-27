@@ -3,7 +3,8 @@
 
     <script id="question-option-template" type="text/template">
         <tr>
-            <td><input class="form-control" name="option[]" type="text"></td>
+            <td width="300"><input class="form-control" name="option[]" type="text" placeholder="Option" value=""></td>
+            <td width="100" ><input class="form-control" name="price[]" type="number" placeholder="Price" step="0.01" value=""></td>
             <td width="50">
                 <i class="btn btn-danger ico-remove" onclick="removeQuestionOption(this);"></i>
             </td>
@@ -49,7 +50,8 @@
                     <table class="table table-bordered table-condensed">
                         <tbody>
                         <tr>
-                            <td><input class="form-control" name="option[]" type="text" value=""></td>
+                            <td width="300"><input class="form-control" name="option[]" type="text" placeholder="Option" value=""></td>
+                            <td width="100" ><input class="form-control" name="price[]" type="number" placeholder="Price" step="0.01" value=""></td>
                             <td width="50">
                                 <i class="btn btn-danger ico-remove" onclick="removeQuestionOption(this);"></i>
                             </td>

@@ -35,6 +35,11 @@ class Order
     /**
      * @var float
      */
+    public $extrasAmount;
+
+    /**
+     * @var float
+     */
     public $grandTotal;
 
     /**
@@ -43,10 +48,11 @@ class Order
      * @param $totalBookingFee
      * @param $event
      */
-    public function __construct($orderTotal, $totalBookingFee, $event) {
+    public function __construct($orderTotal, $totalBookingFee, $event, $extras = 0) {
 
         $this->orderTotal = $orderTotal;
         $this->totalBookingFee = $totalBookingFee;
+        $this->extrasAmount = $extras;
         $this->event = $event;
     }
 
@@ -56,7 +62,7 @@ class Order
      */
     public function calculateFinalCosts()
     {
-        $this->orderTotalWithBookingFee = $this->orderTotal + $this->totalBookingFee;
+        $this->orderTotalWithBookingFee = $this->orderTotal + $this->totalBookingFee + $this->extrasAmount;
 
         if ($this->event->organiser->charge_tax == 1) {
             $this->taxAmount = ($this->orderTotalWithBookingFee * $this->event->organiser->tax_value)/100;
@@ -97,6 +103,19 @@ class Order
      * @param bool $currencyFormatted
      * @return float|string
      */
+    public function getExtrasAmount($currencyFormatted = false) {
+
+        if ($currencyFormatted == false ) {
+            return number_format($this->extrasAmount, 2, '.', '');
+        }
+
+        return money($this->extrasAmount, $this->event->currency);
+    }
+
+    /**
+     * @param bool $currencyFormatted
+     * @return float|string
+     */
     public function getGrandTotal($currencyFormatted = false) {
 
         if ($currencyFormatted == false ) {
@@ -113,5 +132,5 @@ class Order
     public function getVatFormattedInBrackets() {
         return "(+" . $this->getTaxAmount(true) . " " . $this->event->organiser->tax_name . ")";
     }
-    
+
 }
