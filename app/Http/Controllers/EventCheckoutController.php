@@ -159,11 +159,10 @@ class EventCheckoutController extends Controller
                  */
                 $validation_rules['ticket_holder_first_name.' . $i . '.' . $ticket_id] = ['required'];
                 $validation_rules['ticket_holder_last_name.' . $i . '.' . $ticket_id] = ['required'];
-                $validation_rules['ticket_holder_email.' . $i . '.' . $ticket_id] = ['required', 'email'];
+                $validation_rules['ticket_holder_email.' . $i . '.' . $ticket_id] = ['nullable', 'email'];
 
                 $validation_messages['ticket_holder_first_name.' . $i . '.' . $ticket_id . '.required'] = 'Ticket holder ' . ($i + 1) . '\'s first name is required';
                 $validation_messages['ticket_holder_last_name.' . $i . '.' . $ticket_id . '.required'] = 'Ticket holder ' . ($i + 1) . '\'s last name is required';
-                $validation_messages['ticket_holder_email.' . $i . '.' . $ticket_id . '.required'] = 'Ticket holder ' . ($i + 1) . '\'s email is required';
                 $validation_messages['ticket_holder_email.' . $i . '.' . $ticket_id . '.email'] = 'Ticket holder ' . ($i + 1) . '\'s email appears to be invalid';
 
                 /*
@@ -728,8 +727,10 @@ class EventCheckoutController extends Controller
         // Send tickets to attendees
         Log::debug('Queueing Attendee Ticket Jobs');
         foreach ($order->attendees as $attendee) {
-            SendOrderAttendeeTicketJob::dispatch($attendee);
-            Log::debug('Queueing Attendee Ticket Job Done');
+            if (isset($attendee->email) && !empty($attendee->email) && $attendee->email !== $order->email) {
+                SendOrderAttendeeTicketJob::dispatch($attendee);
+                Log::debug('Queueing Attendee Ticket Job Done');
+            }
         }
 
         if ($return_json) {
