@@ -394,7 +394,7 @@ ICSTemplate;
      */
     public function getEventUrlAttribute()
     {
-        return route("showEventPage", ["event_id" => $this->id, "event_slug" => Str::slug($this->title)]);
+        return public_route("showEventPage", ["event_id" => $this->id, "event_slug" => Str::slug($this->title)]);
         //return URL::to('/') . '/e/' . $this->id . '/' . Str::slug($this->title);
     }
 
