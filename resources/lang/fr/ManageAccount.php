@@ -39,6 +39,8 @@ return array (
   'save_payment_details_submit' => 'Sauvegarder les détails du paiement',
   'secret_code' => 'Code secret',
   'secure_hash_code' => 'Code de hachage sécurisé',
+  'stripe_connect_application_fee' => 'Stripe Connect Application Fee',
+  'stripe_connect_transfer_data_destination_id' => 'Stripe Connected Account ID',
   'stripe_publishable_key' => 'Clef publique Stripe',
   'stripe_secret_key' => 'Clef secrète Stripe',
   'stripe_settings' => 'Paramètres Stripe',
@@ -46,7 +48,7 @@ return array (
   'users' => 'Utilisateurs',
   'version_info' => 'Informations de version',
   'version_out_of_date' => 'Votre version (<b>:installed</b>) d\'Attendize n\'est pas à jour. La dernière version (<b>:latest</b>) peut être <a href=":url" target="_blank">téléchargée ici</a>',
-  'version_up_to_date' => 'Votre version d\'Attendize (<b>:installed</b>) est à jour !',
+  'version_up_to_date' => 'Votre version d\'Attendize (<b>:installed</b>) est à jour&nbsp;!',
     'account_payment' => 'Compte / Paiement',
     'event_attendees' => 'Participants de l\'événément',
 );

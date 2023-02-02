@@ -14,4 +14,16 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {!! Form::label('stripe_sca[application_fee_amount]', trans("ManageAccount.stripe_connect_application_fee"), array('class'=>'control-label ')) !!}
+                {!! Form::text('stripe_sca[application_fee_amount]', $account->getGatewayConfigVal($payment_gateway['id'], 'application_fee_amount'),[ 'class'=>'form-control']) !!}
+            </div>
+        </div>
+        <div class="col-md-6">
+            {!! Form::label('stripe_sca[transfer_data_destination_id]', trans("ManageAccount.stripe_connect_transfer_data_destination_id"), array('class'=>'control-label ')) !!}
+            {!! Form::text('stripe_sca[transfer_data_destination_id]', $account->getGatewayConfigVal($payment_gateway['id'], 'transfer_data_destination_id'),[ 'class'=>'form-control']) !!}
+        </div>
+    </div>
 </section>

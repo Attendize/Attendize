@@ -425,7 +425,7 @@ class EventCheckoutController extends Controller
             $order_total = $order_service->getGrandTotal();
             $order_email = $ticket_order['request_data'][0]['order_email'];
 
-            $response = $gateway->startTransaction($order_total, $order_email, $event);
+            $response = $gateway->startTransaction($order_total, $order_email, $event, $ticket_order);
 
             if ($response->isSuccessful()) {
 
