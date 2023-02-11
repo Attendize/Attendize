@@ -208,6 +208,10 @@ Route::group(
         [EventCheckoutController::class, 'showOrderTickets']
     )->name('showOrderTickets');
 
+    Route::get('docs/{folder_name}/{file_name}',
+        [EventCheckoutController::class, 'showOrderDoc']
+    )->name('showOrderDoc');
+
     /*
      * Backend routes
      */

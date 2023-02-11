@@ -33,6 +33,9 @@
                     <label for="{{ $radio_id }}">{{$option->name}}</label>
                 </div>
                 @endforeach
+            @elseif($question->question_type_id == config('attendize.question_file_single'))
+                <br>
+                {!! Form::file("ticket_holder_files[{$ticket->id}][{$i}][$question->id]", [$question->is_required ? 'required' : '', 'class' => "ticket_holder_files.{$ticket->id}.{$i}.{$question->id} ticket_holder_files form-control", 'id' => "ticket_holder_files[{$ticket->id}][{$i}][{$question->id}]"]) !!}
             @endif
 
         </div>

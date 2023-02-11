@@ -4800,19 +4800,13 @@ function processFormErrors($form, errors)
         var selector = (index.indexOf(".") >= 0) ? '.' + index.replace(/\./g, "\\.") : ':input[name=' + index + ']';
         var $input = $(selector, $form);
 
-        if ($input.prop('type') === 'file') {
-            $('#input-' + $input.prop('name')).append('<div class="help-block error">' + error + '</div>')
-                .parent()
-                .addClass('has-error');
-        } else {
-            if($input.parent().hasClass('input-group')) {
-                $input = $input.parent();
-            }
-
-            $input.after('<div class="help-block error">' + error + '</div>')
-                .parent()
-                .addClass('has-error');
+        if($input.parent().hasClass('input-group')) {
+            $input = $input.parent();
         }
+
+        $input.after('<div class="help-block error">' + error + '</div>')
+            .parent()
+            .addClass('has-error');
     });
 
     var $submitButton = $form.find('input[type=submit]');

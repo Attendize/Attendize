@@ -59,6 +59,7 @@ return [
     'question_dropdown_multi'       => 4,
     'question_checkbox_multi'       => 5,
     'question_radio_single'         => 6,
+    'question_file_single'          => 7,
 
 
     'default_timezone'              => 30, #Europe/Dublin

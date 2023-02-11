@@ -59,6 +59,7 @@ return array (
   'no_attendees_yet_text' => 'Attendees will appear here once they successfully registered for your event, or, you can manually invite attendees yourself.',
   'no_orders_yet' => 'No orders yet',
   'no_orders_yet_text' => 'New orders will appear here as they are created.',
+  'open_file' => 'Open file',
   'order_contact_will_receive_instructions' => 'The order contact will be instructed to send any reply to :email',
   'order_details' => 'Order Details',
   'order_overview' => 'Order Overview',

@@ -24,7 +24,11 @@ use Carbon\Carbon;
 use Config;
 use Cookie;
 use DB;
+use File;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator as FacadesValidator;
 use Log;
 use Mail;
 use Omnipay;
@@ -169,10 +173,29 @@ class EventCheckoutController extends Controller
                 /*
                  * Validation rules for custom questions
                  */
+
                 foreach ($ticket->questions as $question) {
-                    if ($question->is_required && $question->is_enabled) {
-                        $validation_rules['ticket_holder_questions.' . $ticket_id . '.' . $i . '.' . $question->id] = ['required'];
-                        $validation_messages['ticket_holder_questions.' . $ticket_id . '.' . $i . '.' . $question->id . '.required'] = "This question is required";
+                    if ($question->is_enabled) {
+                        // If question is a file upload
+                        if($question->question_type_id == Config::get('attendize.question_file_single')) {
+                            $mimetype = env('FILE_UPLOAD_MIMETYPE');
+                            $question_id = $question->id;
+                            if($question->is_required) {
+                                $validation_rules["ticket_holder_files.$ticket_id.$i.$question_id"] = ['required', $mimetype, 'max:2048'];
+                                $validation_messages["ticket_holder_files.$ticket_id.$i.$question_id.required"] = 'You have to select a file';
+                                $validation_messages["ticket_holder_files.$ticket_id.$i.$question_id.mimetypes"] = 'Your file is not of the correct type';
+                            }
+                            else {
+                                $validation_rules["ticket_holder_files.$ticket_id.$i.$question_id"] = ['max:2048'];
+                            }
+
+                            $validation_messages["ticket_holder_files.$ticket_id.$i.$question_id.max"] = 'Your file is too large (max 2Mb)';
+                        }
+                        // Otherwise use standard validation rules
+                        else if($question->is_required) {
+                            $validation_rules['ticket_holder_questions.' . $ticket_id . '.' . $i . '.' . $question->id] = ['required'];
+                            $validation_messages['ticket_holder_questions.' . $ticket_id . '.' . $i . '.' . $question->id . '.required'] = "This question is required";
+                        }
                     }
                 }
             }
@@ -291,18 +314,22 @@ class EventCheckoutController extends Controller
         }
 
         $request_data = session()->get('ticket_order_' . $event_id . ".request_data");
-        $request_data = (!empty($request_data[0])) ? array_merge($request_data[0], $request->all())
-                                                   : $request->all();
 
-        session()->remove('ticket_order_' . $event_id . '.request_data');
-        session()->push('ticket_order_' . $event_id . '.request_data', $request_data);
+        // Check for files in answers and treat them
+        /**
+         * Files objects are stored in 'ticket_holder_files' : they are then stored 
+         * and their path is put into ticket_holder_answers 
+         */
+        $new_request_data = $request->all();
 
-        $event = Event::findOrFail($event_id);
-        $order = new Order();
         $ticket_order = session()->get('ticket_order_' . $event_id);
 
         $validation_rules = $ticket_order['validation_rules'];
         $validation_messages = $ticket_order['validation_messages'];
+
+        $request_data = (!empty($request_data[0])) ? array_merge($request_data[0], $new_request_data)
+                                                   : $new_request_data;
+        $order = new Order();
 
         $order->rules = $order->rules + $validation_rules;
         $order->messages = $order->messages + $validation_messages;
@@ -329,12 +356,39 @@ class EventCheckoutController extends Controller
             $order->messages = $order->messages + $businessMessages;
         }
 
-        if (!$order->validate($request->all())) {
+        if (!$order->validate($new_request_data)) {
             return response()->json([
                 'status'   => 'error',
                 'messages' => $order->errors(),
             ]);
         }
+        if(isset($request_data['ticket_holder_files']))
+        {
+            // All files are validated, now remove file objects from array to avoid serialization errors
+            // Files are stored in a temp folder, awaiting order confirmation
+            $order_hash_data = microtime().random_bytes(10);
+            // take only the first 20 characters, it would take 16^20 bruteforce requests
+            $folder_name = substr(hash('sha256', $order_hash_data), 0, 20);
+            $order_dir_path = 'docs/'.$folder_name;
+            //File::makeDirectory($order_dir_path);
+            foreach($request_data['ticket_holder_files'] as $key => $ticket)
+            {
+                foreach($ticket as $i=>$item)
+                {
+                    foreach($item as $question_id => $file)
+                    {
+                        if(isset($file)) {
+                            // Store the file in a temporary folder, use Laravel default file name
+                            $path = $file->store("tmp/$order_dir_path");
+                            $request_data['ticket_holder_files'][$key][$i][$question_id] = $path;
+                        }
+                    }
+                }
+            }
+        }
+
+        session()->remove('ticket_order_' . $event_id . '.request_data');
+        session()->push('ticket_order_' . $event_id . '.request_data', $request_data);
 
         return response()->json([
             'status'      => 'success',
@@ -470,7 +524,7 @@ class EventCheckoutController extends Controller
                     'message' => $response->getMessage(),
                 ]);
             }
-        } catch (\Exeption $e) {
+        } catch (\Exception $e) {
             Log::error($e);
             $error = 'Sorry, there was an error processing your payment. Please try again.';
         }
@@ -516,7 +570,6 @@ class EventCheckoutController extends Controller
                 'is_payment_failed' => 1,
             ]);
         }
-
     }
 
     /**
@@ -649,6 +702,7 @@ class EventCheckoutController extends Controller
                 /*
                  * Create the attendees
                  */
+                $tmp_dir = null;
                 for ($i = 0; $i < $attendee_details['qty']; $i++) {
 
                     $attendee = new Attendee();
@@ -664,9 +718,32 @@ class EventCheckoutController extends Controller
 
 
                     /*
-                     * Save the attendee's questions
+                     * Save the attendee's questions and move file to a definitive directory
                      */
+
+                    // Generate folder name if there are files to store
+                    // Hide files in a secure way
+                    // Generate sandwich-proof data for the hash (time-based randomness and os-based randomness)
+                    $foldername = null;
+                    if(isset($request_data['ticket_holder_files'])) { 
+                        $file_hash_data = microtime().random_bytes(10);
+                        $foldername = substr(hash('sha256', $file_hash_data), 0, 20);
+                    }
+                    
                     foreach ($attendee_details['ticket']->questions as $question) {
+                        // If there is a temp file there
+                        if(isset($request_data['ticket_holder_files'][$attendee_details['ticket']->id][$i][$question->id])) {
+                            // Get it's path and generate a new one
+                            $tmp_path = $request_data['ticket_holder_files'][$attendee_details['ticket']->id][$i][$question->id];
+                            $definitive_path = "docs/$foldername/".basename($tmp_path);
+                            // Move the file
+                            Storage::disk('local')->move($tmp_path, $definitive_path);
+                            // Change file path
+                            $ticket_questions[$attendee_details['ticket']->id][$i][$question->id] = $definitive_path;
+                            // Set tmp_dir
+                            $tmp_dir = dirname($tmp_path);
+                        }
+
                         $ticket_answer = isset($ticket_questions[$attendee_details['ticket']->id][$i][$question->id])
                             ? $ticket_questions[$attendee_details['ticket']->id][$i][$question->id]
                             : null;
@@ -682,14 +759,13 @@ class EventCheckoutController extends Controller
                         $ticket_answer = is_array($ticket_answer) ? implode(', ', $ticket_answer) : $ticket_answer;
 
                         if (!empty($ticket_answer)) {
-                            QuestionAnswer::create([
-                                'answer_text' => $ticket_answer,
-                                'attendee_id' => $attendee->id,
-                                'event_id'    => $event->id,
-                                'account_id'  => $event->account->id,
-                                'question_id' => $question->id
-                            ]);
-
+                            $qa = new QuestionAnswer();
+                            $qa->answer_text = $ticket_answer;
+                            $qa->attendee_id = $attendee->id;
+                            $qa->event_id = $event->id;
+                            $qa->account_id = $event->account->id;
+                            $qa->question_id = $question->id;
+                            $qa->save();
                         }
                     }
 
@@ -697,7 +773,10 @@ class EventCheckoutController extends Controller
                     $attendee_increment++;
                 }
             }
-
+            if(isset($tmp_dir)) {
+                // Remove the temp directory if needed
+                Storage::disk('local')->deleteDirectory($tmp_dir);
+            }
         } catch (Exception $e) {
             Log::error($e);
             DB::rollBack();
@@ -746,8 +825,6 @@ class EventCheckoutController extends Controller
             'is_embedded'     => $this->is_embedded,
             'order_reference' => $order->order_reference,
         ]);
-
-
     }
 
     /**
@@ -819,4 +896,16 @@ class EventCheckoutController extends Controller
         return view('Public.ViewEvent.Partials.PDFTicket', $data);
     }
 
+    public function showOrderDoc($folder_name, $file_name)
+    {
+        $fp = Storage::disk('local')->path('docs').'/'.$folder_name.'/'.$file_name;
+        if(is_file($fp)) {
+            return response()->file($fp);
+        }
+        else {
+            // Prevent bruteforce
+            sleep(1);
+            return response("Not found", 404);
+        }
+    }
 }
