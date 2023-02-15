@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventQuestionRequest;
+use App\Exports\SurveyExport;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\Question;
 use App\Models\QuestionAnswer;
 use App\Models\QuestionType;
-use Excel;
 use Illuminate\Http\Request;
 use JavaScript;
 
@@ -185,7 +185,6 @@ class EventSurveyController extends MyBaseController
             'message'     => trans("Controllers.refreshing"),
             'redirectUrl' => '',
         ]);
-
     }
 
     /**
@@ -249,7 +248,7 @@ class EventSurveyController extends MyBaseController
 
 
     /**
-     * Export answers to xls, csv etc.
+     * Exports question answers to popular file types
      *
      * @param Request $request
      * @param $event_id
@@ -257,26 +256,9 @@ class EventSurveyController extends MyBaseController
      */
     public function showExportAnswers(Request $request, $event_id, $export_as = 'xlsx')
     {
-        Excel::create('answers-as-of-' . date('d-m-Y-g.i.a'), function ($excel) use ($event_id) {
-
-            $excel->setTitle(trans("Controllers.survey_answers"));
-
-            // Chain the setters
-            $excel->setCreator(config('attendize.app_name'))
-                ->setCompany(config('attendize.app_name'));
-
-            $excel->sheet('survey_answers_sheet_', function ($sheet) use ($event_id) {
-
-                $event = Event::scope()->findOrFail($event_id);
-
-                $sheet->fromArray($event->survey_answers, null, 'A1', false, false);
-
-                // Set gray background on first row
-                $sheet->row(1, function ($row) {
-                    $row->setBackground('#f5f5f5');
-                });
-            });
-        })->export($export_as);
+        $event = Event::scope()->findOrFail($event_id);
+        $date = date('d-m-y-g.i.a');
+        return (new SurveyExport($event->id))->download("answers-as-of-{$date}.{$export_as}");
     }
 
     /**
