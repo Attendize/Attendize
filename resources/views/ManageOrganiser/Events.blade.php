@@ -38,6 +38,11 @@
             <button class="btn btn-default" type="submit"><i class="ico-search"></i></button>
         </span>
         </div>
+        <div class="input-group">
+		{!! Form::checkbox('archived', 1, $search['archived']=='1'? true : false ,['id' => 'view_archived']) !!}
+              {!! Form::label('archived', trans('Organiser.see_archived_event'), array('style'=>'padding-left: 4px;')) !!}
+	</div>
+
         <input type="hidden" name='sort_by' value="{{$search['sort_by']}}"/>
         {!! Form::close() !!}
     </div>

@@ -24,11 +24,18 @@ class OrganiserEventsController extends MyBaseController
         $searchQuery = $request->get('q');
         $sort_by = (in_array($request->get('sort_by'), $allowed_sorts) ? $request->get('sort_by') : 'start_date');
 
+if ($request->has('archived')) {
         $events = $searchQuery
-            ? Event::scope()->with(['organiser', 'currency'])->where('title', 'like', '%' . $searchQuery . '%')->orderBy($sort_by,
+            ? Event::withTrashed()->scope()->with(['organiser', 'currency'])->where('title', 'like', '%' . $searchQuery . '%')->orderBy($sort_by,
                 'desc')->where('organiser_id', '=', $organiser_id)->paginate(12)
-            : Event::scope()->with(['organiser', 'currency'])->where('organiser_id', '=', $organiser_id)->orderBy($sort_by, 'desc')->paginate(12);
-
+            : Event::withTrashed()->scope()->with(['organiser', 'currency'])->where('organiser_id', '=', $organiser_id)->orderBy($sort_by, 'desc')->paginate(12);
+        } else {
+            $events = $searchQuery
+                ? Event::scope()->with(['organiser', 'currency'])->where('title', 'like', '%' . $searchQuery . '%')->orderBy($sort_by,
+                    'desc')->where('organiser_id', '=', $organiser_id)->paginate(12)
+                : Event::scope()->with(['organiser', 'currency'])->where('organiser_id', '=', $organiser_id)->orderBy($sort_by, 'desc')->paginate(12);
+        }
+        
         $data = [
             'events'    => $events,
             'organiser' => $organiser,
@@ -36,6 +43,7 @@ class OrganiserEventsController extends MyBaseController
                 'q'        => $searchQuery ? $searchQuery : '',
                 'sort_by'  => $request->get('sort_by') ? $request->get('sort_by') : '',
                 'showPast' => $request->get('past'),
+		  'archived' => $request->get('archived'),
             ],
         ];
 
