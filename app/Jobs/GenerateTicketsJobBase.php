@@ -39,7 +39,12 @@ class GenerateTicketsJobBase implements ShouldQueue
         $images = [];
         $imgs = $this->event->images;
         foreach ($imgs as $img) {
-            $images[] = base64_encode(file_get_contents(public_path($img->image_path)));
+            $event_image_abs_pathname = public_path($img->image_path);
+            if (file_exists($event_image_abs_pathname)) {
+                $images[] = base64_encode(file_get_contents($event_image_abs_pathname));
+            } else {
+                Log::warn(sprintf("Image doesn't exist: `%s`", $event_image_abs_pathname));
+            }
         }
 
         $data = [
