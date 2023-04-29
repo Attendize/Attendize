@@ -30,7 +30,7 @@ class TicketStatusSeeder extends Seeder
             ],
             [
                 'id' => 5,
-                'name' => 'On Sale',
+                'name' => 'Off Sale',
             ],
         ];
 
