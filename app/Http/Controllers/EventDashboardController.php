@@ -17,10 +17,8 @@ class EventDashboardController extends MyBaseController
      * @param bool|false $event_id
      * @return \Illuminate\View\View
      */
-    public function showDashboard($event_id = false)
+    public function showDashboard(Event $event)
     {
-        $event = Event::scope()->findOrFail($event_id);
-
         $num_days = 20;
 
         /*
