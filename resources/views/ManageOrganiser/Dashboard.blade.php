@@ -102,7 +102,7 @@
                     @foreach($organiser->orders()->orderBy('created_at', 'desc')->take(5)->get() as $order)
                         <li class="list-group-item">
                             <h6 class="ellipsis">
-                                <a href="{{ route('showEventDashboard', ['event_id' => $order->event->id]) }}">
+                                <a href="{{ route('showEventDashboard', ['event' => $order->event]) }}">
                                     {{ $order->event->title }}
                                 </a>
                             </h6>

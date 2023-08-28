@@ -12,7 +12,7 @@
         <h5 class="heading">@lang('basic.event_menu')</h5>
         <ul id="nav_event" class="topmenu">
             <li class="{{ Request::is('*dashboard*') ? 'active' : '' }}">
-                <a href="{{route('showEventDashboard', array('event_id' => $event->id))}}">
+                <a href="{{route('showEventDashboard', array('event' => $event))}}">
                     <span class="figure"><i class="ico-home2"></i></span>
                     <span class="text">@lang("basic.dashboard")</span>
                 </a>

@@ -323,7 +323,7 @@ Route::group(
             /*
              * Dashboard
              */
-            Route::get('{event_id}/dashboard/',
+            Route::get('{event}/dashboard/',
                 [EventDashboardController::class, 'showDashboard']
             )->name('showEventDashboard');
 
