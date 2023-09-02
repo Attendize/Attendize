@@ -5,7 +5,7 @@ namespace App\Models;
     /*
       Attendize.com   - Event Management & Ticketing
      */
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 /**
  * Description of Currency.
  *
@@ -13,6 +13,7 @@ namespace App\Models;
  */
 class Currency extends \Illuminate\Database\Eloquent\Model
 {
+    use HasFactory;
     /**
      * Indicates whether the model should be timestamped.
      *
