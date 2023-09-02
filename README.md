@@ -14,6 +14,10 @@ Open-source ticket selling and event management platform
 
 Documentation Website: https://www.attendize.com<br />
 
+## Version 3.x.x by GridPlay Productions
+ - Updated all composer packages to their latest version
+ - Code fixes to work with latest packages
+
 ## Current Features (v2.X.X)
  - Beautiful mobile friendly event pages
  - Easy attendee management - Refunds, Messaging etc.
@@ -46,7 +50,7 @@ Documentation Website: https://www.attendize.com<br />
 Attendize should run on most pre-configured LAMP or LEMP environments as long as certain requirements are adhered to. Attendize is based on the [Laravel Framework](https://laravel.com/)
 
 **PHP Requirements**
-1. PHP >= 7.1.3
+1. PHP >= 8.1
 2. OpenSSL PHP Extension 
 3. PDO PHP Extension 
 4. Mbstring PHP Extension 
@@ -55,7 +59,7 @@ Attendize should run on most pre-configured LAMP or LEMP environments as long as
 7. GD PHP Extension
 
 **MySQL Requirements**
-1. MySQL version 5.7 or higher required
+1. MariaDB version 10 or higher required
 
 ## Contributing
 Feel free to fork and contribute. If you are unsure about adding a feature, create a Github issue to ask for Feedback. Read the [contribution guidelines](CONTRIBUTING.md)

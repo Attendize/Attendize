@@ -1,6 +1,6 @@
 {
-    "name": "attendize/attendize",
-    "version": "2.8.0",
+    "name": "gridplay/attendize",
+    "version": "3.0.0",
     "description": "A free and open-source event management and ticket selling application.",
     "keywords": [
         "event management",
@@ -12,48 +12,39 @@
     "type": "project",
     "homepage": "https://www.attendize.com",
     "require": {
-        "php": "^7.3",
+        "php": "^8.1",
         "ext-json": "*",
-        "doctrine/dbal": "^2.9",
-        "dompdf/dompdf": "^0.8",
-        "fideloper/proxy": "^4.2",
-        "graham-campbell/markdown": "11.1.0",
-        "guzzlehttp/guzzle": "^6.4",
-        "guzzlehttp/psr7": "^1.6",
-        "intervention/image": "^2.5",
-        "laracasts/utilities": "^3.0",
-        "laravel/framework": "^6.5",
-        "laravel/socialite": "^4.3",
-        "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^6.0",
-        "league/flysystem-aws-s3-v3": "^1.0",
-        "league/omnipay": "^3.0",
+        "doctrine/dbal": "^3.1",
+        "dompdf/dompdf": "^2.0",
+        "graham-campbell/markdown": "^15.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^2.7",
+        "laracasts/utilities": "^3.2",
+        "laravel/framework": "^10.10",
+        "laravel/socialite": "^5.8",
+        "laravel/tinker": "^2.8",
+        "laravelcollective/html": "^6.2",
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "league/omnipay": "^3.2",
         "maatwebsite/excel": "^3.1",
-        "mcamara/laravel-localization": "^1.4",
-        "mews/purifier": "^3.1",
-        "milon/barcode": "^6.0",
-        "nitmedia/wkhtml2pdf": "dev-master",
-        "omnipay/common": "^3.0",
+        "mcamara/laravel-localization": "^1.8",
+        "mews/purifier": "^3.4",
+        "milon/barcode": "^10.0",
+        "marvinlabs/laravel-discord-logger": "^1.4",
+        "nitmedia/wkhtml2pdf": "^2.1",
+        "omnipay/common": "^3.2",
         "omnipay/dummy": "^3.0",
         "omnipay/paypal": "^3.0",
-        "omnipay/stripe": "^3.1",
-        "php-http/curl-client": "^1.7",
-        "php-http/message": "^1.6",
-        "predis/predis": "~1.1",
-        "stripe/stripe-php": "^7.1",
+        "omnipay/stripe": "^3.2",
+        "php-http/curl-client": "^2.3",
+        "php-http/message": "^1.16",
+        "predis/predis": "^2.2",
+        "stripe/stripe-php": "^12.1",
         "superbalist/php-money": "^2.0",
-        "vinelab/http": "~1.5"
+        "vinelab/http": "^1.5"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.6",
-        "facade/ignition": "^1.4",
-        "fzaninotto/faker": "1.9.*",
-        "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpspec/phpspec": "^6.0",
-        "phpunit/phpunit": "^8.0",
-        "symfony/css-selector": "~3.0",
-        "symfony/dom-crawler": "~3.0"
+        "barryvdh/laravel-ide-helper": "^2.13"
     },
     "autoload": {
         "classmap": [
@@ -71,33 +62,22 @@
             "Attendize\\": "app/Models"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
     "scripts": {
-        "post-install-cmd": [
-            "@php artisan clear-compiled",
-            "@php -r \"copy('.env.example', '.env');\"",
-            "@php artisan key:generate"
-        ],
-        "post-update-cmd": [
-            "@php artisan clear-compiled",
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:meta"
-        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:meta"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-create-project-cmd": [
-            "@php -r \"copy('.env.example', '.env');\"",
-            "@php artisan key:generate"
+            "@php artisan key:generate --ansi"
         ]
     },
     "config": {
