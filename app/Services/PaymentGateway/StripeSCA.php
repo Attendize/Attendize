@@ -78,6 +78,7 @@ class StripeSCA
         $response = $paymentIntent->send();
 
         if ($response->requiresConfirmation()) {
+            $intentData['returnUrl'] = $data['returnUrl'];
             $confirmResponse = $this->gateway->confirm($intentData)->send();
             if ($confirmResponse->isSuccessful()) {
                 $response = $this->gateway->capture($intentData)->send();
