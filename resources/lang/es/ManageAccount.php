@@ -38,6 +38,8 @@ return array(
     'save_payment_details_submit'                  => 'Guardar los datos de pago',
     'secret_code'                                  => 'Código secreto',
     'secure_hash_code'                             => 'Código hash de seguridad',
+    'stripe_connect_application_fee'               => 'Stripe Connect Application Fee',
+    'stripe_connect_transfer_data_destination_id'  => 'Stripe Connected Account ID',
     'stripe_publishable_key'                       => 'Clave publicable de Stripe',
     'stripe_secret_key'                            => 'Clave secreta de Stripe',
     'stripe_settings'                              => 'Configuración de Stripe',

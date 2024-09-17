@@ -19,7 +19,7 @@ class StripeSCA
         $this->options = [];
     }
 
-    private function createTransactionData($order_total, $order_email, $event)
+    private function createTransactionData($order_total, $order_email, $event, $ticket_order)
     {
 
         $returnUrl = route('showEventCheckoutPaymentReturn', [
@@ -27,22 +27,52 @@ class StripeSCA
             'is_payment_successful' => 1,
         ]);
 
-        $this->transaction_data = [
-            'amount' => $order_total,
-            'currency' => $event->currency->code,
-            'description' => 'Order for customer: ' . $order_email,
-            'paymentMethod' => $this->options['paymentMethod'],
-            'receipt_email' => $order_email,
-            'returnUrl' => $returnUrl,
-            'confirm' => true
-        ];
+        // fetching the payment gateway config
+        $account_payment_gateway = $ticket_order['account_payment_gateway']->config;
+        // get the booking fees configured for that order
+        $fees = $ticket_order['total_booking_fee'];
+
+        /**
+         * If an account is configured in the payment gateway as a transfer destination, use it.
+         */
+        if (array_key_exists('transfer_data_destination_id',$account_payment_gateway) || !empty($account_payment_gateway['transfer_data_destination_id'])) {
+            if (array_key_exists('application_fee_amount', $account_payment_gateway) || !empty($account_payment_gateway['application_fee_amount'])){
+                $gateway_fees = floatval($account_payment_gateway['application_fee_amount']);
+            }else {
+                $gateway_fees = 0;
+            }
+            $this->transaction_data = [
+                'amount' => $order_total,
+                'currency' => $event->currency->code,
+                'description' => 'Order for customer: ' . $order_email,
+                'paymentMethod' => $this->options['paymentMethod'],
+                'receipt_email' => $order_email,
+                'returnUrl' => $returnUrl,
+                'confirm' => true,
+                // Add the configured payment gateway fees to the existing fees.
+                'application_fee_amount' => $gateway_fees + $fees ,
+                // Pass the destination ID
+                'destination' => $account_payment_gateway['transfer_data_destination_id']
+            ];
+        }else{
+            $this->transaction_data = [
+                'amount' => $order_total,
+                'currency' => $event->currency->code,
+                'description' => 'Order for customer: ' . $order_email,
+                'paymentMethod' => $this->options['paymentMethod'],
+                'receipt_email' => $order_email,
+                'returnUrl' => $returnUrl,
+                'confirm' => true
+            ];
+        }
+
 
         return $this->transaction_data;
     }
 
-    public function startTransaction($order_total, $order_email, $event)
+    public function startTransaction($order_total, $order_email, $event, $ticket_order)
     {
-        $this->createTransactionData($order_total, $order_email, $event);
+        $this->createTransactionData($order_total, $order_email, $event, $ticket_order);
         $response = $this->gateway->authorize($this->transaction_data)->send();
 
         return $response;

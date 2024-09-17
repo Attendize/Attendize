@@ -39,6 +39,8 @@ return array (
   'save_payment_details_submit' => 'Zahlungseinstellungen speichern',
   'secret_code' => 'Geheimcode',
   'secure_hash_code' => 'Sicherer Hash Code',
+  'stripe_connect_application_fee' => 'Stripe Connect Application Fee',
+  'stripe_connect_transfer_data_destination_id' => 'Stripe Connected Account ID',  
   'stripe_publishable_key' => 'Öffentlicher Stripe Schlüssel',
   'stripe_secret_key' => 'Stripe secret key',
   'stripe_settings' => 'Stripe Einstellungen',
