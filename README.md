@@ -1,99 +1,162 @@
-*Attendize* is an open-source ticketing and event management application built using the Laravel PHP framework. Attendize allows event organisers to sell tickets to their events and manage attendees without paying service fees to third party ticketing companies.
+# Attendize-TeamProject
+
+## Overview
+Attendize-TeamProject is an open-source ticket selling and event management platform. Below are the steps to get started with Attendize and configure it for your development or production environment.
 
 <p align="center">
   <img src="/public/assets/images/logo-dark.png" alt="Attendize"/>
   <img style='border: 1px solid #444;' src="https://www.attendize.com/images/screenshots/screen1.PNG" alt="Attendize"/>
 </p>
 
-# Attendize
-Open-source ticket selling and event management platform
+## Table of Contents
+- [Getting Started](#getting-started)
+  - [Minimum Requirements](#minimum-requirements)
+  - [Manual Installation Steps](#manual-installation-steps)
+  - [Running Attendize-TeamProject in Docker for Development](#running-attendize-teamproject-in-docker-for-development)
+  - [Branch Renaming](#branch-renaming)
+  - [Which Version of Attendize Should I Use?](#which-version-of-attendize-do-i-use)
+- [Licensing](#licensing)
+- [Payment Gateways](#payment-gateways)
+- [Release Notes](#release-notes)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 
-> Please report bugs here: https://github.com/Attendize/Attendize/issues. Detailed bug reports are more likely to be looked at. Simple creating an issue and saying "it doesn't work" is not useful. Providing some steps to reproduce your problem as well as details about your operating system, PHP version etc can help.
+## Getting Started
 
-> Take a look https://www.attendize.com/troubleshooting.html and follow the https://www.attendize.com/getting_started.html guide to make sure you have configured attendize correctly.  
+These instructions will help you get started quickly with Attendize-TeamProject.
 
-Documentation Website: https://www.attendize.com<br />
+### Minimum Requirements
+Attendize runs on most LAMP or LEMP environments as long as certain requirements are met. It is based on the Laravel framework.
 
-## Current Features (v2.X.X)
- - Beautiful mobile friendly event pages
- - Easy attendee management - Refunds, Messaging etc.
- - Data export - attendees list to XLS, CSV etc.
- - Generate print friendly attendee list
- - Ability to manage unlimited organisers / events
- - Manage multiple organisers 
- - Real-time event statistics
- - Customizable event pages
- - Multiple currency support
- - Quick and easy checkout process
- - Customizable tickets - with QR codes, organiser logos etc.
- - Fully brandable - Have your own logos on tickets etc.
- - Affiliate tracking
-    - track sales volume / number of visits generated etc.
- - Widget support - embed ticket selling widget into existing websites / WordPress blogs
- - Social sharing 
- - Support multiple payment gateways - Stripe, PayPal & Coinbase so far, with more being added
- - Support for offline payments
- - Refund payments - partial refund & full refunds
- - Ability to add service charge to tickets
- - Messaging - eg. Email all attendees with X ticket
- - Public event listings page for organisers
- - Ability to ask custom questions during checkout
- - Browser based QR code scanner for door management
- - Elegant dashboard for easy management.
+**Note**: There are two main versions of Attendize:
+- Version 2.0+ requires PHP 7.1.3 or higher.
+- Older Laravel 5.2 branch works with PHP 5.6 to PHP 7.1.
 
-## Minimum Requirements
+You can use the stable main branch for the latest updates.
 
-Attendize should run on most pre-configured LAMP or LEMP environments as long as certain requirements are adhered to. Attendize is based on the [Laravel Framework](https://laravel.com/)
+#### PHP Requirements:
+- PHP >= 7.1.3 (for the main branch)
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- Fileinfo PHP Extension
+- GD PHP Extension
 
-**PHP Requirements**
-1. PHP >= 7.1.3
-2. OpenSSL PHP Extension 
-3. PDO PHP Extension 
-4. Mbstring PHP Extension 
-5. Tokenizer PHP Extension 
-6. Fileinfo PHP Extension 
-7. GD PHP Extension
+#### MySQL Requirements:
+- MySQL version 5.7 or higher
 
-**MySQL Requirements**
-1. MySQL version 5.7 or higher required
+### Manual Installation Steps
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/rodrichie/Attendize-TeamProject.git
+   cd Attendize-TeamProject
+   git checkout main
+   ```
 
-## Contributing
-Feel free to fork and contribute. If you are unsure about adding a feature, create a Github issue to ask for Feedback. Read the [contribution guidelines](CONTRIBUTING.md)
+2. **Copy environment file:**
+   ```bash
+   cp .env.example .env
+   ```
 
-## Submitting an issue
-If you encounter a bug in Attendize, please first search the list of current open [Issues on the GitHub repository](https://github.com/Attendize/Attendize/issues). You may add additional feedback on an existing bug report. If the issue you're having has not yet been reported, please open a new issue. There is a template available for new issues. Please fill out all information requested in the template so we can help you more easily.
+3. **Set file permissions:**
+   Ensure the following files/folders are writable by the webserver user (e.g., `www-data`):
+   ```bash
+   chown -R www-data storage/app
+   chown -R www-data storage/framework
+   chown -R www-data storage/logs
+   chown -R www-data storage/cache
+   chown -R www-data bootstrap/cache
+   chown -R www-data .env
+   chmod -R a+w storage/app
+   chmod -R a+w storage/framework
+   chmod -R a+w storage/logs
+   chmod -R a+w storage/cache
+   chmod -R a+w bootstrap/cache
+   chmod -R a+w .env
+   ```
 
-Please note: support is not offered from the project maintainers through GitHub. Paid support is available by [purchasing a license](https://www.attendize.com/license.html).
+4. **Install dependencies:**
+   You need [Composer](https://getcomposer.org/) installed.
+   ```bash
+   composer install
+   ```
 
-## Installation
-To get developing straight away use the [Pre-configured Docker Environment](https://www.attendize.com/getting_started.html#running-attendize-in-docker-for-development)<br />
-To do a manual installation use the [Manual Installation Steps](https://www.attendize.com/getting_started.html#manual-installation)
+5. **Generate application key:**
+   ```bash
+   php artisan key:generate
+   ```
 
-## Upgrade
-To upgrade to a new version:
+6. **Create MySQL database:**
+   Use this database for your Attendize installation and enter the details on the installer page.
 
-- we recommend putting your site into [Maintenance Mode](https://laravel.com/docs/6.x/configuration#maintenance-mode) by running `php artisan down` from the root of your installation. This isn't required but can help prevent problems if users are on your site during the upgrade.
-- download the latest version of the code from GitHub and copy the code to your server however you normally do so - via FTP, git pull, continuous integration deployment, etc.
-- navigate to https://<your-site.com>/upgrade and follow the instructions on screen
-- the upgrade page will run database migrations, update configuration settings, etc as needed for the new code version.
+7. **Navigate to the installer:**
+   Open your browser and go to `http://your-ticket-site.com/install`.
 
-## Testing
-To run the application tests, you can run the following from your project root:
+   If the page shows an error, check the logs in `./storage/logs` and ensure proper permissions are set.
 
-```sh
-# If the testing db does not exist yet, please create it
-touch database/database.sqlite
-# Run the test suite
-./vendor/bin/phpunit
+### Running Attendize-TeamProject in Docker for Development
+**Note**: Docker must be installed on your machine.
+
+1. **Clone the project:**
+   ```bash
+   git clone https://github.com/rodrichie/Attendize-TeamProject.git
+   cd Attendize-TeamProject
+   git checkout main
+   ```
+
+2. **Build Docker images and run containers:**
+   ```bash
+   make setup
+   ```
+
+3. **Access the installer:**
+   Browse to [https://localhost:8081/install](https://localhost:8081/install).
+
+4. **Run database migrations:**
+   ```bash
+   docker-compose run php php artisan attendize:install
+   ```
+
+Attendize-TeamProject should now be running at [https://localhost:8081](https://localhost:8081), with maildev available at [http://localhost:1080](http://localhost:1080) for email testing.
+
+### Branch Renaming
+
+The default branch has been renamed!  
+`develop` is now named `main`.
+
+If you have a local clone, you can update it by running the following commands:
+
+```bash
+git branch -m develop main
+git fetch origin
+git branch -u origin/main main
+git remote set-head origin -a
 ```
 
-This will run the feature tests that hits the database using the `sqlite` database connection.
+### Which Version of Attendize Should I Use?
+Choose the version based on your payment provider. Attendize uses the Omnipay framework for payment processing. The Laravel 5.2 branch supports Omnipay v2, while version 1.1+ supports Omnipay v3.
+
+Check the list of [supported payment gateways](https://github.com/thephpleague/omnipay#payment-gateways) to decide which version of Attendize to use:
+- Omnipay v2: Use Laravel 5.2 version.
+- Omnipay v3: Use the most current version of Attendize.
+
+## Licensing
+Attendize-TeamProject is open-source and follows an open license. Please see the [LICENSE](LICENSE) file for details.
+
+## Payment Gateways
+Attendize supports various payment gateways through Omnipay, including:
+- Stripe
+- PayPal
+- Authorize.Net
+
+Check [Omnipay's payment gateways](https://github.com/thephpleague/omnipay#payment-gateways) for more details.
+
+## Release Notes
+See the [release notes](https://github.com/rodrichie/Attendize-TeamProject/releases) for detailed information on new features and bug fixes.
 
 ## Troubleshooting
-If you are having problems please read the [troubleshooting guide](https://www.attendize.com/troubleshooting.html) 
+Visit the [troubleshooting guide](https://attendize.com/docs/troubleshooting.html) for tips and solutions to common issues.
 
-## License
-Attendize is open-sourced software licensed under the Attribution Assurance License. See [https://www.attendize.com/license.html](https://www.attendize.com/license.html) for further details. We also have white-label license options available.
-
-## Code of Conduct
-The Attendize community operates a [Code of Conduct](CODE_OF_CONDUCT.md) to ensure everyone is able to participate comfortably, equally and safely.
+## Contributing
+If you wish to contribute to Attendize-TeamProject, please see our [Contributing Guide](CONTRIBUTING.md) for more information.

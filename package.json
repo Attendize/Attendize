@@ -4,7 +4,7 @@
     "description": "Attendize Ticketing Platform",
     "main": "public/index.php",
     "dependencies": {
-        "less": "^3.10.3"
+        "less": "3.13.1"
     },
     "private": true,
     "devDependencies": {
@@ -25,6 +25,13 @@
         "sass-loader": "^8.0.0"
     },
     "scripts": {
+        "development": "mix",
+    "production": "mix --production",
+    "dev": "npm run development",
+        
+        "preinstall": "npm install --global node-gyp",
+
+
         "build-frontend": "grunt",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
