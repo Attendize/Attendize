@@ -1,14 +1,22 @@
-version: '3.2'
-
+version: "3.2"
 services:
+  composer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: composer
+    volumes:
+      - .:/app
+    entrypoint: composer
   web:
-    image: attendize_web:latest
+    image: nginx:latest
     ports:
-    - "8080:80"
-    - "8081:443"
+      - "8080:80"
+      - "8081:443"
     volumes:
       - .:/usr/share/nginx/html
       - .:/var/www
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - db
       - maildev
@@ -16,8 +24,23 @@ services:
       - worker
     env_file:
       - ./.env
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: php
+    volumes:
+      - ./:/var/www
+    environment:
+      - FONTCONFIG_CACHE=/var/cache/fontconfig
+      - XDG_CACHE_HOME=/var/cache
+    expose:
+      - "9000"
   worker:
-    image: attendize_worker:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
     depends_on:
       - db
       - maildev
@@ -26,7 +49,7 @@ services:
       - .:/usr/share/nginx/html
       - .:/var/www
   db:
-    image: mysql:5.7.23
+    image: mysql/mysql-server:5.7
     restart: always
     env_file:
       - ./.env
@@ -46,6 +69,7 @@ services:
       - "1080:1080"
   redis:
     image: redis
-
+    ports:
+      - "6379:6379"
 volumes:
-    mysql-data:
+  mysql-data:

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Database initialization script for Attendize
+# This script should be run after the database container is up and running
+
+echo "Initializing Attendize database..."
+
+# Wait for database to be ready
+echo "Waiting for database to be ready..."
+until php artisan migrate:status >/dev/null 2>&1; do
+    echo "Database not ready, waiting 5 seconds..."
+    sleep 5
+done
+
+echo "Database is ready. Running migrations..."
+php artisan migrate --force
+
+echo "Running database seeders..."
+php artisan db:seed --force
+
+echo "Database initialization completed successfully!"
+echo ""
+echo "The following reference data has been seeded:"
+echo "- Currencies (including EUR with ID 2)"
+echo "- Timezones (including Europe/Dublin with ID 30)"
+echo "- Order statuses"
+echo "- Ticket statuses"
+echo "- Payment gateways"
+echo "- Question types"
+echo "- Countries"

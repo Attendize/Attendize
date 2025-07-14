@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Organiser;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // inject organisers into Master layout
+        View::composer('Shared.Layouts.Master', function ($view) {
+            $view->with('organisers', Organiser::all());
+        });
     }
     
     /**
