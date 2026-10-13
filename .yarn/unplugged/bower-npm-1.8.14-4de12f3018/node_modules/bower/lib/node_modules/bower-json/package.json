@@ -1,0 +1,29 @@
+{
+  "name": "bower-json",
+  "version": "0.8.4",
+  "description": "Read bower.json files with semantics, normalisation, defaults and validation",
+  "author": "Twitter",
+  "license": "MIT",
+  "repository": "https://github.com/bower/bower/tree/master/packages/bower-json",
+  "main": "lib/json",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "dependencies": {
+    "deep-extend": "^0.5.1",
+    "ends-with": "^0.2.0",
+    "ext-list": "^2.0.0",
+    "sort-keys-length": "^1.0.0",
+    "graceful-fs": "^4.1.3",
+    "intersect": "^1.0.1"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^3.5.3",
+    "request": "^2.64.0",
+    "underscore.string": "^3.0.3"
+  },
+  "scripts": {
+    "test": "mocha"
+  }
+}
