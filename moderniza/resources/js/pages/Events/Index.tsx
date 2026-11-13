@@ -26,9 +26,17 @@ export default function EventsIndex({ events }: Props) {
                                 {' · '}
                                 <span>{event.is_live ? 'Publicado' : 'No publicado'}</span>
                             </p>
-                            <Link href={`/events/${event.id}/sessions`} className="link mt-2 inline-block">
-                                Programa de sesiones<span className="sr-only"> de {event.title}</span>
-                            </Link>
+                            <div className="mt-2 flex flex-wrap gap-4">
+                                <Link href={`/events/${event.id}/sessions`} className="link">
+                                    Programa de sesiones<span className="sr-only"> de {event.title}</span>
+                                </Link>
+                                {/* Tarea 4: vista pública, solo para eventos publicados en Attendize */}
+                                {event.is_live && (
+                                    <Link href={`/eventos/${event.id}/programa`} className="link">
+                                        Programa público<span className="sr-only"> de {event.title}</span>
+                                    </Link>
+                                )}
+                            </div>
                         </li>
                     ))}
                 </ul>
