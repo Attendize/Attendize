@@ -1,0 +1,40 @@
+# ---------------------------------------------------------------------------
+# MODERNIZA · Servicios añadidos a Attendize (no se modifica docker-compose.yml)
+#
+# Docker Compose combina AUTOMÁTICAMENTE este archivo con docker-compose.yml
+# al ejecutar "docker compose up -d". Attendize sigue igual en 8080/8081;
+# Moderniza (Laravel 13 + Inertia + React + TypeScript) se añade en 8000
+# y usa la MISMA base MySQL (servicio "db").
+# ---------------------------------------------------------------------------
+services:
+  # Los contenedores de Attendize montan TODA la carpeta del repositorio y, al
+  # arrancar, la imagen ejecuta "chown -R" sobre ella. Para que no recorran
+  # moderniza/ (vendor y node_modules: decenas de miles de archivos, muy lento
+  # en Windows) se tapa esa carpeta con un volumen vacio. Attendize no la usa.
+  web:
+    volumes:
+      - /usr/share/nginx/html/moderniza
+      - /var/www/moderniza
+  worker:
+    volumes:
+      - /usr/share/nginx/html/moderniza
+      - /var/www/moderniza
+
+  moderniza:
+    build: ./moderniza/docker
+    entrypoint: ["sh", "/app/docker/entrypoint.sh"]
+    volumes:
+      - ./moderniza:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  moderniza-vite:
+    image: node:22
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    volumes:
+      - ./moderniza:/app
+    ports:
+      - "5173:5173"

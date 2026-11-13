@@ -1,0 +1,3 @@
+# Los scripts que se ejecutan dentro de Linux (Docker) deben tener finales de línea LF,
+# aunque el repositorio se clone en Windows.
+*.sh text eol=lf
