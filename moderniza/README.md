@@ -29,7 +29,10 @@ Desde la **carpeta raíz de tu repositorio de Attendize** (donde está `docker-c
 docker compose up -d --build
 
 # 2. Crear la base de datos de PRUEBAS (solo la primera vez)
+#    Linux, macOS, WSL o Git Bash:
 docker compose exec -T db mysql -uroot -pyes < moderniza/docker/crear-bd-pruebas.sql
+#    Windows PowerShell (no admite "<"):
+Get-Content moderniza/docker/crear-bd-pruebas.sql | docker compose exec -T db mysql -uroot -pyes
 
 # 3. Comprobar los servicios
 docker compose ps
@@ -80,6 +83,20 @@ Abre http://localhost:8000 e inicia sesión con tu organizador de Attendize. Ver
 Orden recomendado: **T3-1 → T3-2 → T3-3 → T3-4 → T3-5 → T3-6 → T3-7**.
 
 Mientras no completes un TODO, la aplicación te lo indica (por ejemplo, error `501 TODO T3-4`).
+
+**Comprueba cada TODO nada más terminarlo** (no esperes al final). La guía completa, con pistas y errores típicos, está en `docs/GUIA_TAREA_3.md`.
+
+| TODO | Cómo comprobarlo | Resultado esperado |
+|---|---|---|
+| T3-1 | `docker compose exec moderniza php artisan migrate` y después `php artisan test --group=t3-1` | `DONE` en la migración y `OK (3 tests…)` |
+| T3-2 | `docker compose exec moderniza php artisan test --group=t3-2` | `OK (3 tests…)` |
+| T3-3 | `docker compose exec moderniza php artisan test --group=t3-3` | `OK (2 tests…)` |
+| T3-4 | `docker compose exec moderniza php artisan test --group=t3-4` | `OK (2 tests…)` y en el navegador se abre «Programa de sesiones» |
+| T3-5 | `docker compose exec moderniza php artisan test --group=t3-5` | `OK (2 tests…)` |
+| T3-6 | `docker compose exec moderniza-vite npm run types` y crear una sesión en el navegador | Sin errores de tipos; «Guardando…» al enviar y mensaje de éxito |
+| T3-7 | `docker compose exec moderniza php artisan test` | Todas en verde y **ninguna** «incompleta» |
+
+Las comprobaciones de `--group` están en `tests/Feature/PasoAPasoTest.php` (proporcionado: no lo modifiques). Si una sale en rojo, lee el mensaje: dice qué falta.
 
 ---
 
@@ -147,7 +164,7 @@ moderniza/
 │  ├─ pages/                 Auth/Login · Events/Index · Sessions/Index · Sessions/Create (T3)
 │  └─ types/                 tipos TypeScript compartidos
 ├─ routes/web.php
-├─ tests/Feature/            ExampleEventsTest (ejemplo) · CreateEventSessionTest (T3)
+├─ tests/Feature/            ExampleEventsTest (ejemplo) · CreateEventSessionTest (T3) · PasoAPasoTest (comprobaciones)
 └─ docker/                   Dockerfile · entrypoint.sh · crear-bd-pruebas.sql
 ```
 
