@@ -2,6 +2,7 @@
 
 Esta guía os acompaña TODO a TODO. Para cada uno tenéis:
 
+- **Para entenderlo**: qué es lo que vais a programar, para qué sirve y en qué paso del recorrido React → Inertia → Laravel → MySQL estáis (el esquema del enunciado).
 - **Qué hacer**: el objetivo en una frase.
 - **Ejemplo en la plantilla**: código ya resuelto que se parece a lo que tenéis que escribir.
 - **Pista**: el código con huecos (`___`). Rellenadlos; no lo copiéis sin entenderlo.
@@ -63,6 +64,16 @@ Estas capturas son de la solución, con datos ficticios. Muestran lo que tiene q
 
 **Archivo:** `moderniza/database/migrations/2026_11_01_000000_create_event_sessions_table.php`
 
+> **Para entenderlo.** Una **migración** es un archivo PHP que describe cómo crear o cambiar una tabla. Es como un `CREATE TABLE`, pero guardado en Git: cualquiera que ejecute `php artisan migrate` obtiene la misma tabla.
+>
+> Vamos a crear `event_sessions`, la única tabla nueva de Moderniza. Cada sesión pertenece a un evento y a una cuenta, y eso se expresa con **claves externas**: MySQL no deja guardar una sesión de un evento que no existe y, si un evento se elimina de la tabla, MySQL elimina también sus sesiones (`cascadeOnDelete`).
+>
+> El **índice** es como el índice de un libro: hace que buscar «las sesiones del evento 1 de la cuenta 1» sea rápido.
+>
+> ¿Por qué `unsignedInteger` y no `foreignId`? Una clave externa solo funciona si las dos columnas son del mismo tipo. Attendize se hizo con `INT UNSIGNED`, así que nuestra columna también tiene que serlo.
+>
+> **En el recorrido:** paso 5, MySQL. Es donde acabará guardada la sesión que crea el formulario.
+
 **Qué hacer:** definir las columnas de la tabla nueva, sus claves externas hacia `accounts` y `events`, y un índice.
 
 **Ejemplo en la plantilla:** las líneas `$table->id();`, `$table->boolean('is_published')…` y `$table->timestamps();` del mismo archivo.
@@ -103,6 +114,16 @@ Debe salir `DONE` en la migración y `OK (3 tests…)` en las pruebas.
 
 **Archivos:** `moderniza/app/Models/EventSession.php` y `moderniza/app/Models/Event.php`
 
+> **Para entenderlo.** Un **modelo** (Eloquent) es la clase PHP que representa una tabla: cada objeto `EventSession` es una fila de `event_sessions`. Con él se lee y se guarda sin escribir SQL.
+>
+> **`$fillable`** es la lista de campos que se pueden rellenar «de golpe» con los datos que llegan del formulario (asignación masiva). Es una medida de seguridad: si `account_id` estuviera en la lista, alguien podría enviar desde el navegador el número de otra cuenta y la sesión quedaría a su nombre. Por eso `account_id` y `event_id` no van ahí: los pone el servidor en T3-5.
+>
+> **`casts()`** dice de qué tipo es cada dato. MySQL devuelve texto; con `datetime` las fechas se convierten en objetos de fecha (se pueden formatear y comparar) y con `integer` el aforo es un número.
+>
+> **La relación `sessions()`** expresa «un evento tiene muchas sesiones». Así se escribe `$event->sessions` en lugar de una consulta, y las sesiones salen ya ordenadas por hora de inicio.
+>
+> **En el recorrido:** también es el paso 5, porque el modelo es el puente entre el código PHP y la tabla de MySQL.
+
 **Qué hacer:**
 
 1. Indicar qué campos se pueden rellenar desde el formulario (`$fillable`).
@@ -141,6 +162,14 @@ public function sessions(): HasMany
 
 **Archivo:** `moderniza/app/Http/Requests/StoreEventSessionRequest.php`
 
+> **Para entenderlo.** **Validar** es comprobar que los datos tienen sentido antes de guardarlos: que el título no esté vacío, que la hora de fin sea posterior a la de inicio o que el aforo sea un número entre 1 y 5000.
+>
+> Se valida **en el servidor** porque el navegador no es de fiar: cualquiera puede saltarse el formulario y enviar la petición directamente. La validación del navegador solo es una comodidad; la que protege los datos es esta.
+>
+> `StoreEventSessionRequest` es una clase de Laravel que se ejecuta **antes** del controlador. Si algún dato no cumple las reglas, Laravel no llega a guardar nada: devuelve los errores al formulario junto con lo que el usuario había escrito. Cada regla se lee de izquierda a derecha: `['required', 'string', 'max:120']` significa «obligatorio, de texto y como mucho 120 caracteres».
+>
+> **En el recorrido:** paso 3, Validación.
+
 **Qué hacer:** escribir en `rules()` las reglas de cada campo. Los mensajes en español ya están hechos en `messages()`: fijaos en ellos, os dicen qué reglas hacen falta.
 
 **Ejemplo en la plantilla:** el método `messages()` del mismo archivo (cada clave `campo.regla` corresponde a una regla).
@@ -167,6 +196,14 @@ return [
 ## T3-4 · Solo eventos de mi cuenta (autorización)
 
 **Archivo:** `moderniza/app/Http/Controllers/EventSessionController.php`, método `findOwnEvent()`
+
+> **Para entenderlo.** **Autenticación** es saber *quién eres* (ya lo hace el inicio de sesión). **Autorización** es saber *qué puedes hacer*: aquí, que solo puedes ver y cambiar el programa de los eventos de **tu** cuenta.
+>
+> `findOwnEvent()` busca el evento por su número, pero **dentro de la cuenta del usuario conectado** (`ofAccount`). Si el evento es de otra cuenta, para esa consulta «no existe», y `firstOrFail()` responde con un **404**.
+>
+> ¿Por qué 404 y no 403 («prohibido»)? Con un 403 confirmaríamos que ese evento existe en otra cuenta; con un 404 no damos ninguna pista. Ocultar un botón en la pantalla no basta: alguien puede escribir la dirección a mano, y por eso la comprobación se hace en el servidor.
+>
+> **En el recorrido:** paso 4, Permiso. Lo usan el listado, el formulario y el guardado.
 
 **Qué hacer:** buscar el evento por su id **dentro de la cuenta del usuario que ha iniciado sesión**. Si el evento es de otra cuenta, la respuesta debe ser 404 (no se revela que existe).
 
@@ -196,6 +233,19 @@ docker compose exec moderniza php artisan test --group=t3-4
 ## T3-5 · Guardar la sesión y su ruta
 
 **Archivos:** `EventSessionController::store()` y `moderniza/routes/web.php`
+
+> **Para entenderlo.** Una **ruta** une una dirección y un método HTTP con el código que la atiende: `POST /events/1/sessions` significa «crear una sesión en el evento 1». Se usa POST porque **crea** algo; para consultar se usa GET.
+>
+> El **controlador** es el código que hace el trabajo. `store()` sigue siempre el mismo orden:
+> 1. Comprueba que el evento es tuyo (T3-4).
+> 2. Crea la sesión **solo con los datos validados** (T3-3).
+> 3. Pone `account_id` y `event_id` desde el servidor (por eso no estaban en `$fillable`).
+> 4. Guarda en MySQL (`save()` ejecuta el `INSERT`).
+> 5. Redirige al listado con un mensaje.
+>
+> Redirigir después de guardar evita que, al recargar la página, el navegador vuelva a enviar el formulario y se cree la sesión dos veces. El mensaje viaja en la sesión (`with('success', ...)`) y la pantalla lo muestra una sola vez.
+>
+> **En el recorrido:** pasos 2 (la ruta recibe la petición) y 5 (guardar), y prepara el 6 (la respuesta).
 
 **Qué hacer:**
 
@@ -233,6 +283,19 @@ return redirect()
 ## T3-6 · El formulario en React
 
 **Archivo:** `moderniza/resources/js/pages/Sessions/Create.tsx`
+
+> **Para entenderlo.** Esta pantalla es un **componente de React**: una función que devuelve lo que se ve (JSX). React la vuelve a dibujar cada vez que cambian sus datos.
+>
+> `useForm` (de Inertia) guarda el estado del formulario:
+> - `data`: lo que el usuario ha escrito.
+> - `setData`: actualiza `data` al escribir.
+> - `post`: envía los datos a Laravel.
+> - `errors`: los mensajes que devuelve la validación (T3-3).
+> - `processing`: vale `true` mientras se espera la respuesta.
+>
+> **Inertia** hace de puente: envía la petición sin recargar la página y, si Laravel devuelve errores, los coloca en `errors` sin borrar lo escrito. Desactivar el botón mientras `processing` es `true` evita que alguien pulse dos veces y cree la sesión repetida. El componente `Field` ya se ocupa de la etiqueta y de unir el mensaje de error con su campo (accesibilidad).
+>
+> **En el recorrido:** paso 1, React. Es el inicio de todo y también el final, porque aquí se ven los errores o la confirmación.
 
 **Qué hacer:** añadir los campos que faltan, enviar el formulario con Inertia y desactivar el botón mientras se guarda.
 
@@ -280,6 +343,16 @@ Sin errores. Después, en el navegador: **Mis eventos → Programa de sesiones �
 ## T3-7 · Vuestras pruebas
 
 **Archivo:** `moderniza/tests/Feature/CreateEventSessionTest.php`
+
+> **Para entenderlo.** Una **prueba automática** es código que usa la aplicación como lo haría una persona y comprueba el resultado. Por ejemplo: «inicio sesión como Ana, envío un título vacío y compruebo que hay un error y que no se ha guardado nada».
+>
+> Las pruebas se ejecutan contra la base `moderniza_test`: se crean sus tablas desde cero, cada prueba fabrica sus propios datos inventados (*factories*) y al terminar se deshacen sus cambios. Así nunca tocan los datos de Attendize.
+>
+> Sirven para dos cosas. **Demuestran** que se cumplen los criterios de aceptación, con datos correctos, incorrectos y de otra cuenta. Y **protegen** el trabajo: si mañana alguien quita una regla de validación o el filtro por cuenta, la prueba se pone en rojo y avisa.
+>
+> `markTestIncomplete` es solo una marca de «pendiente»: mientras esté, la prueba no se ejecuta.
+>
+> **En el recorrido:** comprueban el camino completo, del paso 1 al 6.
 
 **Qué hacer:** completar las dos pruebas marcadas con `TODO T3-7` (quitad la línea `markTestIncomplete`).
 
