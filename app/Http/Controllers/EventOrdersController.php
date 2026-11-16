@@ -220,7 +220,9 @@ class EventOrdersController extends MyBaseController
         /** @var Order $order */
         $order = Order::scope()->findOrFail($order_id);
         /** @var Collection $attendees */
-        $attendees = Attendee::findFromSelection($request->get('attendees'));
+        $attendees = $order->attendees()
+            ->whereIn('id', (array) $request->get('attendees'))
+            ->get();
 
         try {
             // Cancels attendees for an order and attempts to refund
