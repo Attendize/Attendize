@@ -1,67 +1,57 @@
 # Tarea 4 · Análisis del cambio solicitado
 
-> Plantilla. Sustituye cada indicación por tu análisis. No borres los apartados.
+> Responde a las seis preguntas con tus palabras. Basta con unas pocas líneas por pregunta.
+> Enlaza este archivo desde la Issue «Cambio solicitado Tarea 4».
 
-## 1. Solicitud
+## 1. ¿Qué pide el cliente?
 
-Copia **literal** del texto del profesorado (sin reinterpretarlo):
+Copia **literal** de la petición (no la cambies):
 
 > «Dos sesiones del mismo evento no pueden coincidir en la misma sala en horarios que se solapen.»
 
-| Dato | Valor |
+- Motivo:
+- Prioridad:
+- Fecha en que se comunicó:
+- Restricciones (lo que te imponen):
+- Issue: #
+
+## 2. ¿Qué hace ahora la aplicación?
+
+- Versión de partida (etiqueta `tarea-03-entrega` y commit):
+- Qué pasa hoy si creo dos sesiones en la misma sala a la misma hora:
+- Resultado de `php artisan test` antes de tocar nada:
+- ¿Hay ya sesiones solapadas en mi base de datos? (pega la consulta SQL y su resultado):
+
+## 3. ¿Qué archivos tengo que tocar y cuáles no?
+
+| Archivo | Qué cambio |
 |---|---|
-| Origen | Profesorado (cliente TechFest) |
-| Fecha de comunicación | |
-| Motivo | |
-| Prioridad | |
-| Restricciones | |
-| Issue | Enlace a «Cambio solicitado Tarea 4» |
+| | |
 
-## 2. Situación inicial
+**Lo que NO cambia** (por ejemplo, Attendize o las columnas de la tabla):
 
-- Versión de partida (etiqueta y commit):
-- Requisito y criterio de aceptación afectados (de la Tarea 3):
-- Comportamiento antes del cambio (prueba o captura que lo demuestre):
+## 4. ¿Cuánto tiempo me llevará?
 
-## 3. Impacto
-
-| Área | ¿Cambia? | Qué cambia exactamente (archivo, regla, pantalla…) |
+| Tarea | Horas estimadas | Horas reales |
 |---|---|---|
-| Interfaz | | |
-| Cliente (React) | | |
-| Servidor (validación, reglas) | | |
-| Datos (migraciones, datos existentes) | | |
-| Seguridad y permisos | | |
-| Pruebas | | |
-| Despliegue | | |
-| Documentación | | |
+| | | |
 
-**Qué NO cambia:**
+¿Me da tiempo a entregar en la fecha? ¿Qué tengo que hacer antes (dependencias)?
 
-**Datos existentes:** ¿puede haber ya sesiones solapadas en la base? ¿Cómo lo compruebas (consulta SQL) y qué haces con ellas?
+## 5. ¿Qué puede salir mal?
 
-## 4. Estimación
+| Qué puede fallar | Cómo lo evito | Qué hago si pasa |
+|---|---|---|
+| | | |
 
-| Tarea | Dependencia | Esfuerzo estimado | Esfuerzo real |
-|---|---|---|---|
-| | | | |
+## 6. ¿Lo hago, lo adapto o lo dejo para más tarde? ¿Por qué?
 
-Efecto sobre el hito de entrega:
+Decisión:
 
-## 5. Riesgos
+Motivos (lo que aporta, lo que cuesta, el riesgo y el plazo):
 
-| Riesgo | Probabilidad | Impacto | Prevención | Respuesta |
-|---|---|---|---|---|
-| | | | | |
+**¿Cómo compruebo que funciona?** Casos que se aceptan y se rechazan, y la prueba automática de cada uno:
 
-## 6. Decisión
-
-Aceptar / ajustar / aplazar, con justificación (valor, esfuerzo, dependencias, riesgo y plazo) y alcance definitivo.
-
-## 7. Verificación
-
-Criterios de aceptación actualizados (formato «Dado… cuando… entonces…») y pruebas que los comprueban:
-
-| Criterio | Prueba automática | Resultado |
+| Caso | Resultado esperado | Prueba |
 |---|---|---|
 | | | |
