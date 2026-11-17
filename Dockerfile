@@ -2,7 +2,13 @@
 
 # Base image with nginx, php-fpm and composer built on debian
 FROM wyveo/nginx-php-fpm:php74 as base
-RUN apt-get update && apt-get install -y wait-for-it libxrender1
+# Adaptacion 2026: Debian 10 (buster) esta archivado y sus repositorios ya no responden.
+# Se usan los de archive.debian.org y se actualiza Composer a la version 2.
+RUN rm -f /etc/apt/sources.list.d/*.list \
+ && printf 'deb http://archive.debian.org/debian buster main\ndeb http://archive.debian.org/debian-security buster/updates main\n' > /etc/apt/sources.list \
+ && apt-get -o Acquire::Check-Valid-Until=false update \
+ && apt-get install -y wait-for-it libxrender1 \
+ && (composer self-update --2 || true)
 
 # Set up code
 WORKDIR /usr/share/nginx/html

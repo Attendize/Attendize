@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+@source '../js/**/*.tsx';
+@source '../views/**/*.blade.php';
+
+@theme {
+    --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+}
+
+/* Guía visual mínima de Moderniza (Diseño de interfaces · RA2).
+   Colores con contraste AA sobre blanco. */
+@layer components {
+    .btn-primary {
+        @apply inline-flex items-center justify-center rounded bg-blue-700 px-4 py-2 font-medium text-white hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-60;
+    }
+    .btn-secondary {
+        @apply inline-flex items-center justify-center rounded border border-slate-400 bg-white px-4 py-2 font-medium text-slate-900 hover:bg-slate-100;
+    }
+    .link {
+        @apply font-medium text-blue-800 underline underline-offset-2 hover:text-blue-900;
+    }
+    .card {
+        @apply rounded border border-slate-200 bg-white p-4 shadow-sm;
+    }
+    .input {
+        @apply block w-full rounded border border-slate-400 bg-white px-3 py-2 text-slate-900;
+    }
+    .input-error {
+        @apply border-red-700;
+    }
+    /* Enlace "Saltar al contenido": visible solo al recibir el foco con teclado. */
+    .skip-link {
+        @apply sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded focus:bg-white focus:p-2;
+    }
+}
+
+/* Foco SIEMPRE visible al navegar con teclado (Diseño de interfaces · RA5). */
+:focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 2px;
+}
+
+body {
+    @apply bg-slate-50 text-slate-900;
+}
