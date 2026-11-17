@@ -1,0 +1,12 @@
+{
+    "tadu": 2,
+    "id": "t-fc4b0da9-65aa-49b9-8114-052b4af43488",
+    "title": "Dependency warning (2026-09-20): `yarn install` reports `YN0002: attendize@workspace:. doesn't provide postcss (p351ad8), requested by laravel-mix`; Grunt builds pass",
+    "state": "pending",
+    "category": "daily-round",
+    "type": "untriaged",
+    "priority": "untriaged",
+    "notes": [
+        "Next step: audit whether Laravel Mix is needed before adding its PostCSS peer."
+    ]
+}

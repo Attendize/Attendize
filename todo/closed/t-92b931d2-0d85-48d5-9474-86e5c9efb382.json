@@ -1,0 +1,15 @@
+{
+    "tadu": 2,
+    "id": "t-92b931d2-0d85-48d5-9474-86e5c9efb382",
+    "title": "Forward fix (2026-09-20): recipe adjusted because Dart Sass was already present, there is no webpack.mix.js or Elixir build, and the actual pipeline is Grunt/Less; removed unused `laravel-elixir` and",
+    "state": "done",
+    "category": "moved-from-todo-md-2026-10-12",
+    "type": "untriaged",
+    "priority": "untriaged",
+    "notes": [
+        "regenerated `yarn.lock`, retaining upgraded dependencies. Verification: `yarn exec grunt deploy` → `1 file created 333 kB → 155 kB` and `Done.`; `wc -c public/assets/stylesheet/application.css public/assets/stylesheet/frontend.css` → 309189 and 178705 bytes. Generated assets restored after verification to keep this dependency fix scoped; no commits made."
+    ],
+    "closed": "2026-11-17",
+    "result": "Forward fix (2026-09-20): recipe adjusted because Dart Sass was already present, there is no webpack.mix.js or Elixir build, and the actual pipeline is Grunt/Less; removed unused `laravel-elixir` and",
+    "evidence": ["legacy item migrated to format 2 without a recorded evidence"]
+}

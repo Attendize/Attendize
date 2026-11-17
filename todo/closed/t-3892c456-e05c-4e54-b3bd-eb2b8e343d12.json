@@ -1,0 +1,15 @@
+{
+    "tadu": 2,
+    "id": "t-3892c456-e05c-4e54-b3bd-eb2b8e343d12",
+    "title": "<!-- daily-tasks:BROKEN --> **BROKEN resolved** (first seen 2026-09-12, verified 2026-09-20): reproduced `node-sass@npm:4.13.1 couldn't be built successfully (exit code 1)` on Node 26.9.0; removed",
+    "state": "done",
+    "category": "moved-from-todo-md-2026-10-12",
+    "type": "untriaged",
+    "priority": "untriaged",
+    "notes": [
+        "its unused Elixir parent without downgrades. Verification: `yarn install` → `Done with warnings in 0s 524ms`; `yarn run build-frontend` → `2 stylesheets created.` and `Done.`; `yarn why node-sass` → no matches (exit 0)."
+    ],
+    "closed": "2026-11-17",
+    "result": "<!-- daily-tasks:BROKEN --> **BROKEN resolved** (first seen 2026-09-12, verified 2026-09-20): reproduced `node-sass@npm:4.13.1 couldn't be built successfully (exit code 1)` on Node 26.9.0; removed",
+    "evidence": ["legacy item migrated to format 2 without a recorded evidence"]
+}
